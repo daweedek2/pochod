@@ -24,4 +24,4 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
           check-latest: true
-      - run: java -cp java PochodApplication
+      - run: ./gradlew build --no-daemon
