@@ -42,6 +42,12 @@ public class Stamp {
     public Stamp() {
     }
 
+    public Stamp(final LocalDateTime timestamp, final Stage stage, final Player player) {
+        this.timestamp = timestamp;
+        this.stage = stage;
+        this.player = player;
+    }
+
     public Long getId() {
         return id;
     }

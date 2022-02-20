@@ -10,5 +10,4 @@ import cz.kostka.pochod.dto.StampResultDTO;
  */
 public interface StageApi {
     StageDetailDTO getStage(StageRequestDTO stageRequestDTO);
-    StampResultDTO submitStamp(StampRequestDTO stampRequestDTO);
 }

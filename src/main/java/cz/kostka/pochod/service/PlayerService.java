@@ -1,10 +1,11 @@
 package cz.kostka.pochod.service;
 
 import cz.kostka.pochod.domain.Player;
-import cz.kostka.pochod.dto.RegistrationResponseDTO;
 import cz.kostka.pochod.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * Created by dkostka on 2/6/2022.
@@ -20,10 +21,14 @@ public class PlayerService {
     }
 
     public Player createPlayer(final String nickname, final Integer phoneNumber) {
-        if (playerRepository.getPlayerByNickname(nickname).isPresent()) {
+        if (getPlayerByNickname(nickname).isPresent()) {
             return null;
         }
 
         return playerRepository.save(new Player(nickname, phoneNumber));
+    }
+
+    public Optional<Player> getPlayerByNickname(final String nickname) {
+        return playerRepository.getPlayerByNickname(nickname);
     }
 }

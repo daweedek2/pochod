@@ -31,17 +31,21 @@ public class Stage {
     @Column(nullable = false)
     private Point location;
 
+    @Column(nullable = false)
+    private String pin;
+
     @OneToMany(mappedBy = "stage")
     private Set<Stamp> stamps;
 
     public Stage() {
     }
 
-    public Stage(final Long id, final String name, final int order, final Point location, final Set<Stamp> stamps) {
+    public Stage(final Long id, final String name, final int order, final Point location, final String pin, final Set<Stamp> stamps) {
         this.id = id;
         this.name = name;
         this.order = order;
         this.location = location;
+        this.pin = pin;
         this.stamps = stamps;
     }
 
@@ -75,6 +79,14 @@ public class Stage {
 
     public void setLocation(final Point location) {
         this.location = location;
+    }
+
+    public String getPin() {
+        return pin;
+    }
+
+    public void setPin(final String pin) {
+        this.pin = pin;
     }
 
     public Set<Stamp> getStamps() {
