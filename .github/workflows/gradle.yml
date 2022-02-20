@@ -24,4 +24,5 @@ jobs:
           distribution: 'adopt'
           java-version: '17'
           check-latest: true
-      - run: ./gradlew build --no-daemon
+      - run: chmod +x gradlew
+      - run: ./gradlew clean build --no-daemon
