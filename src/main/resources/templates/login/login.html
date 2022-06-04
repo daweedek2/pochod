@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org" style="height:100%">
+<head th:replace="fragments/head :: head('PoP - přihlášení')">
+</head>
+<body class="login-page-body">
+    <div class="container login-form-container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="login-form-header">Pochod okolo Polanky</h1>
+                <img src="/img/ikonka-large.jpg" alt="PoP 2022" class="img-billy"/>
+
+                <form action="/login" th:action="@{/login}" method="post">
+                    <input th:if="${_csrf}" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+                    <div class="form-group">
+                        <label for="username" class="login-form-label">Jméno</label>
+                        <input type="text" autocorrect="off" autocapitalize="none" class="form-control" id="username" name="username" autofocus/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="login-form-label">Heslo</label>
+                        <input type="password" class="form-control" id="password" name="password"/>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="checkbox" class="checkbox" id="remember-me" name="remember-me"/>
+                        <label for="remember-me" class="login-form-label">Pamatovat přihlášení</label>
+                    </div>
+
+                    <div class="login-form-error-wrapper">
+                        <span th:if="${param.error != null}" class="login-form-error">Přihlášení se nezdařilo</span>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Přihlásit</button>
+                </form>
+                <div>
+                    <a th:href="@{/register}" class="btn btn-secondary">Registrovat</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

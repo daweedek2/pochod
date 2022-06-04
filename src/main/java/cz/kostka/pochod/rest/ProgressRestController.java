@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(ProgressRestController.ENDPOINT)
 public class ProgressRestController {
 
-    public static final String ENDPOINT = "/progress";
+    public static final String ENDPOINT = "api/progress";
 }

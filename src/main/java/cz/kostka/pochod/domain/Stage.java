@@ -26,7 +26,7 @@ public class Stage {
     private String name;
 
     @Column(nullable = false, unique = true)
-    private int order;
+    private int number;
 
     @Column(nullable = false)
     private Point location;
@@ -40,10 +40,10 @@ public class Stage {
     public Stage() {
     }
 
-    public Stage(final Long id, final String name, final int order, final Point location, final String pin, final Set<Stamp> stamps) {
+    public Stage(final Long id, final String name, final int number, final Point location, final String pin, final Set<Stamp> stamps) {
         this.id = id;
         this.name = name;
-        this.order = order;
+        this.number = number;
         this.location = location;
         this.pin = pin;
         this.stamps = stamps;
@@ -65,12 +65,12 @@ public class Stage {
         this.name = name;
     }
 
-    public int getOrder() {
-        return order;
+    public int getNumber() {
+        return number;
     }
 
-    public void setOrder(final int order) {
-        this.order = order;
+    public void setNumber(final int order) {
+        this.number = order;
     }
 
     public Point getLocation() {

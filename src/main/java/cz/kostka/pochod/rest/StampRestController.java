@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by dkostka on 2/6/2022.
  */
 @RestController
-@RequestMapping(StampRestController.ENDPOINT)
 public class StampRestController {
-    public static final String ENDPOINT = "/stage";
 
     private final StampApi stampApi;
 
@@ -24,7 +22,7 @@ public class StampRestController {
         this.stampApi = stampApi;
     }
 
-    @PostMapping("/submitStamp")
+    @PostMapping("api/submitStamp")
     public ResponseEntity<StampResultDTO> submitStamp(@RequestBody final StampRequestDTO stampRequestDTO) {
         final var result = stampApi.submitStamp(stampRequestDTO);
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('PoP - Razítko 1')">
+</head>
+
+<body>
+<!--    <div th:insert="client/fragments/header :: header(cypher, '/game/cypher')"></div>-->
+<!--    <div th:unless="${newMessages.empty}" th:insert="client/fragments/message-box :: messageBox(${newMessages})"></div>-->
+<div class="container">
+    <div class="row cypher-list">
+        <div class="col-sm-12">
+            <h1 class="login-form-header">Pochod okolo Polanky</h1>
+            <h1>1. U zeleného stromu</h1>
+            <div>
+                <script th:src="@{/js/qr-scanner-script.js}"></script>
+                <div class="col">
+                    <div style="width:95%;" id="reader"></div>
+                </div>
+                <div class="col" style="padding:30px;">
+                    <h3>SCAN RESULT</h3>
+                    <div id="result">Result Here</div>
+                </div>
+                <script type="text/javascript">
+                    function onScanSuccess(qrCodeMessage) {
+                        alert('')
+                        document.getElementById('result').innerHTML = '<span class="result">'+qrCodeMessage+'</span>';
+                    }
+                    function onScanError(errorMessage) {
+                        alert('Skenování se nezdařilo.')
+                    }
+                    var html5QrcodeScanner = new Html5QrcodeScanner(
+                        "reader", { fps: 10, qrbox: 250 });
+                    html5QrcodeScanner.render(onScanSuccess, onScanError);
+                </script>
+            </div>
+            <a class="btn btn-primary" th:href="@{'/pop/stages'}" role="button">Zpátky na přehled</a>
+            <a class="btn btn-primary btn-square-md" href="https://mapy.cz/s/mosemaduhu" target="_blank">Mapa 2022</a>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</body>
+</html>

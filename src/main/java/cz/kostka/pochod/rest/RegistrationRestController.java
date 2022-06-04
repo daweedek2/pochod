@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(RegistrationRestController.ENDPOINT)
 public class RegistrationRestController {
 
-    public static final String ENDPOINT = "/register";
+    public static final String ENDPOINT = "api/register";
 
     private final RegistrationApi registrationApi;
 
@@ -28,10 +28,11 @@ public class RegistrationRestController {
 
     @PostMapping
     public ResponseEntity<RegistrationResponseDTO> register(@RequestBody RegistrationRequestDTO registrationRequestDTO) {
+        System.out.println("I am here...");
         final RegistrationResponseDTO responseDTO = registrationApi.register(registrationRequestDTO);
-
+        System.out.printf("I am there");
         return responseDTO.getRegistrationStatus() == RegistrationStatus.ERROR
-                ? ResponseEntity.badRequest().build()
+                ? ResponseEntity.internalServerError().build()
                 : ResponseEntity.ok(responseDTO);
     }
 }

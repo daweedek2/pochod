@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Pop 2022')">
+</head>
+<body>
+<!--    <div th:insert="client/fragments/header :: header(cypher, '')"></div>-->
+<!--    <div th:unless="${newMessages.empty}" th:insert="client/fragments/message-box :: messageBox(${newMessages})"></div>-->
+<div class="container">
+    <div class="row cypher-list">
+        <div class="col-sm-12">
+<!--            <div class="col-sm-12" th:if="${gameStarted}">-->
+            <h1 class="login-form-header">Pochod okolo Polanky</h1>
+            <h1>Stanoviště</h1>
+            <div class="cypher">
+                <a th:href="@{/pop/stages/1}">
+                    <div class="row align-items-center">
+                        <div class="col">1. U zeleného háje</div>
+                        <div class="col status">
+                            <i class="fas fa-beer-mug-empty"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="cypher">
+                <a th:href="@{/pop/stages/2}">
+                    <div class="row align-items-center">
+                        <div class="col">2. U modrého háje</div>
+                        <div class="col status">
+                            <i class="fas fa-beer-mug-empty float-right"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="cypher">
+                <a th:href="@{/pop/stages/3}">
+                    <div class="row align-items-center">
+                        <div class="col">3. U bílého háje</div>
+                        <div class="col status">
+                            <i class="fas fa-beer-mug-empty"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="cypher">
+                <a th:href="@{/pop/stages/4}">
+                    <div class="row align-items-center">
+                        <div class="col">4. U rudého háje</div>
+                        <div class="col status">
+<!--                            <i class="far fa-check-circle float-right"></i>-->
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
+        </div>
+    </div>
+</div>
+<!--    <div th:insert="client/fragments/finalplace-footer :: footer"></div>-->
+<!--    <div th:insert="fragments/externalScripts :: externalScripts"></div>-->
+<!--    <div th:insert="client/fragments/messages-scripts :: messagesScripts"></div>-->
+</body>
+</html>

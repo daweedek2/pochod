@@ -2,6 +2,7 @@ package cz.kostka.pochod.service;
 
 import cz.kostka.pochod.api.RegistrationApi;
 import cz.kostka.pochod.domain.Player;
+import cz.kostka.pochod.domain.User;
 import cz.kostka.pochod.dto.RegistrationRequestDTO;
 import cz.kostka.pochod.dto.RegistrationResponseDTO;
 import cz.kostka.pochod.enums.RegistrationStatus;
@@ -12,17 +13,23 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RegistrationService implements RegistrationApi {
-    private PlayerService playerService;
+    private final UserService userService;
+    private final PlayerService playerService;
+
+    public RegistrationService(final UserService userService, final PlayerService playerService) {
+        this.userService = userService;
+        this.playerService = playerService;
+    }
 
     @Override
     public RegistrationResponseDTO register(final RegistrationRequestDTO registrationRequestDTO) {
-        final Player registeredPlayer = playerService
-                .createPlayer(registrationRequestDTO.getNickname(), registrationRequestDTO.getPhoneNumber());
+        final User newUser = userService.createUser(registrationRequestDTO);
+        final Player newPlayer = playerService.createPlayer(registrationRequestDTO, newUser);
 
-        if (registeredPlayer == null) {
+        if (newUser == null) {
             return new RegistrationResponseDTO(RegistrationStatus.ERROR);
         }
 
-        return new RegistrationResponseDTO(RegistrationStatus.CREATED, registeredPlayer);
+        return new RegistrationResponseDTO(RegistrationStatus.CREATED, newPlayer);
     }
 }

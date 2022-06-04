@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(StageRestController.ENDPOINT)
 public class StageRestController {
-    public static final String ENDPOINT = "/stage";
+    public static final String ENDPOINT = "api/stage";
 
     private final StageApi stageApi;
 

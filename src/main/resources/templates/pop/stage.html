@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('PoP - Stanoviště 1')">
+</head>
+
+<body>
+<!--    <div th:insert="client/fragments/header :: header(cypher, '/game/cypher')"></div>-->
+<!--    <div th:unless="${newMessages.empty}" th:insert="client/fragments/message-box :: messageBox(${newMessages})"></div>-->
+<div class="container">
+    <div class="row cypher-list">
+        <div class="col-sm-12">
+            <h1 class="login-form-header">Pochod okolo Polanky</h1>
+            <h1>1. U zeleného stromu</h1>
+            <div>
+                <a class="btn btn-primary" th:href="@{'/pop/stages/1/stamp'}" role="button">Získat razítko</a>
+            </div>
+            <h2>GPS souřdnice</h2>
+            <p>49.2673764, 18.0342303</p>
+            <h2>Popis</h2>
+            <a class="btn btn-primary" th:href="@{'/pop/stages'}" role="button">Zpátky na přehled</a>
+            <a class="btn btn-primary btn-square-md" href="https://mapy.cz/s/mosemaduhu" target="_blank">Mapa 2022</a>
+        </div>
+    </div>
+</div>
+
+<!--            <th:block th:switch="${status}">-->
+
+<!--                    <th:block th:case="'PENDING'">-->
+<!--                        <h2 th:utext="#{label.client.cypherdetail.solution}">Řešení</h2>-->
+<!--                        <form th:action="|/game/cypher/verify/${cypher.cypherId}|" th:object="${codewordDTO}" method="post">-->
+<!--                            <div class="form-group">-->
+<!--                                &lt;!&ndash;<label for="guess">Řešení</label>&ndash;&gt;-->
+<!--                                <input id="guess" type="text" th:field="*{guess}" class="form-control" required autocomplete="off"/>-->
+<!--                                <p th:if="${#fields.hasErrors('guess')}" th:class="'error'" th:errors="*{guess}" id="errorMessage"></p>-->
+<!--                            </div>-->
+<!--                            <div class="form-group">-->
+<!--                                <button class="btn btn-primary" type="submit" th:utext="#{label.client.cypherdetail.verify}">Ověřit</button>-->
+<!--                            </div>-->
+<!--                        </form>-->
+<!--                        <div th:if="${finalViewAllowed}">-->
+<!--                            <a class="btn btn-primary" th:href="@{/game/finalplace}"-->
+<!--                               role="button" th:utext="#{label.client.cypherdetail.finalplacedetail}">Detail vyhlášení výsledků</a>-->
+<!--                        </div>-->
+<!--                    </th:block>-->
+
+<!--                    <th:block th:case="'SKIPPED'">-->
+<!--                        <div class="alert alert-danger" role="alert" th:utext="#{label.client.cypherdetail.skipped}">-->
+<!--                            Tuto šifru jste přeskočili-->
+<!--                        </div>-->
+
+<!--                        <div th:if="${nextCypher}">-->
+<!--                            <h2 th:utext="#{label.client.cypherdetail.wherenow}">Kam dál?</h2>-->
+<!--                            <a class="btn btn-primary" th:href="@{'/game/cypher/' + ${nextCypher.cypherId}}"-->
+<!--                               role="button" th:utext="#{label.client.cypherdetail.nextcypher}">Zobrazit další šifru</a>-->
+<!--                        </div>-->
+
+<!--                        <div th:if="${finalViewAllowed}">-->
+<!--                            <a class="btn btn-primary" th:href="@{/game/finalplace}" th:utext="#{label.client.cypherdetail.finalplacedetail}"-->
+<!--                               role="button">Detail vyhlášení výsledků</a>-->
+<!--                        </div>-->
+<!--                    </th:block>-->
+
+<!--                    <th:block th:case="${'SOLVED'}">-->
+<!--                        <div class="alert alert-success" role="alert" th:utext="#{label.client.cypherdetail.solved}">-->
+<!--                            Zadali jste správné heslo. Šifra byla vyluštěna!-->
+<!--                        </div>-->
+
+<!--                        <div th:if="${nextCypher}">-->
+<!--                            <h2 th:utext="#{label.client.cypherdetail.wherenow}">Kam dál?</h2>-->
+<!--                            <a class="btn btn-primary" th:href="@{'/game/cypher/' + ${nextCypher.cypherId}}" th:utext="#{label.client.cypherdetail.nextcypher}"-->
+<!--                               role="button">Zobrazit další šifru</a>-->
+<!--                        </div>-->
+<!--                        <div th:if="${finalViewAllowed}">-->
+<!--                            <a class="btn btn-primary" th:href="@{/game/finalplace}"-->
+<!--                               role="button" th:utext="#{label.client.cypherdetail.finalplacedetail}">Detail vyhlášení výsledků</a>-->
+<!--                        </div>-->
+
+<!--                        <div th:if="${cypher.bonusContent != null and cypher.bonusContent != ''}" id="bonus-info">-->
+<!--                            <h2 th:utext="#{label.client.cypherdetail.bonusinfo}">Bonusové informace</h2>-->
+<!--                            <p th:text="${cypher.bonusContent}" class="alert alert-light" role="alert"></p>-->
+<!--                        </div>-->
+<!--                    </th:block>-->
+<!--                </th:block>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="row">-->
+<!--            <div class="col-sm-12">-->
+<!--                <h2 th:utext="#{label.client.cypherdetail.address}">Adresa</h2>-->
+<!--                <p><span th:replace="fragments/gps-position :: gps(${cypher.getActiveLocation()})"></span></p>-->
+<!--                <p th:text="${cypher.getActivePlaceDescription()}"></p>-->
+<!--                <div id="map"></div>-->
+<!--                <p><span th:replace="fragments/map-link :: mapLocation(${cypher.getActiveLocation()})"></span></p>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <th:block th:if="${status == 'PENDING'}">-->
+<!--            <div class="row">-->
+<!--                <div class="col-sm-12">-->
+<!--                    <h2 th:utext="#{label.hint}">Nápověda</h2>-->
+<!--                    <th:block th:if="${not #lists.isEmpty(hintsTaken)}">-->
+<!--                        <div th:each="hintTaken : ${hintsTaken}">-->
+<!--                            <p class="hint-text" >-->
+<!--                                <span th:text="|Nápověda (-${hintTaken.hint.value}b.):|"></span>-->
+<!--                                <span th:text="${hintTaken.hint.text}"></span>-->
+<!--                            </p>-->
+<!--                            <p th:if="${!#strings.isEmpty(hintTaken.hint.imageUrl)}">-->
+<!--                                <img class="hint-image img-fluid" alt="Obrázek nápovědy" src="" th:src="@{${hintTaken.hint.imageUrl}}" />-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </th:block>-->
+<!--                    <a href="#" th:href="|/game/cypher/${cypher.cypherId}/hint|"-->
+<!--                       class="btn btn-secondary" role="button" th:utext="#{label.client.cypherdetail.hintselect}">Vybrat nápovědu</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </th:block>-->
+
+<!--        <th:block th:if="${status == 'PENDING'}">-->
+<!--            <div class="row last">-->
+<!--                <div class="col-sm-12">-->
+<!--                    <form th:attr="onclick='return confirm(\'' + #{label.client.cypherdetail.giveupconfirm} + '\');'" th:action="|/game/cypher/giveUp/${cypher.cypherId}|" method="post">-->
+<!--                        <button class="btn btn-secondary btn-skip" type="submit" th:utext="#{label.client.cypherdetail.giveup}">Vzdát šifru</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </th:block>-->
+
+<!--    </div>-->
+<!--    <div th:insert="fragments/externalScripts :: externalScripts"></div>-->
+<!--    <div th:insert="fragments/seznamMapyScripts :: seznamMapyScripts"></div>-->
+<!--    <div th:insert="client/fragments/messages-scripts :: messagesScripts"></div>-->
+<!--    <script th:src="@{/js/client-map.js}"></script>-->
+<!--    <script th:inline="javascript">-->
+<!--        /*<![CDATA[*/-->
+<!--        initClientMap(/*[[${cypher}]]*/);-->
+<!--        /*]]>*/-->
+<!--    </script>-->
+</body>
+</html>
