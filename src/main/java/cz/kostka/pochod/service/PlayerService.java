@@ -1,6 +1,8 @@
 package cz.kostka.pochod.service;
 
 import cz.kostka.pochod.domain.Player;
+import cz.kostka.pochod.domain.User;
+import cz.kostka.pochod.dto.RegistrationRequestDTO;
 import cz.kostka.pochod.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,12 +22,12 @@ public class PlayerService {
         this.playerRepository = playerRepository;
     }
 
-    public Player createPlayer(final String nickname, final Integer phoneNumber) {
-        if (getPlayerByNickname(nickname).isPresent()) {
+    public Player createPlayer(final RegistrationRequestDTO dto, final User user) {
+        if (user == null) {
             return null;
         }
 
-        return playerRepository.save(new Player(nickname, phoneNumber));
+        return playerRepository.save(new Player(dto.getNickName(), dto.getEmail(), dto.getPin(), user));
     }
 
     public Optional<Player> getPlayerByNickname(final String nickname) {

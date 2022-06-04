@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org" style="height:100%">
+<head th:replace="fragments/head :: head('PoP - registrace')">
+</head>
+<body class="login-page-body">
+    <div class="container login-form-container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1 class="login-form-header">Pochod okolo Polanky</h1>
+
+                    <input th:if="${_csrf}" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+                    <div class="form-group">
+                        <label for="username" class="login-form-label">Uživatelské jméno</label>
+                        <input type="text" autocorrect="off" autocapitalize="none" class="form-control" id="username" name="username" autofocus required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="login-form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email" required/>
+                    </div>
+
+                    <div class="login-form-error-wrapper">
+                        <span th:if="${param.error != null}" class="login-form-error">Registrace se nezdařila</span>
+                    </div>
+
+                    <button id="register-button" class="btn btn-primary" onclick="registerMe()">Registrovat</button>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/js/register-script.js}"></script>
+</body>
+</html>

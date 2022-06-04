@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Pop 2022')">
+</head>
+<body>
+<!--    <div th:insert="client/fragments/header :: header(cypher, '')"></div>-->
+<!--    <div th:unless="${newMessages.empty}" th:insert="client/fragments/message-box :: messageBox(${newMessages})"></div>-->
+
+    <div class="container">
+        <div class="row cypher-list">
+            <div class="col-sm-12">
+<!--            <div class="col-sm-12" th:if="${gameStarted}">-->
+                <h1 class="login-form-header">Pochod okolo Polanky</h1>
+<!--                    <p class="big-centered-text">Tvuj progress kamo</p>-->
+                <img src="/img/bota-large.jpg" alt="PoP 2022" class="img-billy"/>
+            </div>
+        </div>
+        <div class="row cypher-list">
+            <div class="col-sm-4 center-elements">
+                <h2>Kam dál?</h2>
+    <!--                <a class="btn btn-flat" th:href="${gameDetails.mapUrl}">Mapa 2022</a>-->
+                    <a class="btn btn-primary btn-square-md" href="https://mapy.cz/s/mosemaduhu" target="_blank">Mapa 2022</a>
+                    <a class="btn btn-primary btn-square-md" th:href="@{/pop/stages}">Stanoviště</a>
+                    <a class="btn btn-primary btn-square-md" th:href="@{/pop/progress}">Můj postup</a>
+                    <a class="btn btn-primary btn-square-md" th:href="@{/pop/sponsors}">Sponzoři</a>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    <div th:insert="client/fragments/finalplace-footer :: footer"></div>-->
+<!--    <div th:insert="fragments/externalScripts :: externalScripts"></div>-->
+<!--    <div th:insert="client/fragments/messages-scripts :: messagesScripts"></div>-->
+</body>
+</html>
