@@ -16,7 +16,7 @@ public class Role {
     public static final String ORGANIZATOR = "ORGANIZATOR";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Long id;
 

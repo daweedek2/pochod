@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class Stamp {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
