@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/pop")
 public class PopController {
 
-
-
     @GetMapping
-    public String getPlayersProgress(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
+    public String viewHome(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
         return "pop/welcome";
+    }
+
+    @GetMapping("/progress")
+    public String viewProgress(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
+        return "pop/progress";
     }
 }
