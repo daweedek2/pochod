@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="header()">
+    <nav class="navbar navbar-default navbar-grey">
+        <div class="navbar-content">
+            <p class="team-name">Franta Kůrka</p>
+            <i class="fas fa-beer-mug-empty"></i>
+            <i class="fas fa-beer-mug-empty"></i>
+            <i class="fas fa-beer-mug-empty"></i>
+        </div>
+        <div>
+            <a class="nav-link" href="javascript: document.logoutForm.submit()"
+               th:attr="onclick='return confirm(\'' + 'Opravdu se chcete odhlásit?' + '\');'">Odhlásit se</a>
+
+            <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                <input hidden type="submit" value="Sign Out"/>
+            </form>
+        </div>
+    </nav>
+</div>
+</body>
+</html>

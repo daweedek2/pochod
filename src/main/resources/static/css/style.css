@@ -63,8 +63,8 @@ p.subheading {
     border: none;
 }
 
-.navbar-red{
-    background-color: rgb(57, 162, 54);
+.navbar-grey{
+    background-color: #757575;
     color: white;
 }
 
@@ -86,7 +86,7 @@ p.subheading {
 }
 
 .navbar a{
-    color: #ccc;
+    color: #fff;
 }
 
 .navbar .team-name {
@@ -416,7 +416,7 @@ a:hover{
     -moz-box-shadow: 0 3px 16px 2px rgba(0, 0, 0, 0.42);
     box-shadow: 0 3px 16px 2px rgba(0, 0, 0, 0.42);
     background-color: white;
-    color: rgb(57, 162, 54);
+    color: black;
 }
 
 .container .row .btn-primary:hover {
