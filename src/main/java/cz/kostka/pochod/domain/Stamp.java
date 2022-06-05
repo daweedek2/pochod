@@ -4,6 +4,7 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -14,11 +15,11 @@ import java.time.LocalDateTime;
  * Created by dkostka on 2/6/2022.
  */
 @Entity
-@Table
+@Table(name = "pop_stamp")
 public class Stamp {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column
