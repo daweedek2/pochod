@@ -1,6 +1,8 @@
 package cz.kostka.pochod.controller;
 
+import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.security.CustomUserDetails;
+import cz.kostka.pochod.service.PlayerService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,15 +14,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/pop")
-public class PopController {
+public class PopController extends PlayerController {
+
+    public PopController(final PlayerService playerService) {
+        super(playerService);
+    }
 
     @GetMapping
     public String viewHome(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
+        setPlayerToModel(user.getPlayer().getId(), model);
         return "pop/welcome";
     }
 
     @GetMapping("/progress")
     public String viewProgress(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
+        setPlayerToModel(user.getPlayer().getId(), model);
         return "pop/progress";
     }
 }

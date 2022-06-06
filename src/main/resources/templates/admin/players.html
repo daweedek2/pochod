@@ -3,11 +3,11 @@
 <head th:replace="fragments/head :: head('Admin - hráči')">
 </head>
 <body>
-<div th:insert="fragments/header :: header()"></div>
+<div th:insert="fragments/header :: header('ADMIN', 0)"></div>
 <div class="container">
     <div class="row">
+        <h1 class="login-form-header">Pochod okolo Polanky - ADMIN</h1>
         <div class="col-sm-12 col-md-12 col-lg-6">
-            <h1 class="login-form-header">Pochod okolo Polanky - ADMIN</h1>
             <h2>Nový hráč</h2>
             <form action="#" th:action="@{/admin/players/create}" th:object="${registrationDto}" method="post">
                 <div class="form-group">
@@ -41,11 +41,7 @@
                 <a th:href="@{/admin/players/{id}(id=${player.id})}">
                     <div class="row align-items-center">
                         <div class="col" th:text="|${player.id}. ${player.nickname}|">1. U zeleného háje</div>
-                        <div class="col status">
-                            <a href="#" th:href="@{/admin/players/delete/{id}(id=${player.id})}"
-                               th:attr="onclick='return confirm(\'' + 'Opravdu chcete smazat tým ' + ${player.nickname} + '?' + '\');'">
-                                <i class="fas fa-trash-can float-right"></i>
-                            </a>
+                        <div class="col" th:text="${player.stamps.size()}">
                         </div>
                     </div>
                 </a>

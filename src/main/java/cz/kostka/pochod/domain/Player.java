@@ -1,6 +1,7 @@
 package cz.kostka.pochod.domain;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.Set;
 
 /**
@@ -28,7 +29,7 @@ public class Player {
     @OneToMany(mappedBy = "player")
     private Set<Stamp> stamps;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
@@ -74,7 +75,7 @@ public class Player {
     }
 
     public Set<Stamp> getStamps() {
-        return stamps;
+        return stamps != null ? stamps : Collections.emptySet();
     }
 
     public void setStamps(final Set<Stamp> stamps) {

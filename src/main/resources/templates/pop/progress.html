@@ -4,7 +4,7 @@
 </head>
 
 <body>
-<div th:insert="fragments/header :: header()"></div>
+<div th:insert="fragments/header :: header(${player.nickname}, ${player.stamps?.size()})"></div>
 <!--    <div th:unless="${newMessages.empty}" th:insert="client/fragments/message-box :: messageBox(${newMessages})"></div>-->
 <div class="container">
     <div class="row cypher-list">

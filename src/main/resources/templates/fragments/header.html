@@ -3,13 +3,15 @@
 <head>
 </head>
 <body>
-<div th:fragment="header()">
+<div th:fragment="header(name, stamps)">
     <nav class="navbar navbar-default navbar-grey">
         <div class="navbar-content">
-            <p class="team-name">Franta Kůrka</p>
-            <i class="fas fa-beer-mug-empty"></i>
-            <i class="fas fa-beer-mug-empty"></i>
-            <i class="fas fa-beer-mug-empty"></i>
+            <a th:href="@{/successfulLogin}">
+                <p class="team-name" th:text="${name}">Franta Kůrka</p>
+                <div th:unless="${stamps==0}">
+                    <i class="fas fa-beer-mug-empty" th:each="stamp:${#numbers.sequence(1, stamps)}"></i>
+                </div>
+            </a>
         </div>
         <div>
             <a class="nav-link" href="javascript: document.logoutForm.submit()"
