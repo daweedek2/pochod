@@ -7,6 +7,7 @@ import cz.kostka.pochod.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -32,5 +33,13 @@ public class PlayerService {
 
     public Optional<Player> getPlayerByNickname(final String nickname) {
         return playerRepository.getPlayerByNickname(nickname);
+    }
+
+    public List<Player> getAllPlayers() {
+        return playerRepository.findAll();
+    }
+
+    public void deletePlayer(final Long playerId) {
+        playerRepository.deleteById(playerId);
     }
 }
