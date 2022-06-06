@@ -46,4 +46,11 @@ public class PlayersController {
         registrationService.register(dto);
         return "redirect:/admin/players";
     }
+
+    @GetMapping("/{id}")
+    public String getPlayerDetail(final @PathVariable("id") Long id, final Model model) {
+        final var player = playerService.getPlayerById(id);
+        model.addAttribute("player", player);
+        return "/admin/player-detail";
+    }
 }

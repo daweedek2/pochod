@@ -42,4 +42,8 @@ public class PlayerService {
     public void deletePlayer(final Long playerId) {
         playerRepository.deleteById(playerId);
     }
+
+    public Player getPlayerById(final Long id) {
+        return playerRepository.getById(id);
+    }
 }

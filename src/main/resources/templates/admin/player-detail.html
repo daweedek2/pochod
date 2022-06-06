@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Admin - Detail hráče')">
+</head>
+<body>
+<div th:insert="fragments/header :: header()"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <h1 class="login-form-header">Pochod okolo Polanky - ADMIN</h1>
+            <h1 th:text="${player.nickname}">Hrac</h1>
+            <h2>E-mail</h2>
+            <p th:text="${player.email}">email</p>
+            <h2>Pin</h2>
+            <p th:text="${player.pin}">email</p>
+            <h2>Počet razítek</h2>
+            <p th:text="${player.stamps.size}"></p>
+            <div>
+                <a class="btn btn-primary" href="#" th:href="@{/admin/players/delete/{id}(id=${player.id})}"
+                   th:attr="onclick='return confirm(\'' + 'Opravdu chcete smazat tým ' + ${player.nickname} + '?' + '\');'">
+                    Smazat
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
