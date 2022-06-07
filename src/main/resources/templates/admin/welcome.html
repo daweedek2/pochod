@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Pop - Admin')">
+</head>
+<body>
+    <div th:insert="fragments/header :: header('ADMIN', 0)"></div>
+
+    <div class="container">
+        <div class="row cypher-list">
+            <div class="col-sm-12">
+                <h1 class="login-form-header">Pochod okolo Polanky - ADMIN</h1>
+            </div>
+        </div>
+        <div class="row cypher-list">
+            <div class="col-sm-4 center-elements">
+                <h2>Kam dál?</h2>
+                <a class="btn btn-primary btn-square-md" th:href="@{/admin/stages}">Stanoviště</a>
+                <a class="btn btn-primary btn-square-md" th:href="@{/admin/players}">Hráči</a>
+                <a class="btn btn-primary btn-square-md" th:href="@{/admin/partners}">Partneři</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

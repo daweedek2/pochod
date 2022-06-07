@@ -7,10 +7,8 @@ import cz.kostka.pochod.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * Created by dkostka on 2/6/2022.
@@ -30,7 +28,7 @@ public class PlayerService {
             return null;
         }
 
-        return playerRepository.save(new Player(dto.getNickName(), dto.getEmail(), dto.getPin(), user));
+        return playerRepository.save(new Player(dto.nickname(), dto.email(), dto.phone(), dto.pin(), user));
     }
 
     public Optional<Player> getPlayerByNickname(final String nickname) {

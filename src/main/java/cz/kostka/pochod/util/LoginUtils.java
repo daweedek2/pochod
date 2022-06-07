@@ -13,7 +13,7 @@ public final class LoginUtils {
     public static String getRedirectUrlAfterLoginForRole(final Collection<? extends GrantedAuthority> role) {
         switch (role.toString()) {
             case "[ROLE_ADMIN]":
-                return "redirect:/admin/players";
+                return "redirect:/admin";
             case "[ROLE_ORGANIZER]":
                 return "redirect:/organizer/progress";
             case "[ROLE_USER]":

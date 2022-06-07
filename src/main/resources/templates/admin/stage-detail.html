@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Admin - Detail stanoviště')">
+</head>
+<body>
+<div th:insert="fragments/header :: header('ADMIN', 0)"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <h1 class="login-form-header">Pochod okolo Polanky - ADMIN</h1>
+            <h1 th:text="|${stage.number}. ${stage.name}|">1. Stanoviště</h1>
+            <h2>GPS</h2>
+            <p th:text="${stage.location}">location</p>
+            <h2>Heslo</h2>
+            <p th:text="${stage.pin}">heslo</p>
+            <h2>Info</h2>
+            <p th:text="${stage.info}"></p>
+            <h2>Počet razítek</h2>
+            <p th:text="${stage.stamps.size}"></p>
+            <div>
+                <a class="btn btn-primary" href="#" th:href="@{/admin/stages/delete/{id}(id=${stage.id})}"
+                   th:attr="onclick='return confirm(\'' + 'Opravdu chcete smazat stanoviště ' + ${stage.name} + '?' + '\');'">
+                    Smazat
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

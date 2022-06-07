@@ -31,7 +31,7 @@ public class PlayersController {
     public String getPlayersList(@AuthenticationPrincipal final CustomUserDetails admin, final Model model) {
         final var allPlayers = playerService.getAllPlayers();
         model.addAttribute("allPlayers", allPlayers);
-        model.addAttribute("registrationDto", new RegistrationRequestDTO(null, null, null));
+        model.addAttribute("registrationDto", new RegistrationRequestDTO(null, null, null, null));
         return "admin/players";
     }
 

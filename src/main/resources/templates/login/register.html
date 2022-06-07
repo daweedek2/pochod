@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="cs" xmlns:th="http://www.thymeleaf.org" style="height:100%">
-<head th:replace="fragments/head :: head('PoP - registrace')">
+<head th:replace="fragments/head :: head('PoP - Registrace')">
 </head>
 <body class="login-page-body">
     <div class="container login-form-container">
@@ -11,13 +11,18 @@
                     <input th:if="${_csrf}" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
                     <div class="form-group">
-                        <label for="username" class="login-form-label">Uživatelské jméno</label>
+                        <label for="username" class="input-value-required">Jméno</label>
                         <input type="text" autocorrect="off" autocapitalize="none" class="form-control" id="username" name="username" autofocus required/>
                     </div>
 
                     <div class="form-group">
-                        <label for="email" class="login-form-label">E-mail</label>
+                        <label for="email" class="input-value-required">E-mail</label>
                         <input type="email" class="form-control" id="email" name="email" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="login-form-label">Telefon</label>
+                        <input type="number" class="form-control" id="phone" name="phone"/>
                     </div>
 
                     <div class="login-form-error-wrapper">

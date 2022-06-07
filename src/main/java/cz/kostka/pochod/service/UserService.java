@@ -27,11 +27,11 @@ public class UserService {
     }
 
     public User createUser(final RegistrationRequestDTO dto) {
-        if (dto == null || isPresentUserByUsernameAndPin(dto.getNickName(), dto.getPin())) {
+        if (dto == null || isPresentUserByUsernameAndPin(dto.nickname(), dto.pin())) {
             return null;
         }
 
-        final User user = getUserForPlayer(dto.getNickName(), dto.getPin());
+        final User user = getUserForPlayer(dto.nickname(), dto.pin());
         return userRepository.save(user);
     }
 

@@ -21,9 +21,11 @@ function sendEmail(data) {
 function registerMe() {
     var nickName = document.getElementById("username").value
     var email = document.getElementById("email").value
+    var phone = document.getElementById("phone").value
     var data = {
         nickName: nickName,
         email: email,
+        phone: phone,
         pin: Math.floor(1000 + Math.random() * 9000)
     }
     token = $("meta[name='_csrf']").attr("content")

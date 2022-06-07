@@ -36,9 +36,10 @@ public class Player {
     public Player() {
     }
 
-    public Player(final String nickname, final String email, final int pin, final User user) {
+    public Player(final String nickname, final String email, final int phone, final int pin, final User user) {
         this.nickname = nickname;
         this.email = email;
+        this.phoneNumber = phone;
         this.pin = pin;
         this.user = user;
     }

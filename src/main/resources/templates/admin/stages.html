@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Admin - stanoviště')">
+</head>
+<body>
+<div th:insert="fragments/header :: header('ADMIN', 0)"></div>
+<div class="container">
+    <div class="row">
+        <h1 class="login-form-header">Pochod okolo Polanky - ADMIN</h1>
+        <div class="col-sm-12 col-md-12 col-lg-6">
+            <h2>Nové stanoviště</h2>
+            <form action="#" th:action="@{/admin/stages/create}" th:object="${stageCreationDTO}" method="post">
+                <div class="form-group">
+                    <label for="number" class="input-value-required">Číslo</label>
+                    <input id="number" class="form-control" type="number" th:field="*{number}" required/>
+                    <p class="error" th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Chyba - číslo stanoviště
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="input-value-required">Název</label>
+                    <input id="name" class="form-control" type="text" th:field="*{name}" required/>
+                    <p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Chyba - Jméno
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="pin" class="input-value-required">Heslo</label>
+                    <input id="pin" class="form-control" type="text" th:field="*{pin}" required/>
+                    <p class="error" th:if="${#fields.hasErrors('pin')}" th:errors="*{pin}">Chyba - Heslo
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="location">GPS souřadnice</label>
+                    <input id="location" class="form-control" type="text" th:field="*{location}"/>
+                    <p class="error" th:if="${#fields.hasErrors('location')}" th:errors="*{location}">Chyba - GPS
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="info">Info</label>
+                    <textarea id="info" class="form-control" type="" th:field="*{info}"></textarea>
+                    <p class="error" th:if="${#fields.hasErrors('info')}" th:errors="*{info}">Chyba - Informace
+                    </p>
+                </div>
+                <button type="submit" class="btn btn-primary">Vytvořit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row cypher-list">
+        <div class="col-sm-12">
+            <h2>Stanoviště</h2>
+            <th:block th:each="stage : ${allStages}">
+            <div class="cypher">
+                <a th:href="@{/admin/stages/{id}(id=${stage.id})}">
+                    <div class="row align-items-center">
+                        <div class="col" th:text="|${stage.number}. ${stage.name}|">1. U zeleného háje</div>
+                        <div class="col" th:text="${stage.stamps.size()}">
+                        </div>
+                    </div>
+                </a>
+            </div>
+            </th:block>
+        </div>
+    </div>
+</div>
+</body>
+</html>
