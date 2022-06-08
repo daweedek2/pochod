@@ -12,8 +12,8 @@
             <form action="#" th:action="@{/admin/players/create}" th:object="${registrationDto}" method="post">
                 <div class="form-group">
                     <label for="nickName" class="input-value-required">Uživatelské jméno</label>
-                    <input id="nickName" class="form-control" type="text" th:field="*{nickname}" required/>
-                    <p class="error" th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}">Chyba - Jméno
+                    <input id="nickName" class="form-control" type="text" th:field="*{nickName}" required/>
+                    <p class="error" th:if="${#fields.hasErrors('nickName')}" th:errors="*{nickName}">Chyba - Jméno
                     </p>
                 </div>
                 <div class="form-group">
@@ -25,7 +25,13 @@
                 <div class="form-group">
                     <label for="pin" class="input-value-required">PIN</label>
                     <input id="pin" class="form-control" type="number" th:field="*{pin}" required/>
-                    <p class="error" th:if="${#fields.hasErrors('pin')}" th:errors="*{pin}">Chyba - Počet členů
+                    <p class="error" th:if="${#fields.hasErrors('pin')}" th:errors="*{pin}">Chyba - Pin
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="input-value-required">Telefon</label>
+                    <input id="phone" class="form-control" type="number" th:field="*{phone}" required/>
+                    <p class="error" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}">Chyba - Telefon
                     </p>
                 </div>
                 <button type="submit" class="btn btn-primary">Vytvořit</button>

@@ -8,10 +8,11 @@ import java.util.Set;
  * Created by dkostka on 2/6/2022.
  */
 @Entity
+@SequenceGenerator(name = "seq", allocationSize = 1000)
 @Table(name = "pop_player")
 public class Player {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq")
     private Long id;
 
     @Column(nullable = false, unique = true)

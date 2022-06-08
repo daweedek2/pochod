@@ -28,7 +28,7 @@ public class PlayerService {
             return null;
         }
 
-        return playerRepository.save(new Player(dto.nickname(), dto.email(), dto.phone(), dto.pin(), user));
+        return playerRepository.save(new Player(dto.nickName(), dto.email(), dto.phone(), dto.pin(), user));
     }
 
     public Optional<Player> getPlayerByNickname(final String nickname) {
