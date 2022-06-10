@@ -17,6 +17,8 @@
             <p th:text="${stage.info}"></p>
             <h2>Počet razítek</h2>
             <p th:text="${stage.stamps.size}"></p>
+            <h2>QR code</h2>
+            <img class="img-billy" th:src="${qrCode}" />
             <div>
                 <a class="btn btn-primary" href="#" th:href="@{/admin/stages/delete/{id}(id=${stage.id})}"
                    th:attr="onclick='return confirm(\'' + 'Opravdu chcete smazat stanoviště ' + ${stage.name} + '?' + '\');'">

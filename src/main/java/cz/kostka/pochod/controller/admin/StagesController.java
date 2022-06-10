@@ -1,7 +1,9 @@
 package cz.kostka.pochod.controller.admin;
 
+import cz.kostka.pochod.domain.Stage;
 import cz.kostka.pochod.dto.StageCreationDTO;
 import cz.kostka.pochod.security.CustomUserDetails;
+import cz.kostka.pochod.service.QrCodeGeneratorService;
 import cz.kostka.pochod.service.StageService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -12,6 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.OutputStream;
+
 /**
  * Created by dkostka on 6/6/2022.
  */
@@ -20,9 +26,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class StagesController {
     protected static final String ENDPOINT = "/admin/stages";
     private final StageService stageService;
+    private final QrCodeGeneratorService qrCodeGeneratorService;
 
-    public StagesController(final StageService stageService) {
+    public StagesController(final StageService stageService, final QrCodeGeneratorService qrCodeGeneratorService) {
         this.stageService = stageService;
+        this.qrCodeGeneratorService = qrCodeGeneratorService;
     }
 
     @GetMapping
@@ -41,7 +49,17 @@ public class StagesController {
     @GetMapping("/{id}")
     public String getStageDetail(final @PathVariable Long id, final Model model) {
         model.addAttribute("stage", stageService.getStageById(id));
+        model.addAttribute("qrCode", ENDPOINT + "/" + id + "/generateQRCode");
         return "/admin/stage-detail";
+    }
+
+    @GetMapping("/{id}/generateQRCode")
+    public void generateQRCode(final @PathVariable Long id, final HttpServletResponse response) throws IOException {
+        final Stage stage = stageService.getStageById(id);
+        response.setContentType("image/png");
+        byte[] qrCode = qrCodeGeneratorService.generateQrCode(stage.getPin());
+        OutputStream outputStream = response.getOutputStream();
+        outputStream.write(qrCode);
     }
 
     @GetMapping("delete/{id}")
