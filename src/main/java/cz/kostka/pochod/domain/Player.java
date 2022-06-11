@@ -19,7 +19,7 @@ public class Player {
     private String nickname;
 
     @Column
-    private int phoneNumber;
+    private String phoneNumber;
 
     @Column
     private int pin;
@@ -37,7 +37,7 @@ public class Player {
     public Player() {
     }
 
-    public Player(final String nickname, final String email, final int phone, final int pin, final User user) {
+    public Player(final String nickname, final String email, final String phone, final int pin, final User user) {
         this.nickname = nickname;
         this.email = email;
         this.phoneNumber = phone;
@@ -45,7 +45,7 @@ public class Player {
         this.user = user;
     }
 
-    public Player(final Long id, final String nickname, final int phoneNumber, final Set<Stamp> stamps) {
+    public Player(final Long id, final String nickname, final String phoneNumber, final Set<Stamp> stamps) {
         this.id = id;
         this.nickname = nickname;
         this.phoneNumber = phoneNumber;
@@ -68,11 +68,11 @@ public class Player {
         this.nickname = nickname;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(final int phoneNumber) {
+    public void setPhoneNumber(final String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
