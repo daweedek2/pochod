@@ -34,20 +34,20 @@ public class StampService implements StampApi {
 
     @Override
     public StampResultDTO submitStamp(final StampRequestDTO stampRequestDTO) {
-        final Optional<Stage> optionalStage = stageService.getStageByPin(stampRequestDTO.getStagePin());
-        final Optional<Player> optionalPlayer = playerService.getPlayerByNickname(stampRequestDTO.getNickname());
-        if (optionalPlayer.isEmpty() || optionalStage.isEmpty()) {
+        final Stage stage = stageService.getStageById(stampRequestDTO.stageId());
+        final Player player = playerService.getPlayerById(stampRequestDTO.playerId());
+        if (stage == null || player == null) {
             return new StampResultDTO(StampSubmitStatus.REJECTED);
         }
 
-        final Optional<Stamp> optionalStamp = getStampForPlayerAndStage(optionalPlayer.get(), optionalStage.get());
+        final Optional<Stamp> optionalStamp = getStampForPlayerAndStage(player, stage);
 
         if (optionalStamp.isPresent()) {
             return new StampResultDTO(StampSubmitStatus.ALREADY_PRESENT, optionalStamp.get());
         }
 
         final LocalDateTime currentTime = LocalDateTime.now();
-        final Stamp submittedStamp =  stampRepository.save(new Stamp(currentTime, optionalStage.get(), optionalPlayer.get()));
+        final Stamp submittedStamp =  stampRepository.save(new Stamp(currentTime, stage, player));
 
         return new StampResultDTO(StampSubmitStatus.OK, submittedStamp);
     }

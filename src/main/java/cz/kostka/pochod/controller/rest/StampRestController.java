@@ -1,4 +1,4 @@
-package cz.kostka.pochod.rest;
+package cz.kostka.pochod.controller.rest;
 
 import cz.kostka.pochod.api.StampApi;
 import cz.kostka.pochod.dto.StampRequestDTO;

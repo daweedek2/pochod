@@ -11,50 +11,24 @@
 <!--            <div class="col-sm-12" th:if="${gameStarted}">-->
             <h1 class="login-form-header">Pochod okolo Polanky</h1>
             <h1>Stanoviště</h1>
-            <div class="cypher">
-                <a th:href="@{/pop/stages/1}">
-                    <div class="row align-items-center">
-                        <div class="col">1. U zeleného háje</div>
-                        <div class="col status">
-                            <i class="fas fa-beer-mug-empty"></i>
+            <th:block th:each="stage : ${allStages}">
+                <div class="cypher">
+                    <a th:href="@{/pop/stages/{id}(id=${stage.id})}">
+                        <div class="row align-items-center">
+                            <div class="col" th:text="|${stage.number}. ${stage.name}|">1. U zeleného háje</div>
+                            <div class="col status">
+                                <i class="fas fa-beer-mug-empty"></i>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
-            <div class="cypher">
-                <a th:href="@{/pop/stages/2}">
-                    <div class="row align-items-center">
-                        <div class="col">2. U modrého háje</div>
-                        <div class="col status">
-                            <i class="fas fa-beer-mug-empty float-right"></i>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="cypher">
-                <a th:href="@{/pop/stages/3}">
-                    <div class="row align-items-center">
-                        <div class="col">3. U bílého háje</div>
-                        <div class="col status">
-                            <i class="fas fa-beer-mug-empty"></i>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="cypher">
-                <a th:href="@{/pop/stages/4}">
-                    <div class="row align-items-center">
-                        <div class="col">4. U rudého háje</div>
-                        <div class="col status">
-<!--                            <i class="far fa-check-circle float-right"></i>-->
-                        </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
+            </th:block>
             <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
             <br>
             <br>
-            <img src="/img/2021/trasa_2021.jpg" alt="PoP 2021" class="img-billy"/>
+            <a href="https://mapy.cz/s/mosemaduhu" target="_blank">
+                <img src="/img/2021/trasa_2021.jpg" alt="PoP 2021" class="img-billy"/>
+            </a>
         </div>
     </div>
 </div>

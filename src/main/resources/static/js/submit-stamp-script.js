@@ -1,17 +1,14 @@
-
-function submitStamp() {
-    var nickName = document.getElementById("username").value
-    var email = document.getElementById("email").value
+function submitStamp(playerId, stageId, pin) {
     var data = {
-        nickName: nickName,
-        email: email,
-        pin: Math.floor(1000 + Math.random() * 9000)
+        playerId: playerId,
+        stageId: stageId,
+        pin: pin
     }
     token = $("meta[name='_csrf']").attr("content")
     header = $("meta[name='_csrf_header']").attr("content")
 
     $.ajax({
-        url: "/api/register",
+        url: "/api/submitStamp",
         type: 'post',
         contentType: "application/json",
         dataType: 'json',
@@ -22,13 +19,10 @@ function submitStamp() {
             }
         },
         success: function () {
-            console.log("registration completed, sending email")
-            sendEmail(data);
-            alert("Registrace dokončena, během několika minut očekávejte email s přihlašovacími údaji.")
-            location.replace("/login");
+            console.log("stamp submit is successful")
         },
         error: function () {
-            alert("Registrace se nezdařila, zkuste to prosím znovu.")
+            console.log("stamp submit failed")
         }
     });
 }

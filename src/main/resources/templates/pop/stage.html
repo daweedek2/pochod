@@ -10,14 +10,15 @@
     <div class="row cypher-list">
         <div class="col-sm-12">
             <h1 class="login-form-header">Pochod okolo Polanky</h1>
-            <h1>1. U zeleného stromu</h1>
+            <h1 th:text="|${stage.number}. ${stage.name}|">1. Stanoviště</h1>
             <div>
-                <a class="btn btn-primary" th:href="@{'/pop/stages/1/stamp'}" role="button">Získat razítko</a>
+                <a class="btn btn-primary" th:href="@{/pop/stages/{id}/stamp(id=${stage.id})}" role="button">Získat razítko</a>
             </div>
             <h2>GPS souřdnice</h2>
-            <p>49.2673764, 18.0342303</p>
+            <p th:text="${stage.location}">49.2673764, 18.0342303</p>
             <h2>Popis</h2>
-            <a class="btn btn-primary" th:href="@{'/pop/stages'}" role="button">Zpátky na přehled</a>
+            <p th:text="${stage.getInfo()}"></p>
+            <a class="btn btn-primary" th:href="@{/pop/stages}" role="button">Zpátky na přehled</a>
             <a class="btn btn-primary btn-square-md" href="https://mapy.cz/s/mosemaduhu" target="_blank">Mapa 2022</a>
         </div>
     </div>
