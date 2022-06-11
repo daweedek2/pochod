@@ -3,6 +3,7 @@ package cz.kostka.pochod.controller;
 import cz.kostka.pochod.security.CustomUserDetails;
 import cz.kostka.pochod.service.PlayerService;
 import cz.kostka.pochod.service.StageService;
+import cz.kostka.pochod.service.StampService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class StageController extends PlayerController {
     private final StageService stageService;
 
-    public StageController(final PlayerService playerService, final StageService stageService) {
-        super(playerService);
+    public StageController(
+            final PlayerService playerService,
+            final StampService stampService,
+            final StageService stageService) {
+        super(playerService, stampService);
         this.stageService = stageService;
     }
 

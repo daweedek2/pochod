@@ -1,8 +1,8 @@
 package cz.kostka.pochod.controller;
 
-import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.security.CustomUserDetails;
 import cz.kostka.pochod.service.PlayerService;
+import cz.kostka.pochod.service.StampService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/pop")
 public class PopController extends PlayerController {
 
-    public PopController(final PlayerService playerService) {
-        super(playerService);
+    public PopController(final PlayerService playerService, final StampService stampService) {
+        super(playerService, stampService);
     }
 
     @GetMapping

@@ -8,15 +8,9 @@ import cz.kostka.pochod.enums.StampSubmitStatus;
  */
 public class StampResultDTO {
     private StampSubmitStatus stampSubmitStatus;
-    private Stamp stamp;
 
     public StampResultDTO(final StampSubmitStatus stampSubmitStatus) {
         this.stampSubmitStatus = stampSubmitStatus;
-    }
-
-    public StampResultDTO(final StampSubmitStatus stampSubmitStatus, final Stamp stamp) {
-        this.stampSubmitStatus = stampSubmitStatus;
-        this.stamp = stamp;
     }
 
     public StampSubmitStatus getStampSubmitStatus() {
@@ -25,13 +19,5 @@ public class StampResultDTO {
 
     public void setStampSubmitStatus(final StampSubmitStatus stampSubmitStatus) {
         this.stampSubmitStatus = stampSubmitStatus;
-    }
-
-    public Stamp getStamp() {
-        return stamp;
-    }
-
-    public void setStamp(final Stamp stamp) {
-        this.stamp = stamp;
     }
 }

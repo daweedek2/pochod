@@ -6,6 +6,7 @@ import cz.kostka.pochod.domain.Stamp;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -14,4 +15,6 @@ import java.util.Optional;
 @Repository
 public interface StampRepository extends JpaRepository<Stamp, Long> {
     Optional<Stamp> getStampByPlayerAndStage(Player player, Stage stage);
+    List<Stamp> findAllByStage(Stage stage);
+    List<Stamp> findAllByPlayer(Player player);
 }

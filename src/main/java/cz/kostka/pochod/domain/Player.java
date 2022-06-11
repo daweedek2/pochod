@@ -1,18 +1,16 @@
 package cz.kostka.pochod.domain;
 
 import javax.persistence.*;
-import java.util.Collections;
-import java.util.Set;
 
 /**
  * Created by dkostka on 2/6/2022.
  */
 @Entity
-@SequenceGenerator(name = "seq", allocationSize = 1000)
+@SequenceGenerator(name = "seq", initialValue = 1000, allocationSize = 1)
 @Table(name = "pop_player")
 public class Player {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -26,9 +24,6 @@ public class Player {
 
     @Column
     private String email;
-
-    @OneToMany(mappedBy = "player")
-    private Set<Stamp> stamps;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -45,11 +40,10 @@ public class Player {
         this.user = user;
     }
 
-    public Player(final Long id, final String nickname, final String phoneNumber, final Set<Stamp> stamps) {
+    public Player(final Long id, final String nickname, final String phoneNumber) {
         this.id = id;
         this.nickname = nickname;
         this.phoneNumber = phoneNumber;
-        this.stamps = stamps;
     }
 
     public Long getId() {
@@ -74,14 +68,6 @@ public class Player {
 
     public void setPhoneNumber(final String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public Set<Stamp> getStamps() {
-        return stamps != null ? stamps : Collections.emptySet();
-    }
-
-    public void setStamps(final Set<Stamp> stamps) {
-        this.stamps = stamps;
     }
 
     public int getPin() {

@@ -3,7 +3,7 @@
 <head th:replace="fragments/head :: head('Pop 2022')">
 </head>
 <body>
-    <div th:insert="fragments/header :: header(${player.nickname}, ${player.stamps?.size()})"></div>
+    <div th:insert="fragments/header :: header(${player.nickname}, ${stamps})"></div>
 
     <div class="container">
         <div class="row cypher-list">

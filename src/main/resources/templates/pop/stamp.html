@@ -4,7 +4,7 @@
 </head>
 
 <body>
-<div th:insert="fragments/header :: header(${player.nickname}, ${player.stamps?.size()})"></div>
+<div th:insert="fragments/header :: header(${player.nickname}, ${stamps})"></div>
 <div class="container">
     <div class="row cypher-list">
         <div class="col-sm-12">

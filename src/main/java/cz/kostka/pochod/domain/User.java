@@ -8,7 +8,7 @@ import java.util.Set;
  * Created by dkostka on 5/29/2022.
  */
 @Entity
-@SequenceGenerator(name = "seq2", allocationSize = 100)
+@SequenceGenerator(name = "seq2", initialValue = 1000, allocationSize = 1)
 @Table(name = "pop_user")
 public class User {
     @Id

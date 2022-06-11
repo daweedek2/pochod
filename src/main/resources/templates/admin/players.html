@@ -47,8 +47,6 @@
                 <a th:href="@{/admin/players/{id}(id=${player.id})}">
                     <div class="row align-items-center">
                         <div class="col" th:text="|${player.id}. ${player.nickname}|">1. U zeleného háje</div>
-                        <div class="col" th:text="${player.stamps.size()}">
-                        </div>
                     </div>
                 </a>
             </div>

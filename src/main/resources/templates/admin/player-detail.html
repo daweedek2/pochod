@@ -14,7 +14,7 @@
             <h2>Pin</h2>
             <p th:text="${player.pin}">email</p>
             <h2>Počet razítek</h2>
-            <p th:text="${player.stamps.size}"></p>
+            <p th:text="${stamps}"></p>
             <div>
                 <a class="btn btn-primary" href="#" th:href="@{/admin/players/delete/{id}(id=${player.id})}"
                    th:attr="onclick='return confirm(\'' + 'Opravdu chcete smazat tým ' + ${player.nickname} + '?' + '\');'">

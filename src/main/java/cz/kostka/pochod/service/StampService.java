@@ -11,6 +11,7 @@ import cz.kostka.pochod.repository.StampRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -43,16 +44,24 @@ public class StampService implements StampApi {
         final Optional<Stamp> optionalStamp = getStampForPlayerAndStage(player, stage);
 
         if (optionalStamp.isPresent()) {
-            return new StampResultDTO(StampSubmitStatus.ALREADY_PRESENT, optionalStamp.get());
+            return new StampResultDTO(StampSubmitStatus.ALREADY_PRESENT);
         }
 
         final LocalDateTime currentTime = LocalDateTime.now();
         final Stamp submittedStamp =  stampRepository.save(new Stamp(currentTime, stage, player));
 
-        return new StampResultDTO(StampSubmitStatus.OK, submittedStamp);
+        return new StampResultDTO(StampSubmitStatus.OK);
     }
 
     public Optional<Stamp> getStampForPlayerAndStage(final Player player, final Stage stage) {
         return stampRepository.getStampByPlayerAndStage(player, stage);
+    }
+
+    public List<Stamp> getStampsByStage(final Stage stage) {
+        return stampRepository.findAllByStage(stage);
+    }
+
+    public List<Stamp> getStampsByPlayer(final Player player) {
+        return stampRepository.findAllByPlayer(player);
     }
 }

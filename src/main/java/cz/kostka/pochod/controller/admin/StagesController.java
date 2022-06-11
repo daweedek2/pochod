@@ -5,6 +5,7 @@ import cz.kostka.pochod.dto.StageCreationDTO;
 import cz.kostka.pochod.security.CustomUserDetails;
 import cz.kostka.pochod.service.QrCodeGeneratorService;
 import cz.kostka.pochod.service.StageService;
+import cz.kostka.pochod.service.StampService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,10 +27,15 @@ import java.io.OutputStream;
 public class StagesController {
     protected static final String ENDPOINT = "/admin/stages";
     private final StageService stageService;
+    private final StampService stampService;
     private final QrCodeGeneratorService qrCodeGeneratorService;
 
-    public StagesController(final StageService stageService, final QrCodeGeneratorService qrCodeGeneratorService) {
+    public StagesController(
+            final StageService stageService,
+            final StampService stampService,
+            final QrCodeGeneratorService qrCodeGeneratorService) {
         this.stageService = stageService;
+        this.stampService = stampService;
         this.qrCodeGeneratorService = qrCodeGeneratorService;
     }
 
@@ -48,7 +54,9 @@ public class StagesController {
 
     @GetMapping("/{id}")
     public String getStageDetail(final @PathVariable Long id, final Model model) {
-        model.addAttribute("stage", stageService.getStageById(id));
+        final Stage stage = stageService.getStageById(id);
+        model.addAttribute("stage", stage);
+        model.addAttribute("stamps", stampService.getStampsByStage(stage).size());
         model.addAttribute("qrCode", ENDPOINT + "/" + id + "/generateQRCode");
         return "/admin/stage-detail";
     }
@@ -64,6 +72,7 @@ public class StagesController {
 
     @GetMapping("delete/{id}")
     public String deleteStage(final @PathVariable Long id) {
+        // TODO: delete stamps first
         stageService.delete(id);
         return "redirect:" + StagesController.ENDPOINT;
     }

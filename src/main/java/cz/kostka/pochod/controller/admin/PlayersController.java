@@ -4,6 +4,7 @@ import cz.kostka.pochod.dto.RegistrationRequestDTO;
 import cz.kostka.pochod.security.CustomUserDetails;
 import cz.kostka.pochod.service.PlayerService;
 import cz.kostka.pochod.service.RegistrationService;
+import cz.kostka.pochod.service.StampService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,10 +22,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PlayersController {
     private final PlayerService playerService;
     private final RegistrationService registrationService;
+    private final StampService stampService;
 
-    public PlayersController(final PlayerService playerService, final RegistrationService registrationService) {
+    public PlayersController(
+            final PlayerService playerService,
+            final RegistrationService registrationService,
+            final StampService stampService) {
         this.playerService = playerService;
         this.registrationService = registrationService;
+        this.stampService = stampService;
     }
 
     @GetMapping
@@ -37,6 +43,7 @@ public class PlayersController {
 
     @GetMapping("/delete/{id}")
     public String deletePlayer(final @PathVariable("id") Long id) {
+        //TODO: delete stamps first
         playerService.deletePlayer(id);
         return "redirect:/admin/players";
     }
@@ -51,6 +58,7 @@ public class PlayersController {
     public String getPlayerDetail(final @PathVariable("id") Long id, final Model model) {
         final var player = playerService.getPlayerById(id);
         model.addAttribute("player", player);
+        model.addAttribute("stamps", stampService.getStampsByPlayer(player).size());
         return "/admin/player-detail";
     }
 }

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="cs" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head('PoP - Stanoviště 1')">
+<head th:replace="fragments/head :: head('PoP - Stanoviště')">
 </head>
 
 <body>
-<div th:insert="fragments/header :: header(${player.nickname}, ${player.stamps?.size()})"></div>
+<div th:insert="fragments/header :: header(${player.nickname}, ${stamps})"></div>
 <!--    <div th:unless="${newMessages.empty}" th:insert="client/fragments/message-box :: messageBox(${newMessages})"></div>-->
 <div class="container">
     <div class="row cypher-list">
