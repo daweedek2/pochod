@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -war build/libs/pochod-1.0.war
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.war
