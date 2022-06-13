@@ -93,6 +93,11 @@ p.subheading {
     font-weight: 600;
 }
 
+.navbar .team-name:hover{
+    color: black;
+    text-decoration: none;
+}
+
 .navbar-nav{
 }
 
