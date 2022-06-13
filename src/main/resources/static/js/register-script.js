@@ -1,7 +1,7 @@
 
 function sendEmail(data) {
     $.ajax({
-        url: "http://daweedek.wz.cz/register-pop.php",
+        url: "https://daweedek.wz.cz/register-pop.php",
         type: 'post',
         data: data,
         beforeSend: function(xhr) {
@@ -25,7 +25,7 @@ function registerMe() {
     var data = {
         nickName: nickName,
         email: email,
-        // phone: phone,
+        phone: phone,
         pin: Math.floor(1000 + Math.random() * 9000)
     }
     token = $("meta[name='_csrf']").attr("content")
