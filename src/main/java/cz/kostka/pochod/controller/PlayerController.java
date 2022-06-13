@@ -1,9 +1,13 @@
 package cz.kostka.pochod.controller;
 
 import cz.kostka.pochod.domain.Player;
+import cz.kostka.pochod.domain.Stage;
+import cz.kostka.pochod.dto.StampDTO;
 import cz.kostka.pochod.service.PlayerService;
 import cz.kostka.pochod.service.StampService;
 import org.springframework.ui.Model;
+
+import java.util.Map;
 
 /**
  * Created by dkostka on 6/6/2022.
@@ -25,5 +29,13 @@ public class PlayerController {
         final Player player = playerService.getPlayerById(playerId);
         model.addAttribute(PLAYER_ATTR, player);
         model.addAttribute(STAMPS_ATTR, stampService.getStampsByPlayer(player).size());
+    }
+
+    public Map<Integer, StampDTO> getStampsMapForPlayer(final Player player) {
+        return stampService.getStampsMapForUser(player);
+    }
+
+    public StampDTO getStampDTOForPlayerAndStage(final Player player, final Stage stage) {
+        return stampService.getStampDTOForPlayerAndStage(player, stage);
     }
 }

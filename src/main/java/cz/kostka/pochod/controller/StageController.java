@@ -31,6 +31,7 @@ public class StageController extends PlayerController {
     public String getAllStages(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
         model.addAttribute("allStages", stageService.getAllStages());
+        model.addAttribute("stampsMap", getStampsMapForPlayer(user.getPlayer()));
         return "pop/list";
     }
 
@@ -40,7 +41,9 @@ public class StageController extends PlayerController {
             @AuthenticationPrincipal final CustomUserDetails user,
             final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
-        model.addAttribute("stage", stageService.getStageById(id));
+        final var stage = stageService.getStageById(id);
+        setStageToModel(id, model);
+        model.addAttribute("stamp", getStampDTOForPlayerAndStage(user.getPlayer(), stage));
         return "pop/stage";
     }
 
@@ -50,7 +53,12 @@ public class StageController extends PlayerController {
             @AuthenticationPrincipal final CustomUserDetails user,
             final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
-        model.addAttribute("stage", stageService.getStageById(id));
+        setStageToModel(id, model);
+        model.addAttribute("stamp", getStampDTOForPlayerAndStage(user.getPlayer(), stageService.getStageById(id)));
         return "pop/stamp";
+    }
+
+    private void setStageToModel(final Long stageId, final Model model) {
+        model.addAttribute("stage", stageService.getStageById(stageId));
     }
 }

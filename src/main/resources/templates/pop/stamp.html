@@ -10,7 +10,7 @@
         <div class="col-sm-12">
             <h1 class="login-form-header">Pochod okolo Polanky</h1>
             <h1 th:text="|${stage.number}. ${stage.name}|">1. Stanoviště</h1>
-            <div>
+            <div th:if="${stamp.taken == false}">
                 <script th:src="@{/js/qr-scanner-script.js}"></script>
                 <div class="col">
                     <div class="scanner" id="reader"></div>
@@ -33,7 +33,10 @@
                     html5QrcodeScanner.render(onScanSuccess, onScanError);
                 </script>
             </div>
-            <a class="btn btn-primary" th:href="@{/pop/stages}" role="button">Zpátky na přehled</a>
+            <div th:if="${stamp.taken}">
+                <p>Tohle razítko už máš.</p>
+            </div>
+            <a class="btn btn-primary" th:href="@{/pop/stages}" role="button">Stanoviště</a>
             <a class="btn btn-primary btn-square-md" href="https://mapy.cz/s/mosemaduhu" target="_blank">Mapa 2022</a>
         </div>
     </div>

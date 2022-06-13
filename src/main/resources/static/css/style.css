@@ -208,8 +208,8 @@ nav .back {
 
 .col.status {
     font-family: "Font Awesome 5 Free";
-    -ms-flex: 0 0 2rem;
-    flex: 0 0 2rem;
+    -ms-flex: 0 0 6rem;
+    flex: 0 0 6rem;
 }
 
 .cypher .row i{
