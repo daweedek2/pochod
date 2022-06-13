@@ -59,6 +59,6 @@ public class PlayersController {
         final var player = playerService.getPlayerById(id);
         model.addAttribute("player", player);
         model.addAttribute("stamps", stampService.getStampsByPlayer(player).size());
-        return "/admin/playerDetail";
+        return "admin/playerDetail";
     }
 }
