@@ -58,7 +58,7 @@ public class StagesController {
         model.addAttribute("stage", stage);
         model.addAttribute("stamps", stampService.getStampsByStage(stage).size());
         model.addAttribute("qrCode", ENDPOINT + "/" + id + "/generateQRCode");
-        return "stageDetail";
+        return "admin/stageDetail";
     }
 
     @GetMapping("/{id}/generateQRCode")
