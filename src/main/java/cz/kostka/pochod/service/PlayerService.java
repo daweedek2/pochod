@@ -2,6 +2,7 @@ package cz.kostka.pochod.service;
 
 import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.domain.User;
+import cz.kostka.pochod.dto.PlayerAdminDTO;
 import cz.kostka.pochod.dto.RegistrationRequestDTO;
 import cz.kostka.pochod.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class PlayerService {
     }
 
     public List<Player> getAllPlayers() {
-        return playerRepository.findAll();
+        return playerRepository.findAllByOrderById();
     }
 
     public void deletePlayer(final Long playerId) {
@@ -45,5 +46,9 @@ public class PlayerService {
 
     public Player getPlayerById(final Long id) {
         return playerRepository.getById(id);
+    }
+
+    public Player update(final PlayerAdminDTO dto) {
+        return playerRepository.save(new Player(dto.id(), dto.nickname(), dto.email(), dto.phoneNumber(), dto.pin()));
     }
 }

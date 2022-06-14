@@ -1,5 +1,7 @@
 package cz.kostka.pochod.controller.admin;
 
+import cz.kostka.pochod.domain.Player;
+import cz.kostka.pochod.dto.PlayerAdminDTO;
 import cz.kostka.pochod.dto.RegistrationRequestDTO;
 import cz.kostka.pochod.security.CustomUserDetails;
 import cz.kostka.pochod.service.PlayerService;
@@ -37,6 +39,14 @@ public class PlayersController {
     public String getPlayersList(@AuthenticationPrincipal final CustomUserDetails admin, final Model model) {
         final var allPlayers = playerService.getAllPlayers();
         model.addAttribute("allPlayers", allPlayers);
+        model.addAttribute("newPlayer", false);
+        model.addAttribute("registrationDto", new RegistrationRequestDTO(null, null, null, null));
+        return "admin/players";
+    }
+
+    @GetMapping("/new")
+    public String createNewPlayer(@AuthenticationPrincipal final CustomUserDetails admin, final Model model) {
+        model.addAttribute("newPlayer", true);
         model.addAttribute("registrationDto", new RegistrationRequestDTO(null, null, null, null));
         return "admin/players";
     }
@@ -54,11 +64,22 @@ public class PlayersController {
         return "redirect:/admin/players";
     }
 
+    @PostMapping("/update")
+    public String updatePlayer(final @ModelAttribute("playerAdminDTO") PlayerAdminDTO dto) {
+        playerService.update(dto);
+        return "redirect:/admin/players";
+    }
+
     @GetMapping("/{id}")
     public String getPlayerDetail(final @PathVariable("id") Long id, final Model model) {
         final var player = playerService.getPlayerById(id);
         model.addAttribute("player", player);
         model.addAttribute("stamps", stampService.getStampsByPlayer(player).size());
+        model.addAttribute("playerAdminDTO", convertToPlayerDTO(player));
         return "admin/playerDetail";
+    }
+
+    private static PlayerAdminDTO convertToPlayerDTO(final Player player) {
+        return new PlayerAdminDTO(player.getId(), player.getNickname(), player.getPhoneNumber(), player.getEmail(), player.getPin());
     }
 }

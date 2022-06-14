@@ -32,6 +32,14 @@ public class Player {
     public Player() {
     }
 
+    public Player(final Long id, final String nickname, final String email, final String phone, final int pin) {
+        this.id = id;
+        this.nickname = nickname;
+        this.email = email;
+        this.phoneNumber = phone;
+        this.pin = pin;
+    }
+
     public Player(final String nickname, final String email, final String phone, final int pin, final User user) {
         this.nickname = nickname;
         this.email = email;

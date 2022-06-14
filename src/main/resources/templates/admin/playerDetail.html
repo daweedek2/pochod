@@ -9,14 +9,42 @@
         <div class="col-sm-12 col-md-12 col-lg-6">
             <h1 class="login-form-header">Pochod okolo Polanky - ADMIN</h1>
             <h1 th:text="${player.nickname}">Hrac</h1>
-            <h2>E-mail</h2>
-            <p th:text="${player.email}">email</p>
-            <h2>Pin</h2>
-            <p th:text="${player.pin}">email</p>
             <h2>Počet razítek</h2>
             <p th:text="${stamps}"></p>
+            <form action="#" th:action="@{/admin/players/update}" th:object="${playerAdminDTO}" method="post">
+                <div class="form-group">
+                    <input id="id" class="form-control" type="text" th:field="*{id}" hidden/>
+                    <p class="error" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Chyba - Jméno
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="nickname" class="input-value-required">Uživatelské jméno</label>
+                    <input id="nickname" class="form-control" type="text" th:field="*{nickname}" required/>
+                    <p class="error" th:if="${#fields.hasErrors('nickname')}" th:errors="*{nickname}">Chyba - Jméno
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="input-value-required">E-mail</label>
+                    <input id="email" class="form-control" type="email" th:field="*{email}" required/>
+                    <p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Chyba - Email
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="pin" class="input-value-required">PIN</label>
+                    <input id="pin" class="form-control" type="number" th:field="*{pin}" required/>
+                    <p class="error" th:if="${#fields.hasErrors('pin')}" th:errors="*{pin}">Chyba - Pin
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber" class="login-form-label">Telefon</label>
+                    <input id="phoneNumber" class="form-control" type="number" th:field="*{phoneNumber}"/>
+                    <p class="error" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Chyba - Telefon
+                    </p>
+                </div>
+                <button type="submit" class="btn btn-primary">Upravit</button>
+            </form>
             <div>
-                <a class="btn btn-primary" href="#" th:href="@{/admin/players/delete/{id}(id=${player.id})}"
+                <a class="btn btn-secondary" href="#" th:href="@{/admin/players/delete/{id}(id=${player.id})}"
                    th:attr="onclick='return confirm(\'' + 'Opravdu chcete smazat tým ' + ${player.nickname} + '?' + '\');'">
                     Smazat
                 </a>

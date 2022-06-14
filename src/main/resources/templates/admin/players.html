@@ -7,7 +7,10 @@
 <div class="container">
     <div class="row">
         <h1 class="login-form-header">Pochod okolo Polanky - ADMIN</h1>
-        <div class="col-sm-12 col-md-12 col-lg-6">
+    </div>
+
+    <div class="row" th:if="${newPlayer == true}">
+         <div class="col-sm-12 col-md-12 col-lg-6">
             <h2>Nový hráč</h2>
             <form action="#" th:action="@{/admin/players/create}" th:object="${registrationDto}" method="post">
                 <div class="form-group">
@@ -38,8 +41,13 @@
             </form>
         </div>
     </div>
+    <div class="row cypher-list" th:unless="${newPlayer == true}">
+        <div class="col-sm-12">
+            <a class="btn btn-primary" th:href="@{/admin/players/new}">Nový hráč</a>
+        </div>
+    </div>
 
-    <div class="row cypher-list">
+    <div class="row cypher-list" th:unless="${newPlayer == true}">
         <div class="col-sm-12">
             <h2>Hráči</h2>
             <th:block th:each="player : ${allPlayers}">
