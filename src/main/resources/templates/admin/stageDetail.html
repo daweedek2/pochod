@@ -9,18 +9,50 @@
         <div class="col-sm-12 col-md-12 col-lg-6">
             <h1 class="login-form-header">Pochod okolo Polanky - ADMIN</h1>
             <h1 th:text="|${stage.number}. ${stage.name}|">1. Stanoviště</h1>
-            <h2>GPS</h2>
-            <p th:text="${stage.location}">location</p>
-            <h2>Heslo</h2>
-            <p th:text="${stage.pin}">heslo</p>
-            <h2>Info</h2>
-            <p th:text="${stage.info}"></p>
             <h2>Počet razítek</h2>
             <p th:text="${stamps}"></p>
             <h2>QR code</h2>
             <img class="img-billy" th:src="${qrCode}" />
+            <form action="#" th:action="@{/admin/stages/update}" th:object="${stageAdminDTO}" method="post">
+                <div class="form-group">
+                    <input id="id" class="form-control" type="text" th:field="*{id}" hidden/>
+                    <p class="error" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Chyba - Jméno
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="name" class="input-value-required">Název</label>
+                    <input id="name" class="form-control" type="text" th:field="*{name}" required/>
+                    <p class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Chyba - Jméno
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="number" class="input-value-required">Číslo</label>
+                    <input id="number" class="form-control" type="number" th:field="*{number}" required/>
+                    <p class="error" th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Chyba - Email
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="location" class="input-value-required">GPS</label>
+                    <input id="location" class="form-control" type="text" th:field="*{location}" required/>
+                    <p class="error" th:if="${#fields.hasErrors('location')}" th:errors="*{location}">Chyba - Email
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="pin" class="input-value-required">PIN</label>
+                    <input id="pin" class="form-control" type="text" th:field="*{pin}" required/>
+                    <p class="error" th:if="${#fields.hasErrors('pin')}" th:errors="*{pin}">Chyba - Pin
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="info" class="login-form-label">Info</label>
+                    <textarea id="info" class="form-control" th:field="*{info}"></textarea>
+                    <p class="error" th:if="${#fields.hasErrors('info')}" th:errors="*{info}">Chyba - Telefon
+                    </p>
+                </div>
+                <button type="submit" class="btn btn-primary">Upravit</button>
+            </form>
             <div>
-                <a class="btn btn-primary" href="#" th:href="@{/admin/stages/delete/{id}(id=${stage.id})}"
+                <a class="btn btn-secondary" href="#" th:href="@{/admin/stages/delete/{id}(id=${stage.id})}"
                    th:attr="onclick='return confirm(\'' + 'Opravdu chcete smazat stanoviště ' + ${stage.name} + '?' + '\');'">
                     Smazat
                 </a>

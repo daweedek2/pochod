@@ -7,6 +7,8 @@
 <div class="container">
     <div class="row">
         <h1 class="login-form-header">Pochod okolo Polanky - ADMIN</h1>
+    </div>
+    <div class="row" th:if="${newStage == true}">
         <div class="col-sm-12 col-md-12 col-lg-6">
             <h2>Nové stanoviště</h2>
             <form action="#" th:action="@{/admin/stages/create}" th:object="${stageCreationDTO}" method="post">
@@ -44,8 +46,13 @@
             </form>
         </div>
     </div>
+    <div class="row cypher-list" th:unless="${newStage == true}">
+        <div class="col-sm-12">
+            <a class="btn btn-primary" th:href="@{/admin/stages/new}">Nové stanoviště</a>
+        </div>
+    </div>
 
-    <div class="row cypher-list">
+    <div class="row cypher-list" th:unless="${newStage == true}">
         <div class="col-sm-12">
             <h2>Stanoviště</h2>
             <th:block th:each="stage : ${allStages}">

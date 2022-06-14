@@ -40,7 +40,6 @@ public class PlayersController {
         final var allPlayers = playerService.getAllPlayers();
         model.addAttribute("allPlayers", allPlayers);
         model.addAttribute("newPlayer", false);
-        model.addAttribute("registrationDto", new RegistrationRequestDTO(null, null, null, null));
         return "admin/players";
     }
 

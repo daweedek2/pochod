@@ -2,6 +2,7 @@ package cz.kostka.pochod.service;
 
 import cz.kostka.pochod.api.StageApi;
 import cz.kostka.pochod.domain.Stage;
+import cz.kostka.pochod.dto.StageAdminDTO;
 import cz.kostka.pochod.dto.StageCreationDTO;
 import cz.kostka.pochod.dto.StageDetailDTO;
 import cz.kostka.pochod.dto.StageRequestDTO;
@@ -27,7 +28,7 @@ public class StageService implements StageApi {
     }
 
     public List<Stage> getAllStages() {
-        return stageRepository.findAll();
+        return stageRepository.findAllByOrderByNumber();
     }
 
     public Stage create(final StageCreationDTO dto) {
@@ -40,5 +41,9 @@ public class StageService implements StageApi {
 
     public void delete(final Long id) {
         stageRepository.deleteById(id);
+    }
+
+    public Stage update(final StageAdminDTO dto) {
+        return stageRepository.save(new Stage(dto.id(), dto.name(), dto.number(), dto.location(), dto.pin(), dto.info()));
     }
 }

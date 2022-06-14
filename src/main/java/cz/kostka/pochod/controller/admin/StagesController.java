@@ -1,6 +1,7 @@
 package cz.kostka.pochod.controller.admin;
 
 import cz.kostka.pochod.domain.Stage;
+import cz.kostka.pochod.dto.StageAdminDTO;
 import cz.kostka.pochod.dto.StageCreationDTO;
 import cz.kostka.pochod.security.CustomUserDetails;
 import cz.kostka.pochod.service.QrCodeGeneratorService;
@@ -41,8 +42,15 @@ public class StagesController {
 
     @GetMapping
     public String getStagesList(@AuthenticationPrincipal final CustomUserDetails admin, final Model model) {
-        model.addAttribute("stageCreationDTO", new StageCreationDTO(null, null, null, null, null));
         model.addAttribute("allStages", stageService.getAllStages());
+        model.addAttribute("newStage", false);
+        return "admin/stages";
+    }
+
+    @GetMapping("/new")
+    public String createStage(@AuthenticationPrincipal final CustomUserDetails admin, final Model model) {
+        model.addAttribute("stageCreationDTO", new StageCreationDTO(null, null, null, null, null));
+        model.addAttribute("newStage", true);
         return "admin/stages";
     }
 
@@ -52,12 +60,19 @@ public class StagesController {
         return "redirect:" + StagesController.ENDPOINT;
     }
 
+    @PostMapping("/update")
+    public String createStage(final @ModelAttribute("stageAdminDTO") StageAdminDTO dto) {
+        stageService.update(dto);
+        return "redirect:" + StagesController.ENDPOINT;
+    }
+
     @GetMapping("/{id}")
     public String getStageDetail(final @PathVariable Long id, final Model model) {
         final Stage stage = stageService.getStageById(id);
         model.addAttribute("stage", stage);
         model.addAttribute("stamps", stampService.getStampsByStage(stage).size());
         model.addAttribute("qrCode", ENDPOINT + "/" + id + "/generateQRCode");
+        model.addAttribute("stageAdminDTO", convertToDTO(stage));
         return "admin/stageDetail";
     }
 
@@ -75,5 +90,9 @@ public class StagesController {
         // TODO: delete stamps first
         stageService.delete(id);
         return "redirect:" + StagesController.ENDPOINT;
+    }
+
+    private static StageAdminDTO convertToDTO(final Stage stage) {
+        return new StageAdminDTO(stage.getId(), stage.getName(), stage.getNumber(), stage.getLocation(), stage.getPin(), stage.getInfo());
     }
 }
