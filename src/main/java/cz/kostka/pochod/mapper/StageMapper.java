@@ -13,5 +13,5 @@ public interface StageMapper {
 
     StageMapper INSTANCE = Mappers.getMapper(StageMapper.class);
 
-    StageAdminDTO stageToDTO(Stage stage);
+    StageAdminDTO stageToDTO(final Stage stage);
 }
