@@ -4,6 +4,8 @@ import cz.kostka.pochod.api.StampApi;
 import cz.kostka.pochod.dto.StampRequestDTO;
 import cz.kostka.pochod.dto.StampResultDTO;
 import cz.kostka.pochod.enums.StampSubmitStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class StampRestController {
 
+    private static final Logger LOG = LoggerFactory.getLogger(StampRestController.class);
     private final StampApi stampApi;
 
     public StampRestController(final StampApi stampApi) {
@@ -23,6 +26,9 @@ public class StampRestController {
 
     @PostMapping("api/submitStamp")
     public ResponseEntity<StampResultDTO> submitStamp(@RequestBody final StampRequestDTO stampRequestDTO) {
+        LOG.info("Request to submit stamp for stage with id '{}' by player with id '{}'.",
+                stampRequestDTO.stageId(),
+                stampRequestDTO.playerId());
         final var result = stampApi.submitStamp(stampRequestDTO);
 
         if (result.getStampSubmitStatus() == StampSubmitStatus.REJECTED) {

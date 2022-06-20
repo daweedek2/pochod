@@ -9,6 +9,8 @@ import cz.kostka.pochod.dto.StampRequestDTO;
 import cz.kostka.pochod.dto.StampResultDTO;
 import cz.kostka.pochod.enums.StampSubmitStatus;
 import cz.kostka.pochod.repository.StampRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -22,6 +24,7 @@ import java.util.Optional;
  */
 @Service
 public class StampService implements StampApi {
+    private static final Logger LOG = LoggerFactory.getLogger(StampService.class);
     private final StampRepository stampRepository;
     private final PlayerService playerService;
     private final StageService stageService;
@@ -40,9 +43,12 @@ public class StampService implements StampApi {
     public StampResultDTO submitStamp(final StampRequestDTO stampRequestDTO) {
         final Stage stage = stageService.getStageById(stampRequestDTO.stageId());
         final Player player = playerService.getPlayerById(stampRequestDTO.playerId());
+
         if (stage == null || player == null) {
             return new StampResultDTO(StampSubmitStatus.REJECTED);
         }
+
+        LOG.info("Player '{}' tries to submit stamp '{}'.", player.getNickname(), stage.getName());
 
         final Optional<Stamp> optionalStamp = getStampForPlayerAndStage(player, stage);
 
