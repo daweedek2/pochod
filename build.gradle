@@ -33,6 +33,8 @@ dependencies {
     // for mapstruct
     implementation 'org.mapstruct:mapstruct:1.5.1.Final'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.1.Final'
+    // for pdf creation
+    implementation 'com.github.librepdf:openpdf:1.3.28'
 }
 
 tasks.named('test') {
