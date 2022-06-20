@@ -1,6 +1,7 @@
 package cz.kostka.pochod.controller;
 
 import cz.kostka.pochod.security.CustomUserDetails;
+import cz.kostka.pochod.service.GameInfoService;
 import cz.kostka.pochod.service.PlayerService;
 import cz.kostka.pochod.service.StageService;
 import cz.kostka.pochod.service.StampService;
@@ -22,8 +23,9 @@ public class StageController extends PlayerController {
     public StageController(
             final PlayerService playerService,
             final StampService stampService,
-            final StageService stageService) {
-        super(playerService, stampService);
+            final StageService stageService,
+            final GameInfoService gameInfoService) {
+        super(playerService, stampService, gameInfoService);
         this.stageService = stageService;
     }
 

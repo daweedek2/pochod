@@ -1,12 +1,15 @@
 package cz.kostka.pochod.controller;
 
+import cz.kostka.pochod.domain.GameInfo;
 import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.domain.Stage;
 import cz.kostka.pochod.dto.StampDTO;
+import cz.kostka.pochod.service.GameInfoService;
 import cz.kostka.pochod.service.PlayerService;
 import cz.kostka.pochod.service.StampService;
 import org.springframework.ui.Model;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 /**
@@ -14,21 +17,42 @@ import java.util.Map;
  */
 
 public class PlayerController {
-    private final PlayerService playerService;
-    private final StampService stampService;
-
+    private static final String GAME_STARTED_ATTR = "gameStarted";
+    private static final String GAME_STARTED_TIME_ATTR = "gameStartedTime";
     private static final String PLAYER_ATTR = "player";
     private static final String STAMPS_ATTR = "stamps";
+    private static final String PARTNERS_ATTR = "partners";
 
-    public PlayerController(final PlayerService playerService, final StampService stampService) {
+    private final PlayerService playerService;
+    private final StampService stampService;
+    private final GameInfoService gameInfoService;
+
+
+    public PlayerController(
+            final PlayerService playerService,
+            final StampService stampService,
+            final GameInfoService gameInfoService) {
         this.playerService = playerService;
         this.stampService = stampService;
+        this.gameInfoService = gameInfoService;
     }
 
     public void setPlayerToModel(final Long playerId, final Model model) {
         final Player player = playerService.getPlayerById(playerId);
         model.addAttribute(PLAYER_ATTR, player);
         model.addAttribute(STAMPS_ATTR, stampService.getStampsByPlayer(player).size());
+    }
+
+    public void setStartGameToModel(final Model model) {
+        final GameInfo gameInfo = gameInfoService.get().orElse(new GameInfo());
+        final var startGame = gameInfo.getStartGame();
+        model.addAttribute(GAME_STARTED_ATTR, startGame != null && LocalDateTime.now().isAfter(startGame));
+        model.addAttribute(GAME_STARTED_TIME_ATTR, startGame);
+    }
+
+    public void setPartnersToModel(final Model model) {
+        final GameInfo gameInfo = gameInfoService.get().orElse(new GameInfo());
+        model.addAttribute(PARTNERS_ATTR, gameInfo.getPartners());
     }
 
     public Map<Integer, StampDTO> getStampsMapForPlayer(final Player player) {
