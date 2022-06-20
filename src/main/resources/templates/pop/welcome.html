@@ -10,11 +10,10 @@
             <div class="col-sm-12">
 <!--            <div class="col-sm-12" th:if="${gameStarted}">-->
                 <h1 class="login-form-header">Pochod okolo Polanky</h1>
-<!--                    <p class="big-centered-text">Tvuj progress kamo</p>-->
                 <img src="/img/bota-large.jpg" alt="PoP 2022" class="img-billy"/>
             </div>
         </div>
-        <div class="row cypher-list">
+        <div class="row cypher-list" th:if="${gameStarted == true}">
             <div class="col-sm-4 center-elements">
                 <h2>Kam dál?</h2>
     <!--                <a class="btn btn-flat" th:href="${gameDetails.mapUrl}">Mapa 2022</a>-->
@@ -25,9 +24,16 @@
                 </div>
             </div>
         </div>
+        <div class="row cypher-list" th:if="${gameStarted == false}">
+            <div class="col-sm-4 center-elements">
+                <h2>Začínáme 5. července v 13.00 hodin</h2>
+                <h2>Sledujte náš <a class="fb-icon" href="https://www.facebook.com/events/411855370753844">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                    nebo <a href="https://pochod.valasskapolanka.cz">WEB</a></h2>
+
+            </div>
+        </div>
     </div>
-<!--    <div th:insert="client/fragments/finalplace-footer :: footer"></div>-->
-<!--    <div th:insert="fragments/externalScripts :: externalScripts"></div>-->
-<!--    <div th:insert="client/fragments/messages-scripts :: messagesScripts"></div>-->
 </body>
 </html>

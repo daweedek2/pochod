@@ -23,6 +23,7 @@ public class PopController extends PlayerController {
     @GetMapping
     public String viewHome(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
+        model.addAttribute("gameStarted", false);
         return "pop/welcome";
     }
 

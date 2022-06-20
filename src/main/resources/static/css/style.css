@@ -751,6 +751,11 @@ ul.contact i {
     color: #6c757d !important;
 }
 
+.fb-icon {
+    align-items: center;
+    justify-content: center;
+}
+
 .ms-container{
     background: transparent url('../../../images/switch.png') no-repeat 50% 50%;
 
