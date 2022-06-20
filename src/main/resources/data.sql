@@ -1,6 +1,6 @@
 -- user
 INSERT INTO pop_user(id, username, password)
-SELECT 1, 'admin', '$2a$10$qs.xj/pIYebwtf2FrchEteOvdQ38qLTuFeOZXm8twXL0uOJFY1kMG'
+SELECT 1, 'admin', '$2a$12$gzQQy9oVY1v20qWzIcfWP.fp0FSWOV01c7tM5gfdwR9v8c6QoAyEW'
     WHERE NOT EXISTS(
     SELECT * FROM pop_user WHERE id = 1);
 INSERT INTO pop_user(id, username, password)
