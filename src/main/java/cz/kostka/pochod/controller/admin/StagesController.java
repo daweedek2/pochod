@@ -3,6 +3,7 @@ package cz.kostka.pochod.controller.admin;
 import cz.kostka.pochod.domain.Stage;
 import cz.kostka.pochod.dto.StageAdminDTO;
 import cz.kostka.pochod.dto.StageCreationDTO;
+import cz.kostka.pochod.mapper.StageMapper;
 import cz.kostka.pochod.security.CustomUserDetails;
 import cz.kostka.pochod.service.QrCodeGeneratorService;
 import cz.kostka.pochod.service.StageService;
@@ -93,6 +94,6 @@ public class StagesController {
     }
 
     private static StageAdminDTO convertToDTO(final Stage stage) {
-        return new StageAdminDTO(stage.getId(), stage.getName(), stage.getNumber(), stage.getLocation(), stage.getPin(), stage.getInfo());
+        return StageMapper.INSTANCE.stageToDTO(stage);
     }
 }
