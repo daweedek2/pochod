@@ -20,14 +20,17 @@ import java.util.stream.Collectors;
 @Service
 public class PdfService {
 
-    private static final int NUMBER_OF_STAGES = 4;
-
     private final PlayerService playerService;
     private final StampService stampService;
+    private final StageService stageService;
 
-    public PdfService(final PlayerService playerService, final StampService stampService) {
+    public PdfService(
+            final PlayerService playerService,
+            final StampService stampService,
+            final StageService stageService) {
         this.playerService = playerService;
         this.stampService = stampService;
+        this.stageService = stageService;
     }
 
     public void generate(HttpServletResponse response) throws IOException {
@@ -51,7 +54,7 @@ public class PdfService {
         final List<Player> allPlayers = playerService.getAllPlayers();
 
         final List<Player> playersWithAllStamps = allPlayers.stream()
-                .filter(player -> stampService.getStampsByPlayer(player).size() == NUMBER_OF_STAGES)
+                .filter(player -> stampService.getStampsByPlayer(player).size() == getNumberOfStages())
                 .collect(Collectors.toList());
 
         if (playersWithAllStamps.size() == 0) {
@@ -92,5 +95,9 @@ public class PdfService {
         cell.setPhrase(new Phrase(content));
         cell.setFixedHeight(125f);
         pdfTable.addCell(cell);
+    }
+
+    public int getNumberOfStages() {
+        return stageService.getAllStages().size();
     }
 }
