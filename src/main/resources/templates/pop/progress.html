@@ -10,16 +10,16 @@
     <div class="row cypher-list">
         <div class="col-sm-12">
             <h1 class="login-form-header">Pochod okolo Polanky</h1>
-            <h1 style="text-align: center" th:text="|Máš ${stamps} ze 4 razítek.|"></h1>
+            <h1 style="text-align: center" th:text="|Máš ${stamps} ze ${allStagesCount} razítek.|"></h1>
             <div th:switch="${stamps}">
                 <img th:case="0" src="/img/ikonka-large_empty.jpg" alt="PoP 2022" class="img-billy"/>
                 <img th:case="1" src="/img/ikonka-large_1.jpg" alt="PoP 2022" class="img-billy"/>
                 <img th:case="2" src="/img/ikonka-large_2.jpg" alt="PoP 2022" class="img-billy"/>
                 <img th:case="3" src="/img/ikonka-large_3.jpg" alt="PoP 2022" class="img-billy"/>
                 <img th:case="4" src="/img/ikonka-large_4.jpg" alt="PoP 2022" class="img-billy"/>
+                <img th:case="5" src="/img/ikonka-large_5.jpg" alt="PoP 2022" class="img-billy"/>
             </div>
-            <a class="btn btn-primary" th:href="@{/pop/stages}" role="button">Stanoviště</a>
-            <a class="btn btn-primary btn-square-md" href="https://www.google.com/maps/d/edit?mid=1EUxNrSGuEJpXkqbyiNw9e9jHztTTpHc&usp=sharing" target="_blank">Mapa 2022</a>
+            <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
         </div>
     </div>
 </div>

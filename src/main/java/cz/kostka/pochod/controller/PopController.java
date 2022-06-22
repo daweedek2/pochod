@@ -17,11 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/pop")
 public class PopController extends PlayerController {
 
+    private final GameInfoService gameInfoService;
+
     public PopController(
             final PlayerService playerService,
             final StampService stampService,
             final GameInfoService gameInfoService) {
         super(playerService, stampService, gameInfoService);
+        this.gameInfoService = gameInfoService;
     }
 
     @GetMapping
@@ -34,6 +37,7 @@ public class PopController extends PlayerController {
     @GetMapping("/progress")
     public String viewProgress(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
+        model.addAttribute("allStagesCount", gameInfoService.getAllStagesCount());
         return "pop/progress";
     }
 
@@ -42,5 +46,11 @@ public class PopController extends PlayerController {
         setPlayerToModel(user.getPlayer().getId(), model);
         setPartnersToModel(model);
         return "pop/partners";
+    }
+
+    @GetMapping("/map")
+    public String getAllStages(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
+        setPlayerToModel(user.getPlayer().getId(), model);
+        return "pop/map";
     }
 }
