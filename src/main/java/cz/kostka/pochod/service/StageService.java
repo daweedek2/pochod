@@ -31,6 +31,10 @@ public class StageService implements StageApi {
         return stageRepository.findAllByOrderByNumber();
     }
 
+    public int getAllStagesCount() {
+        return getAllStages().size();
+    }
+
     public Stage create(final StageCreationDTO dto) {
         return stageRepository.save(new Stage(dto.name(), dto.number(), dto.location(), dto.pin(), dto.info()));
     }

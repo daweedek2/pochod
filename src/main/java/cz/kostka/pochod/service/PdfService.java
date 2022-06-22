@@ -98,6 +98,6 @@ public class PdfService {
     }
 
     public int getNumberOfStages() {
-        return stageService.getAllStages().size();
+        return stageService.getAllStagesCount();
     }
 }
