@@ -22,6 +22,7 @@ public class PlayerController {
     private static final String PLAYER_ATTR = "player";
     private static final String STAMPS_ATTR = "stamps";
     private static final String PARTNERS_ATTR = "partners";
+    private static final String MAP_URL_ATTR = "mapUrl";
 
     private final PlayerService playerService;
     private final StampService stampService;
@@ -53,6 +54,11 @@ public class PlayerController {
     public void setPartnersToModel(final Model model) {
         final GameInfo gameInfo = gameInfoService.get().orElse(new GameInfo());
         model.addAttribute(PARTNERS_ATTR, gameInfo.getPartners());
+    }
+
+    public void setMapUrlToModel(final Model model) {
+        final GameInfo gameInfo = gameInfoService.get().orElse(new GameInfo());
+        model.addAttribute(MAP_URL_ATTR, gameInfo.getMapUrl());
     }
 
     public Map<Integer, StampDTO> getStampsMapForPlayer(final Player player) {

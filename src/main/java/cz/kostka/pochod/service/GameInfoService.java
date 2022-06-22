@@ -1,6 +1,7 @@
 package cz.kostka.pochod.service;
 
 import cz.kostka.pochod.domain.GameInfo;
+import cz.kostka.pochod.dto.GameInfoDTO;
 import cz.kostka.pochod.repository.GameInfoRepository;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +27,11 @@ public class GameInfoService {
         return gameInfoRepository.findById(1L);
     }
 
-    public GameInfo update(final String startGame, final String partners) {
+    public GameInfo update(final GameInfoDTO gameInfoDTO) {
         final GameInfo gameInfo = get().orElse(new GameInfo());
-        gameInfo.setStartGame(toTimestamp(startGame));
-        gameInfo.setPartners(partners);
+        gameInfo.setStartGame(toTimestamp(gameInfoDTO.startGame()));
+        gameInfo.setPartners(gameInfoDTO.partners());
+        gameInfo.setMapUrl(gameInfoDTO.mapUrl());
         return gameInfoRepository.save(gameInfo);
     }
 

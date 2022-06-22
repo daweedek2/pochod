@@ -9,12 +9,8 @@
         <div class="col-sm-12">
             <h1 class="login-form-header">Pochod okolo Polanky</h1>
             <h1>Mapa</h1>
-            <a class="btn btn-primary btn-square-md" href="https://www.google.com/maps/d/edit?mid=1EUxNrSGuEJpXkqbyiNw9e9jHztTTpHc&usp=sharing" target="_blank">Otevřít</a>
-            <br>
-            <a href="https://www.google.com/maps/d/edit?mid=1EUxNrSGuEJpXkqbyiNw9e9jHztTTpHc&usp=sharing" target="_blank">
-                <img src="/img/2022/PoP_2022.jpg" alt="PoP 2022" class="img-billy"/>
-            </a>
-            <br>
+            <div th:insert="fragments/openMapButton :: openMapButton(${mapUrl})"></div>
+            <div th:insert="fragments/mapPicture :: map(${mapUrl})"></div>
             <a class="btn btn-secondary btn-square-md" href="/files_trasa/PoP_2022_Google.kml">Stažení souboru KML (Google)</a>
             <a class="btn btn-secondary btn-square-md" href="/files_trasa/PoP_2022_Google.kmz">Stažení souboru KMZ (Google)</a>
             <a class="btn btn-secondary btn-square-md" href="/files_trasa/mapy_cz.gpx">Stažení souboru GPX (Mapy.cz)</a>

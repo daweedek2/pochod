@@ -22,11 +22,7 @@
                     </a>
                 </div>
             </th:block>
-            <br>
-            <br>
-            <a href="https://www.google.com/maps/d/edit?mid=1EUxNrSGuEJpXkqbyiNw9e9jHztTTpHc&usp=sharing" target="_blank">
-                <img src="/img/2022/PoP_2022.jpg" alt="PoP 2022" class="img-billy"/>
-            </a>
+            <div th:insert="fragments/mapPicture :: map(${mapUrl})"></div>
             <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
         </div>
     </div>

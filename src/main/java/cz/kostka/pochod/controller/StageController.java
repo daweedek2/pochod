@@ -34,6 +34,7 @@ public class StageController extends PlayerController {
         setPlayerToModel(user.getPlayer().getId(), model);
         model.addAttribute("allStages", stageService.getAllStages());
         model.addAttribute("stampsMap", getStampsMapForPlayer(user.getPlayer()));
+        setMapUrlToModel(model);
         return "pop/list";
     }
 

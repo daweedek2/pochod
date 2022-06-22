@@ -51,6 +51,7 @@ public class PopController extends PlayerController {
     @GetMapping("/map")
     public String getAllStages(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
+        setMapUrlToModel(model);
         return "pop/map";
     }
 }

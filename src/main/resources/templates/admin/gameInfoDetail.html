@@ -27,6 +27,12 @@
                     <p class="error" th:if="${#fields.hasErrors('partners')}" th:errors="*{partners}">Chyba - partners
                     </p>
                 </div>
+                <div class="form-group">
+                    <label for="mapUrl" class="input-value-required">Odkaz na mapu</label>
+                    <textarea id="mapUrl" class="form-control" th:field="*{mapUrl}" required></textarea>
+                    <p class="error" th:if="${#fields.hasErrors('mapUrl')}" th:errors="*{mapUrl}">Chyba - mapUrl
+                    </p>
+                </div>
                 <button type="submit" class="btn btn-primary">Uložit</button>
             </form>
         </div>

@@ -33,7 +33,7 @@ public class GameInfoController {
 
     @PostMapping("/update")
     public String updateGameInfo(final @ModelAttribute("gameInfoDto") GameInfoDTO dto) {
-        gameInfoService.update(dto.startGame(), dto.partners());
+        gameInfoService.update(dto);
         return "redirect:/admin/game";
     }
 
