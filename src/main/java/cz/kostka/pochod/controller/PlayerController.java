@@ -53,7 +53,7 @@ public class PlayerController {
 
     public void setPartnersToModel(final Model model) {
         final GameInfo gameInfo = gameInfoService.get().orElse(new GameInfo());
-        model.addAttribute(PARTNERS_ATTR, gameInfo.getPartners());
+        model.addAttribute(PARTNERS_ATTR, gameInfo.getPartners().split(";"));
     }
 
     public void setMapUrlToModel(final Model model) {

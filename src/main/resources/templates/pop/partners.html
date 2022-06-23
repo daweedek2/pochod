@@ -13,9 +13,11 @@
             </div>
         </div>
         <div class="row cypher-list">
-            <div class="col-sm-4 center-elements">
-                <h2>Naši partneři</h2>
-                <p th:text="${partners}">Partneři</p>
+            <div class="center-elements">
+                <h2 class="col-centered">Naši partneři</h2>
+                <th:block th:each="partner : ${partners}">
+                    <p class="col-centered" th:text="${partner}">Partneři</p>
+                </th:block>
                 <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
             </div>
         </div>

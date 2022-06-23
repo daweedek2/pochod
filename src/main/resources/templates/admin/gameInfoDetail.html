@@ -23,6 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label for="partners" class="input-value-required">Partneři</label>
+                    <p><small>Pro oddělení jednotlivých názvů použij středník (;)</small></p>
                     <textarea id="partners" class="form-control" th:field="*{partners}" required></textarea>
                     <p class="error" th:if="${#fields.hasErrors('partners')}" th:errors="*{partners}">Chyba - partners
                     </p>
