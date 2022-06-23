@@ -23,6 +23,9 @@ public class RegistrationService implements RegistrationApi {
 
     @Override
     public RegistrationResponseDTO register(final RegistrationRequestDTO registrationRequestDTO) {
+        if (isPlayerAlreadyExisting(registrationRequestDTO)) {
+            return new RegistrationResponseDTO(RegistrationStatus.ALREADY_PRESENT);
+        }
         final User newUser = userService.createUser(registrationRequestDTO);
         final Player newPlayer = playerService.createPlayer(registrationRequestDTO, newUser);
 
@@ -31,5 +34,15 @@ public class RegistrationService implements RegistrationApi {
         }
 
         return new RegistrationResponseDTO(RegistrationStatus.CREATED, newPlayer);
+    }
+
+    private boolean isPlayerAlreadyExisting(final RegistrationRequestDTO registrationRequestDTO) {
+        final var existingPlayerByName = playerService.getPlayerByNickname(registrationRequestDTO.nickName());
+
+        if (existingPlayerByName.isEmpty()) {
+            return false;
+        }
+
+        return existingPlayerByName.get().getPin() == registrationRequestDTO.pin();
     }
 }

@@ -6,4 +6,5 @@ package cz.kostka.pochod.enums;
 public enum RegistrationStatus {
     CREATED,
     ERROR,
+    ALREADY_PRESENT,
 }
