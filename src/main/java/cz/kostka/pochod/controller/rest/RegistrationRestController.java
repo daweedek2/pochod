@@ -40,7 +40,7 @@ public class RegistrationRestController {
         LOG.info("Registration of player with name: {} finished with the status {}.",
                 registrationRequestDTO.nickName(),
                 responseDTO.getRegistrationStatus());
-        return responseDTO.getRegistrationStatus() == RegistrationStatus.ERROR
+        return responseDTO.getRegistrationStatus() != RegistrationStatus.CREATED
                 ? ResponseEntity.internalServerError().build()
                 : ResponseEntity.ok(responseDTO);
     }
