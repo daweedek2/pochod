@@ -5,20 +5,21 @@
 
 <body>
 <div th:insert="fragments/header :: header(${player.nickname}, ${stamps})"></div>
-<!--    <div th:unless="${newMessages.empty}" th:insert="client/fragments/message-box :: messageBox(${newMessages})"></div>-->
 <div class="container">
     <div class="row cypher-list">
         <div class="col-sm-12">
             <h1 class="login-form-header">Pochod okolo Polanky</h1>
-            <h1 style="text-align: center" th:text="|Máš ${stamps} ze ${allStagesCount} razítek.|"></h1>
-            <div th:switch="${stamps}">
-                <img th:case="0" src="/img/ikonka-large_empty.jpg" alt="PoP 2022" class="img-billy"/>
-                <img th:case="1" src="/img/ikonka-large_1.jpg" alt="PoP 2022" class="img-billy"/>
-                <img th:case="2" src="/img/ikonka-large_2.jpg" alt="PoP 2022" class="img-billy"/>
-                <img th:case="3" src="/img/ikonka-large_3.jpg" alt="PoP 2022" class="img-billy"/>
-                <img th:case="4" src="/img/ikonka-large_4.jpg" alt="PoP 2022" class="img-billy"/>
-                <img th:case="5" src="/img/ikonka-large_5.jpg" alt="PoP 2022" class="img-billy"/>
+            <h1 style="text-align: center" th:text="|Máš ${stamps} z ${allStagesCount} razítek.|"></h1>
+            <br>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped bg-dark" role="progressbar"
+                     aria-valuemin="0" aria-valuemax="100"
+                     th:style="'width:' + ( ${allStagesCount} == 0  ? '0' : (${stamps * 1.0} / ${allStagesCount}) * 100.0 ) + '%;'"
+                     th:text="|${stamps} / ${allStagesCount}|">
+                </div>
             </div>
+            <br>
+            <br>
             <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
         </div>
     </div>
