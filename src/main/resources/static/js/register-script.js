@@ -49,7 +49,7 @@ function registerMe() {
             location.replace("/login");
         },
         error: function () {
-            alert("Registrace se nezdařila, zkuste to prosím znovu.")
+            alert("Registrace se nezdařila. Jméno se již používá.")
         }
     });
 }

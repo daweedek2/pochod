@@ -39,10 +39,6 @@ public class RegistrationService implements RegistrationApi {
     private boolean isPlayerAlreadyExisting(final RegistrationRequestDTO registrationRequestDTO) {
         final var existingPlayerByName = playerService.getPlayerByNickname(registrationRequestDTO.nickName());
 
-        if (existingPlayerByName.isEmpty()) {
-            return false;
-        }
-
-        return existingPlayerByName.get().getPin() == registrationRequestDTO.pin();
+        return existingPlayerByName.isPresent();
     }
 }
