@@ -101,4 +101,8 @@ public class StampService implements StampApi {
                 .map(value -> new StampDTO(value.getStage().getId(), playerId, true, stamp.get().getTimestamp()))
                 .orElseGet(() -> new StampDTO(null, playerId, false, null));
     }
+
+    public void deleteStampsOfPlayer(final Player player) {
+        stampRepository.deleteAll(getStampsByPlayer(player));
+    }
 }
