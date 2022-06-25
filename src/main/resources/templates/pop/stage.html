@@ -19,7 +19,9 @@
                 <img src="/img/beer_full.png" alt="PoP 2022" class="img-billy"/>
             </div>
             <h2>Popis</h2>
-            <p th:text="${stage.getInfo()}"></p>
+            <th:block th:each="info : ${stage.info}">
+                <p th:text="${info}">Info</p>
+            </th:block>
             <h2>GPS souřdnice</h2>
             <p th:text="${stage.location}">49.2673764, 18.0342303</p>
             <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>

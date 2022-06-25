@@ -1,5 +1,7 @@
 package cz.kostka.pochod.controller;
 
+import cz.kostka.pochod.domain.Stage;
+import cz.kostka.pochod.dto.StageDetailDTO;
 import cz.kostka.pochod.security.CustomUserDetails;
 import cz.kostka.pochod.service.GameInfoService;
 import cz.kostka.pochod.service.PlayerService;
@@ -45,12 +47,17 @@ public class StageController extends PlayerController {
             final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
         final var stage = stageService.getStageById(id);
-        setStageToModel(id, model);
+        setStageToModel(stage, model);
         model.addAttribute("stamp", getStampDTOForPlayerAndStage(user.getPlayer(), stage));
         return "pop/stage";
     }
 
-    private void setStageToModel(final Long stageId, final Model model) {
-        model.addAttribute("stage", stageService.getStageById(stageId));
+    private void setStageToModel(final Stage stage, final Model model) {
+        model.addAttribute("stage",
+                new StageDetailDTO(
+                        stage.getNumber(),
+                        stage.getName(),
+                        stage.getInfo().split(";"),
+                        stage.getLocation()));
     }
 }

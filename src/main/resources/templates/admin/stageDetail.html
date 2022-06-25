@@ -16,7 +16,7 @@
             <form action="#" th:action="@{/admin/stages/update}" th:object="${stageAdminDTO}" method="post">
                 <div class="form-group">
                     <input id="id" class="form-control" type="text" th:field="*{id}" hidden/>
-                    <p class="error" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Chyba - Jméno
+                    <p class="error" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Chyba - id
                     </p>
                 </div>
                 <div class="form-group">
@@ -34,7 +34,7 @@
                 <div class="form-group">
                     <label for="location" class="input-value-required">GPS</label>
                     <input id="location" class="form-control" type="text" th:field="*{location}" required/>
-                    <p class="error" th:if="${#fields.hasErrors('location')}" th:errors="*{location}">Chyba - Email
+                    <p class="error" th:if="${#fields.hasErrors('location')}" th:errors="*{location}">Chyba - Location
                     </p>
                 </div>
                 <div class="form-group">
@@ -44,9 +44,10 @@
                     </p>
                 </div>
                 <div class="form-group">
+                    <p><small>Pro oddělení řádků použij středník (;)</small></p>
                     <label for="info" class="login-form-label">Info</label>
                     <textarea id="info" class="form-control" th:field="*{info}"></textarea>
-                    <p class="error" th:if="${#fields.hasErrors('info')}" th:errors="*{info}">Chyba - Telefon
+                    <p class="error" th:if="${#fields.hasErrors('info')}" th:errors="*{info}">Chyba - Info
                     </p>
                 </div>
                 <button type="submit" class="btn btn-primary">Upravit</button>
