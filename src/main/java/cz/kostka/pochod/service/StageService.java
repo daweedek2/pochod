@@ -10,6 +10,7 @@ import cz.kostka.pochod.repository.StageRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by dkostka on 2/6/2022.
@@ -41,6 +42,9 @@ public class StageService implements StageApi {
 
     public Stage getStageById(final Long id) {
         return stageRepository.getById(id);
+    }
+    public Optional<Stage> getStageByPin(final String pin) {
+        return stageRepository.getStageByPin(pin);
     }
 
     public void delete(final Long id) {

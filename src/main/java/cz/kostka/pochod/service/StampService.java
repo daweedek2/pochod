@@ -41,12 +41,14 @@ public class StampService implements StampApi {
 
     @Override
     public StampResultDTO submitStamp(final StampRequestDTO stampRequestDTO) {
-        final Stage stage = stageService.getStageById(stampRequestDTO.stageId());
+        final Optional<Stage> optionalStage = stageService.getStageByPin(stampRequestDTO.pin());
         final Player player = playerService.getPlayerById(stampRequestDTO.playerId());
 
-        if (stage == null || player == null) {
+        if (optionalStage.isEmpty() || player == null) {
             return new StampResultDTO(StampSubmitStatus.REJECTED);
         }
+
+        final Stage stage = optionalStage.get();
 
         LOG.info("Player '{}' tries to submit stamp '{}'.", player.getNickname(), stage.getName());
 

@@ -8,7 +8,6 @@
     <div class="container">
         <div class="row cypher-list">
             <div class="col-sm-12">
-<!--            <div class="col-sm-12" th:if="${gameStarted}">-->
                 <h1 class="login-form-header">Pochod okolo Polanky</h1>
                 <img src="/img/bota-large.jpg" alt="PoP 2022" class="img-billy"/>
             </div>
@@ -16,7 +15,7 @@
         <div class="row cypher-list" th:if="${gameStarted == true}">
             <div class="col-sm-4 center-elements">
                 <h2>Kam dál?</h2>
-    <!--                <a class="btn btn-flat" th:href="${gameDetails.mapUrl}">Mapa 2022</a>-->
+                <a class="btn btn-primary btn-square-md" th:href="@{/pop/stamp}">Získat razítko</a>
                 <a class="btn btn-primary btn-square-md" th:href="@{/pop/progress}">Můj postup</a>
                 <a class="btn btn-primary btn-square-md" th:href="@{/pop/stages}">Stanoviště</a>
                 <a class="btn btn-primary btn-square-md" th:href="@{/pop/map}">Mapa 2022</a>

@@ -9,20 +9,17 @@
     <div class="row cypher-list">
         <div class="col-sm-12">
             <h1 class="login-form-header">Pochod okolo Polanky</h1>
-            <h1 th:text="|${stage.number}. ${stage.name}|">1. Stanoviště</h1>
-            <div th:if="${stamp.taken == false}">
+            <h1>Získat razítko</h1>
+            <div>
                 <script th:src="@{/js/qr-scanner-script.js}"></script>
                 <div class="col">
                     <div class="scanner" id="reader"></div>
                 </div>
                 <script type="text/javascript" th:inline="javascript">
                     var playerId = [[${player.id}]]
-                    var stageId = [[${stage.id}]]
                     function onScanSuccess(qrCodeMessage) {
-                        submitStamp(playerId, stageId, qrCodeMessage)
-                        alert('Skenování proběhlo úspěšně. Razítko bylo zaregistrováno.')
-                        location.replace("/pop/stages");
-                        // document.getElementById('result').innerHTML = '<span class="result">'+qrCodeMessage+'</span>';
+                        submitStamp(playerId, qrCodeMessage)
+                        alert('Skenování proběhlo úspěšně. QR kód se ověřuje.')
 
                     }
                     function onScanError(errorMessage) {
@@ -32,9 +29,6 @@
                         "reader", { fps: 10, qrbox: 250 });
                     html5QrcodeScanner.render(onScanSuccess, onScanError);
                 </script>
-            </div>
-            <div th:if="${stamp.taken}">
-                <p>Tohle razítko už máš.</p>
             </div>
             <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
         </div>

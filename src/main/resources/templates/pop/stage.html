@@ -11,7 +11,7 @@
             <h1 class="login-form-header">Pochod okolo Polanky</h1>
             <h1 th:text="|${stage.number}. ${stage.name}|">1. Stanoviště</h1>
             <div th:if="${stamp.taken == false}">
-                <a class="btn btn-primary" th:href="@{/pop/stages/{id}/stamp(id=${stage.id})}" role="button">Získat razítko</a>
+                <a class="btn btn-primary" th:href="@{/pop/stamp}" role="button">Získat razítko</a>
             </div>
             <div th:if="${stamp.taken == true}">
                 <h2>Razítko je v kapse!</h2>

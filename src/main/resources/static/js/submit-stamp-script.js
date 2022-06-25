@@ -1,7 +1,6 @@
-function submitStamp(playerId, stageId, pin) {
+function submitStamp(playerId, pin) {
     var data = {
         playerId: playerId,
-        stageId: stageId,
         pin: pin
     }
     token = $("meta[name='_csrf']").attr("content")
@@ -20,9 +19,13 @@ function submitStamp(playerId, stageId, pin) {
         },
         success: function () {
             console.log("stamp submit is successful")
+            alert('Razítko bylo zaregistrováno.')
+            location.replace("/pop/stages");
         },
         error: function () {
             console.log("stamp submit failed")
+            alert('Skenování se nezdařilo. QR kód nebyl rozpoznán.')
+            location.replace("/pop");
         }
     });
 }

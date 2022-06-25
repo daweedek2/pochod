@@ -26,8 +26,8 @@ public class StampRestController {
 
     @PostMapping("api/submitStamp")
     public ResponseEntity<StampResultDTO> submitStamp(@RequestBody final StampRequestDTO stampRequestDTO) {
-        LOG.info("Request to submit stamp for stage with id '{}' by player with id '{}'.",
-                stampRequestDTO.stageId(),
+        LOG.info("Request to submit stamp with pin '{}' by player with id '{}'.",
+                stampRequestDTO.pin(),
                 stampRequestDTO.playerId());
         final var result = stampApi.submitStamp(stampRequestDTO);
 

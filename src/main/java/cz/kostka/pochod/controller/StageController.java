@@ -50,17 +50,6 @@ public class StageController extends PlayerController {
         return "pop/stage";
     }
 
-    @GetMapping("/{id}/stamp")
-    public String viewStampForStage(
-            @PathVariable final Long id,
-            @AuthenticationPrincipal final CustomUserDetails user,
-            final Model model) {
-        setPlayerToModel(user.getPlayer().getId(), model);
-        setStageToModel(id, model);
-        model.addAttribute("stamp", getStampDTOForPlayerAndStage(user.getPlayer(), stageService.getStageById(id)));
-        return "pop/stamp";
-    }
-
     private void setStageToModel(final Long stageId, final Model model) {
         model.addAttribute("stage", stageService.getStageById(stageId));
     }
