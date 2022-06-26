@@ -31,6 +31,10 @@ public class LoginController {
     @GetMapping("/successfulLogin")
     public String redirectUserBasedOnRole() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication.getPrincipal() instanceof CustomUserDetails)) {
+            return "login/login";
+        }
+
         LOG.info("User '{}' is successfully logged in.",
                 ((CustomUserDetails) authentication.getPrincipal()).getUser().getUsername());
         return LoginUtils.getRedirectUrlAfterLoginForRole(authentication.getAuthorities());
