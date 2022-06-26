@@ -49,6 +49,7 @@ public class PlayerController {
         final var startGame = gameInfo.getStartGame();
         model.addAttribute(GAME_STARTED_ATTR, startGame != null && LocalDateTime.now().isAfter(startGame));
         model.addAttribute(GAME_STARTED_TIME_ATTR, startGame);
+        model.addAttribute("now", LocalDateTime.now());
     }
 
     public void setPartnersToModel(final Model model) {
