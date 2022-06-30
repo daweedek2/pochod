@@ -11,10 +11,8 @@
             <h1 class="login-form-header">Pochod okolo Polanky</h1>
             <h1>Získat razítko</h1>
             <h2>Jak na to?</h2>
-            <p>1. Klikni na "Povolit používání kamery"</p>
-            <p>2. Povol používání kamery na zařízení</p>
-            <p>3. Vyber kameru a klikni na "Skenovat"</p>
-            <p>4. Zaměř QR kód a počkej na upozornění z aplikace</p>
+            <p>1. Povol používání kamery na zařízení</p>
+            <p>2. Zaměř QR kód a počkej na upozornění z aplikace</p>
             <div>
                 <script th:src="@{/js/qr-scanner-script.js}"></script>
                 <div class="col">
@@ -30,17 +28,10 @@
                     function onScanError(errorMessage) {
                         // alert('Skenování se nezdařilo.')
                     }
-                    // var html5QrcodeScanner = new Html5QrcodeScanner(
-                    //     "reader", { fps: 10, qrbox: 250, facingMode: "environment"});
-                    // html5QrcodeScanner.render(onScanSuccess, onScanError);
 
                     const html5QrCode = new Html5Qrcode(/* element id */ "reader");
-
                     const config = { fps: 10, qrbox: { width: 250, height: 250 } };
-
                     html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess);
-
-
                 </script>
             </div>
             <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
