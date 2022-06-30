@@ -30,9 +30,17 @@
                     function onScanError(errorMessage) {
                         // alert('Skenování se nezdařilo.')
                     }
-                    var html5QrcodeScanner = new Html5QrcodeScanner(
-                        "reader", { fps: 10, qrbox: 250, facingMode: "environment"});
-                    html5QrcodeScanner.render(onScanSuccess, onScanError);
+                    // var html5QrcodeScanner = new Html5QrcodeScanner(
+                    //     "reader", { fps: 10, qrbox: 250, facingMode: "environment"});
+                    // html5QrcodeScanner.render(onScanSuccess, onScanError);
+
+                    const html5QrCode = new Html5Qrcode(/* element id */ "reader");
+
+                    const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+
+                    html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess);
+
+
                 </script>
             </div>
             <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
