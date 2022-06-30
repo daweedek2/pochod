@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Pop 2022')">
+</head>
+<body>
+<div th:insert="fragments/header :: header(${player.nickname}, ${stamps})"></div>
+<div class="container">
+    <div class="row cypher-list">
+        <div class="col-sm-12">
+            <h1 class="login-form-header">Pochod okolo Polanky</h1>
+            <h2>Feedback</h2>
+            <form action="#" th:action="@{/pop/feedback}" th:object="${feedbackDTO}" method="post">
+                <div class="form-group">
+                    <input id="playerId" class="form-control" th:field="*{playerId}" hidden/>
+                </div>
+                <div class="form-group">
+                    <label for="text" class="input-value-required">Co bych vylepšil? Co se mi líbilo?</label>
+                    <textarea id="text" class="form-control" th:field="*{text}" maxlength="3999" required></textarea>
+                    <p class="error" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Chyba - text
+                    </p>
+                </div>
+                <button type="submit" class="btn btn-primary">Odeslat</button>
+            </form>
+            <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
+            <div th:unless="${playersFeedbacks.empty}">
+                <h2>Odelsané</h2>
+                <th:block th:each="feedback : ${playersFeedbacks}">
+                    <div class="cypher">
+                        <div class="row align-items-center">
+                            <div class="col" th:text="${feedback.text}">1. U zeleného háje</div>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
