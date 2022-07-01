@@ -23,7 +23,7 @@
                 <p th:text="${info}">Info</p>
             </th:block>
             <h2>GPS souřdnice</h2>
-            <p th:text="${stage.location}">49.2673764, 18.0342303</p>
+            <p th:text="|${stage.location.x} E, ${stage.location.y} N|">49.2673764, 18.0342303</p>
             <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
         </div>
     </div>
