@@ -15,6 +15,6 @@ import java.util.Optional;
 @Repository
 public interface StampRepository extends JpaRepository<Stamp, Long> {
     Optional<Stamp> getStampByPlayerAndStage(Player player, Stage stage);
-    List<Stamp> findAllByStage(Stage stage);
+    List<Stamp> findAllByStageOrderByTimestamp(Stage stage);
     List<Stamp> findAllByPlayer(Player player);
 }

@@ -71,7 +71,7 @@ public class StagesController {
     public String getStageDetail(final @PathVariable Long id, final Model model) {
         final Stage stage = stageService.getStageById(id);
         model.addAttribute("stage", stage);
-        model.addAttribute("stamps", stampService.getStampsByStage(stage).size());
+        model.addAttribute("stamps", stampService.getStampsByStageOrdered(stage).size());
         model.addAttribute("qrCode", ENDPOINT + "/" + id + "/generateQRCode");
         model.addAttribute("stageAdminDTO", convertToDTO(stage));
         return "admin/stageDetail";

@@ -212,6 +212,11 @@ nav .back {
     flex: 0 0 6rem;
 }
 
+.col.statistic {
+    -ms-flex: 0 0 15rem;
+    flex: 0 0 15rem;
+}
+
 .cypher .row i{
     font-size: 1.2rem;
 }

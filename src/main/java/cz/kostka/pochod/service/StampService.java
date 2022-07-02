@@ -72,8 +72,8 @@ public class StampService implements StampApi {
         return createStampDTO(getStampForPlayerAndStage(player, stage), player.getId());
     }
 
-    public List<Stamp> getStampsByStage(final Stage stage) {
-        return stampRepository.findAllByStage(stage);
+    public List<Stamp> getStampsByStageOrdered(final Stage stage) {
+        return stampRepository.findAllByStageOrderByTimestamp(stage);
     }
 
     public List<Stamp> getStampsByPlayer(final Player player) {

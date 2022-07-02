@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Admin - statistiky')">
+</head>
+<body>
+<div th:insert="fragments/header :: header('ADMIN', 0)"></div>
+<div class="container">
+    <div class="row">
+        <h1 class="login-form-header">Pochod okolo Polanky - ADMIN</h1>
+    </div>
+    <div class="row cypher-list">
+        <div class="col-sm-12">
+            <h1>Statistiky</h1>
+            <th:block th:each="stage : ${stageList}">
+                <div class="cypher">
+                    <h2 class="col" th:text="|${stage.stage.number}. ${stage.stage.name}|"></h2>
+                    <div class="row align-items-center">
+                        <div class="col">Úspěšnost:</div>
+                        <div class="col statistic">
+                            <span th:text="|${stage.stampsTakenNumber} z ${stage.playersNumber} - ${stage.percentage}%|"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cypher">
+                    <div class="row align-items-center">
+                        <div class="col">První razítko:</div>
+                        <div class="col statistic">
+                            <span th:text="|${stage.firstPlayer.nickname} - ${#temporals.format(stage.firstStampTimestamp, 'HH:mm')}|"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cypher">
+                    <div class="row align-items-center">
+                        <div class="col">Poslední razítko:</div>
+                        <div class="col statistic">
+                            <span th:text="|${stage.lastPlayer.nickname} - ${#temporals.format(stage.lastStampTimestamp, 'HH:mm')}|"></span>
+                        </div>
+                    </div>
+                </div>
+            </th:block>
+            <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
