@@ -1,16 +1,11 @@
 package cz.kostka.pochod.service;
 
-import com.lowagie.text.Document;
-import com.lowagie.text.PageSize;
 import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
-import com.lowagie.text.pdf.PdfWriter;
 import cz.kostka.pochod.domain.Player;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,13 +13,13 @@ import java.util.stream.Collectors;
  * Created by dkostka on 6/20/2022.
  */
 @Service
-public class PdfService {
+public class TombolaPdfService extends AbstractPdfService {
 
     private final PlayerService playerService;
     private final StampService stampService;
     private final StageService stageService;
 
-    public PdfService(
+    public TombolaPdfService(
             final PlayerService playerService,
             final StampService stampService,
             final StageService stageService) {
@@ -33,24 +28,14 @@ public class PdfService {
         this.stageService = stageService;
     }
 
-    public void generate(HttpServletResponse response) throws IOException {
-        // prepare document
-        Document document = new Document(PageSize.A4, 0, 0, 0, 0);
-        PdfWriter.getInstance(document, response.getOutputStream());
-
-        document.open();
-
-        // prepare table
-        final PdfPTable pdfTable = new PdfPTable(2);
-        pdfTable.setWidthPercentage(100);
-
-        addDataToTable(pdfTable);
-
-        document.add(pdfTable);
-        document.close();
+    @Override
+    PdfPTable createTableWithData() {
+        final PdfPTable pdfTable = super.getEmptyPdfTable(2, 100);
+        addPlayersToTable(pdfTable);
+        return pdfTable;
     }
 
-    private void addDataToTable(final PdfPTable pdfTable) {
+    private void addPlayersToTable(final PdfPTable pdfTable) {
         final List<Player> allPlayers = playerService.getAllPlayers();
 
         final List<Player> playersWithAllStamps = allPlayers.stream()

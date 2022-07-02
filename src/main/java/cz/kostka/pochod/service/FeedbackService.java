@@ -35,4 +35,8 @@ public class FeedbackService {
     private Player getPlayer(final Long playerId) {
         return playerService.getPlayerById(playerId);
     }
+
+    public List<Feedback> getAllFeedbacks() {
+        return feedbackRepository.findAll();
+    }
 }

@@ -1,6 +1,7 @@
 package cz.kostka.pochod.controller.admin;
 
-import cz.kostka.pochod.service.PdfService;
+import cz.kostka.pochod.service.FeedbackPdfService;
+import cz.kostka.pochod.service.TombolaPdfService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,22 +18,39 @@ import java.util.Date;
 @Controller
 @RequestMapping("/admin/pdf")
 public class PfdCreatorController {
-    private final PdfService pdfService;
+    private final TombolaPdfService tombolaPdfService;
+    private final FeedbackPdfService feedbackPdfService;
 
-    public PfdCreatorController(final PdfService pdfService) {
-        this.pdfService = pdfService;
+    public PfdCreatorController(final TombolaPdfService tombolaPdfService, final FeedbackPdfService feedbackPdfService) {
+        this.tombolaPdfService = tombolaPdfService;
+        this.feedbackPdfService = feedbackPdfService;
     }
 
-    @GetMapping
-    public void generatePdf(final HttpServletResponse response) throws IOException {
+    @GetMapping("/tombola")
+    public void generatePlayersWithAllStampsPdf(final HttpServletResponse response) throws IOException {
+        prepareResponse(response, "pop2022_tombola");
+
+        tombolaPdfService.generate(response);
+    }
+
+    @GetMapping("/feedback")
+    public void generateFeedbackPdf(final HttpServletResponse response) throws IOException {
+        prepareResponse(response, "pop2022_feedback");
+
+        feedbackPdfService.generate(response);
+    }
+
+    private void prepareResponse(final HttpServletResponse response, final String filenamePrefix) {
         response.setContentType("application/pdf");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd:hh:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
 
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=pdf_" + currentDateTime + ".pdf";
+        String headerValue = "attachment; filename=" +
+                filenamePrefix +
+                "_" +
+                currentDateTime +
+                ".pdf";
         response.setHeader(headerKey, headerValue);
-
-        pdfService.generate(response);
     }
 }
