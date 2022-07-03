@@ -36,12 +36,21 @@ public class RegistrationRestController {
                 registrationRequestDTO.email(),
                 registrationRequestDTO.phone(),
                 registrationRequestDTO.pin());
-        final RegistrationResponseDTO responseDTO = registrationApi.register(registrationRequestDTO);
+        final RegistrationRequestDTO normalizedRequest = normalize(registrationRequestDTO);
+        final RegistrationResponseDTO responseDTO = registrationApi.register(normalizedRequest);
         LOG.info("Registration of player with name: {} finished with the status {}.",
                 registrationRequestDTO.nickName(),
                 responseDTO.getRegistrationStatus());
         return responseDTO.getRegistrationStatus() != RegistrationStatus.CREATED
                 ? ResponseEntity.internalServerError().build()
                 : ResponseEntity.ok(responseDTO);
+    }
+
+    private RegistrationRequestDTO normalize(final RegistrationRequestDTO registrationRequestDTO) {
+        return new RegistrationRequestDTO(
+                registrationRequestDTO.nickName().stripTrailing().stripLeading(),
+                registrationRequestDTO.email(),
+                registrationRequestDTO.phone(),
+                registrationRequestDTO.pin());
     }
 }
