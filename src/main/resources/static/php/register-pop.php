@@ -34,6 +34,7 @@ $email_body = "Děkujeme za registraci pro Pochod okolo Polanky. Pro přihláše
 $to = $visitor_email;//<== update the email address
 $headers = 'From: pochod@valasskapolanka.cz' . "\r\n" .
     "Reply-To: pochod@valasskapolanka.cz" . "\r\n" .
+    "Content-Type: text/plain; charset=UTF-8" . "\r\n" .
     'Bcc: daweedek@gmail.com,pochod@valasskapolanka.cz' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 //Send the email!
