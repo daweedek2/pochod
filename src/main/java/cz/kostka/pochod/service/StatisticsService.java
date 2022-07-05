@@ -2,6 +2,7 @@ package cz.kostka.pochod.service;
 
 import cz.kostka.pochod.domain.Stage;
 import cz.kostka.pochod.domain.Stamp;
+import cz.kostka.pochod.dto.PlayerAdminDTO;
 import cz.kostka.pochod.dto.StageStatisticDTO;
 import cz.kostka.pochod.mapper.PlayerMapper;
 import cz.kostka.pochod.mapper.StageMapper;
@@ -37,6 +38,20 @@ public class StatisticsService {
 
     private StageStatisticDTO fetchStatisticsForStage(final Stage stage) {
         final var stampsTaken = stampService.getStampsByStageOrdered(stage);
+
+        if (stampsTaken.isEmpty()) {
+            return new StageStatisticDTO(
+                    StageMapper.INSTANCE.stageToDTO(stage),
+                    stampsTaken.size(),
+                    playerService.getAllPlayers().size(),
+                    getPercentage(stampsTaken.size(), playerService.getAllPlayers().size()),
+                    null,
+                    null,
+                    null,
+                    null
+            );
+        }
+
         final Stamp firstTakenStamp = stampsTaken.get(0);
         final Stamp lastTakenStamp = stampsTaken.get(stampsTaken.size() - 1);
 
@@ -48,7 +63,7 @@ public class StatisticsService {
                 PlayerMapper.INSTANCE.playerToDTO(firstTakenStamp.getPlayer()),
                 firstTakenStamp.getTimestamp(),
                 PlayerMapper.INSTANCE.playerToDTO(lastTakenStamp.getPlayer()),
-                firstTakenStamp.getTimestamp());
+                lastTakenStamp.getTimestamp());
     }
 
     private static Float getPercentage(final int success, final int total) {

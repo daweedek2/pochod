@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="cypher">
+                <div class="cypher" th:unless="${stage.firstStampTimestamp} == null">
                     <div class="row align-items-center">
                         <div class="col">První razítko:</div>
                         <div class="col statistic">
@@ -29,7 +29,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="cypher">
+                <div class="cypher" th:unless="${stage.lastStampTimestamp} == null">
                     <div class="row align-items-center">
                         <div class="col">Poslední razítko:</div>
                         <div class="col statistic">
