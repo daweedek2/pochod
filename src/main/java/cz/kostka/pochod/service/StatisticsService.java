@@ -62,9 +62,7 @@ public class StatisticsService {
                 getPercentage(stampsTaken.size(), playerService.getAllPlayers().size()),
                 PlayerMapper.INSTANCE.playerToDTO(firstTakenStamp.getPlayer()),
                 firstTakenStamp.getTimestamp(),
-//                firstTakenStamp.getTimestamp().plusHours(2),
                 PlayerMapper.INSTANCE.playerToDTO(lastTakenStamp.getPlayer()),
-//                lastTakenStamp.getTimestamp().plusHours(2));
                 lastTakenStamp.getTimestamp());
     }
 

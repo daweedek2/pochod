@@ -52,7 +52,6 @@ public class PlayerController {
                 GAME_STARTED_ATTR,
                 startGame != null
                         && LocalDateTime.now(ZoneId.of("Europe/Vienna")).isAfter(startGame));
-//        model.addAttribute(GAME_STARTED_ATTR, startGame != null && LocalDateTime.now().plusHours(2L).isAfter(startGame));
         model.addAttribute(GAME_STARTED_TIME_ATTR, startGame);
     }
 
