@@ -98,7 +98,8 @@ public class StampService implements StampApi {
 
     private StampDTO createStampDTO(final Optional<Stamp> stamp, final Long playerId) {
         return stamp
-                .map(value -> new StampDTO(value.getStage().getId(), playerId, true, stamp.get().getTimestamp().plusHours(2)))
+//                .map(value -> new StampDTO(value.getStage().getId(), playerId, true, stamp.get().getTimestamp().plusHours(2)))
+                .map(value -> new StampDTO(value.getStage().getId(), playerId, true, stamp.get().getTimestamp()))
                 .orElseGet(() -> new StampDTO(null, playerId, false, null));
     }
 

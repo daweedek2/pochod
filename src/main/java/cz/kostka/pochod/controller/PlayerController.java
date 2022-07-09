@@ -47,7 +47,8 @@ public class PlayerController {
     public void setStartGameToModel(final Model model) {
         final GameInfo gameInfo = gameInfoService.get().orElse(new GameInfo());
         final var startGame = gameInfo.getStartGame();
-        model.addAttribute(GAME_STARTED_ATTR, startGame != null && LocalDateTime.now().plusHours(2L).isAfter(startGame));
+        model.addAttribute(GAME_STARTED_ATTR, startGame != null && LocalDateTime.now().isAfter(startGame));
+//        model.addAttribute(GAME_STARTED_ATTR, startGame != null && LocalDateTime.now().plusHours(2L).isAfter(startGame));
         model.addAttribute(GAME_STARTED_TIME_ATTR, startGame);
     }
 
