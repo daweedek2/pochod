@@ -10,6 +10,7 @@ import cz.kostka.pochod.service.StampService;
 import org.springframework.ui.Model;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Map;
 
 /**
@@ -47,7 +48,10 @@ public class PlayerController {
     public void setStartGameToModel(final Model model) {
         final GameInfo gameInfo = gameInfoService.get().orElse(new GameInfo());
         final var startGame = gameInfo.getStartGame();
-        model.addAttribute(GAME_STARTED_ATTR, startGame != null && LocalDateTime.now().isAfter(startGame));
+        model.addAttribute(
+                GAME_STARTED_ATTR,
+                startGame != null
+                        && LocalDateTime.now(ZoneId.of("Europe/Vienna")).isAfter(startGame));
 //        model.addAttribute(GAME_STARTED_ATTR, startGame != null && LocalDateTime.now().plusHours(2L).isAfter(startGame));
         model.addAttribute(GAME_STARTED_TIME_ATTR, startGame);
     }

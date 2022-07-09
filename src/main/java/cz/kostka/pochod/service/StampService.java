@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,7 +59,7 @@ public class StampService implements StampApi {
             return new StampResultDTO(StampSubmitStatus.ALREADY_PRESENT);
         }
 
-        final LocalDateTime currentTime = LocalDateTime.now();
+        final LocalDateTime currentTime = LocalDateTime.now(ZoneId.of("Europe/Vienna"));
         final Stamp submittedStamp =  stampRepository.save(new Stamp(currentTime, stage, player));
 
         return new StampResultDTO(StampSubmitStatus.OK);
