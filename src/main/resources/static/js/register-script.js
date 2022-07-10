@@ -22,10 +22,14 @@ function registerMe() {
     var nickName = document.getElementById("username").value
     var email = document.getElementById("email").value
     var phone = document.getElementById("phone").value
+    var city = document.getElementById("city").value
+    var age = document.getElementById("age").value
     var data = {
         nickName: nickName,
         email: email,
         phone: phone,
+        city: city,
+        age: age,
         pin: Math.floor(1000 + Math.random() * 9000)
     }
     token = $("meta[name='_csrf']").attr("content")
