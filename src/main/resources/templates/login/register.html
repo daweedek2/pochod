@@ -12,18 +12,33 @@
 
                     <div class="form-group">
                         <label for="username" class="input-value-required">Jméno</label>
+                        <p><small>Slouží zárověň jako přihlašovací jméno</small></p>
                         <input type="text" autocorrect="off" autocapitalize="none" class="form-control" id="username" name="username" maxlength="20" autofocus required/>
                     </div>
 
                     <div class="form-group">
                         <label for="email" class="input-value-required">E-mail</label>
+                        <p><small>Zde přijde potvrzovací email s heslem</small></p>
                         <input type="email" class="form-control" id="email" name="email" required/>
                     </div>
 
                     <div class="form-group">
                         <label for="phone" class="login-form-label">Telefon</label>
-                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="800123456" pattern="[0-9]{9}"/>
+                        <p><small>Pouze pro účely kontaktování v případě výhry</small></p>
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="+420800123456"/>
                     </div>
+
+                <div class="form-group">
+                    <label for="city" class="login-form-label">Dědina</label>
+                    <p><small>Pro naše statistiky</small></p>
+                    <input type="text" class="form-control" id="city" name="city"/>
+                </div>
+
+                <div class="form-group">
+                    <label for="age" class="login-form-label">Věk</label>
+                    <p><small>Pro naše statistiky</small></p>
+                    <input type="number" class="form-control" id="age" name="age"/>
+                </div>
 
                     <div class="login-form-error-wrapper">
                         <span th:if="${param.error != null}" class="login-form-error">Registrace se nezdařila</span>
