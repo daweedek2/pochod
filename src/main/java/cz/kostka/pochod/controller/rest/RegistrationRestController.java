@@ -46,11 +46,13 @@ public class RegistrationRestController {
                 : ResponseEntity.ok(responseDTO);
     }
 
-    private RegistrationRequestDTO normalize(final RegistrationRequestDTO registrationRequestDTO) {
+    private static RegistrationRequestDTO normalize(final RegistrationRequestDTO registrationRequestDTO) {
         return new RegistrationRequestDTO(
                 registrationRequestDTO.nickName().stripTrailing().stripLeading(),
                 registrationRequestDTO.email(),
                 registrationRequestDTO.phone(),
-                registrationRequestDTO.pin());
+                registrationRequestDTO.pin(),
+                registrationRequestDTO.age(),
+                registrationRequestDTO.city());
     }
 }

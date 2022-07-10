@@ -25,7 +25,7 @@ public class AbstractIntegrationTest {
 
     public Player createPlayer(final String nickName, final int pin) {
         return registrationService
-                .register(new RegistrationRequestDTO(nickName, "dummy@email.cz", "112233", pin))
+                .register(new RegistrationRequestDTO(nickName, "dummy@email.cz", "112233", pin, 18, "Polanka"))
                 .getRegisteredPlayer();
     }
 

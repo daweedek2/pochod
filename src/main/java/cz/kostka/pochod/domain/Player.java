@@ -25,6 +25,12 @@ public class Player {
     @Column
     private String email;
 
+    @Column
+    private int age;
+
+    @Column
+    private String city;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
@@ -40,11 +46,13 @@ public class Player {
         this.pin = pin;
     }
 
-    public Player(final String nickname, final String email, final String phone, final int pin, final User user) {
+    public Player(final String nickname, final String email, final String phone, final int pin, final int age, final String city, final User user) {
         this.nickname = nickname;
         this.email = email;
         this.phoneNumber = phone;
         this.pin = pin;
+        this.age = age;
+        this.city = city;
         this.user = user;
     }
 
@@ -94,12 +102,27 @@ public class Player {
         this.email = email;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(final int age) {
+        this.age = age;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(final String city) {
+        this.city = city;
+    }
+
     @Override
     public String toString() {
         return
                 "id = " + id + '\n' +
-                "jméno = " + nickname + '\n' +
-                "telefon = " + phoneNumber + '\n' +
-                "email = " + email;
+                "dědina = " + city + '\n' +
+                "věk = " + age;
     }
 }
