@@ -7,10 +7,9 @@ import cz.kostka.pochod.dto.StampDTO;
 import cz.kostka.pochod.service.GameInfoService;
 import cz.kostka.pochod.service.PlayerService;
 import cz.kostka.pochod.service.StampService;
+import cz.kostka.pochod.util.TimeUtils;
 import org.springframework.ui.Model;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Map;
 
 /**
@@ -42,7 +41,7 @@ public class PlayerController {
     public void setPlayerToModel(final Long playerId, final Model model) {
         final Player player = playerService.getPlayerById(playerId);
         model.addAttribute(PLAYER_ATTR, player);
-        model.addAttribute(STAMPS_ATTR, stampService.getStampsByPlayer(player).size());
+        model.addAttribute(STAMPS_ATTR, stampService.getCountOfStagesWithStamp(player));
     }
 
     public void setStartGameToModel(final Model model) {
@@ -51,7 +50,7 @@ public class PlayerController {
         model.addAttribute(
                 GAME_STARTED_ATTR,
                 startGame != null
-                        && LocalDateTime.now(ZoneId.of("Europe/Vienna")).isAfter(startGame));
+                        && TimeUtils.getCurrentTime().isAfter(startGame));
         model.addAttribute(GAME_STARTED_TIME_ATTR, startGame);
     }
 
