@@ -74,7 +74,7 @@ public class PlayersController {
     public String getPlayerDetail(final @PathVariable("id") Long id, final Model model) {
         final var player = playerService.getPlayerById(id);
         model.addAttribute("player", player);
-        model.addAttribute("stamps", stampService.getStampsByPlayer(player).size());
+        model.addAttribute("stamps", stampService.getCountOfStagesWithStamp(player));
         model.addAttribute("playerAdminDTO", PlayerMapper.INSTANCE.playerToDTO(player));
         return "admin/playerDetail";
     }

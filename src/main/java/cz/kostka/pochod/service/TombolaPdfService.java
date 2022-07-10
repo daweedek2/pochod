@@ -4,6 +4,7 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import cz.kostka.pochod.domain.Player;
+import cz.kostka.pochod.domain.Stage;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,9 +38,10 @@ public class TombolaPdfService extends AbstractPdfService {
 
     private void addPlayersToTable(final PdfPTable pdfTable) {
         final List<Player> allPlayers = playerService.getAllPlayers();
+        final List<Stage> allStages = stageService.getAllStages();
 
         final List<Player> playersWithAllStamps = allPlayers.stream()
-                .filter(player -> stampService.getStampsByPlayer(player).size() == getNumberOfStages())
+                .filter(player -> stampService.hasPlayerSubmittedAllStamps(player, allStages))
                 .collect(Collectors.toList());
 
         if (playersWithAllStamps.size() == 0) {
