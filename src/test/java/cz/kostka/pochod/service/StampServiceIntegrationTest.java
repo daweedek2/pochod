@@ -9,9 +9,10 @@ import cz.kostka.pochod.util.TimeUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDateTime;
+import javax.persistence.EntityNotFoundException;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 /**
  * Created by dkostka on 7/10/2022.
@@ -43,7 +44,6 @@ public class StampServiceIntegrationTest extends AbstractIntegrationTest {
     @Test
     void testSubmitStamp_Rejected_WrongPin() {
         final Player player = createPlayer("pl", 1122);
-        final Stage stage = createStage("first", 1, "1234");
 
         final var result = stampService.submitStamp(new StampRequestDTO(player.getId(), "wrong pin"));
 
@@ -53,20 +53,15 @@ public class StampServiceIntegrationTest extends AbstractIntegrationTest {
     /* TODO will be fixed in release_1.2022.2
     @Test
     void testSubmitStamp_Rejected_PlayerNotExists() {
-        final Player player = createPlayer("pl", 1122);
         final Stage stage = createStage("first", 1, "1234");
 
-        final var result = stampService.submitStamp(new StampRequestDTO(11L, stage.getPin()));
-
-        assertThat(result.getStampSubmitStatus()).isEqualTo(StampSubmitStatus.REJECTED);
+        assertThatCode(() -> stampService.submitStamp(new StampRequestDTO(11L, stage.getPin())))
+                .isInstanceOf(EntityNotFoundException.class);
     }
      */
 
     @Test
     void testSubmitStamp_Rejected_WrongPinAndPlayerNotExists() {
-        final Player player = createPlayer("pl", 1122);
-        final Stage stage = createStage("first", 1, "1234");
-
         final var result = stampService.submitStamp(new StampRequestDTO(11L, "wrong_pin"));
 
         assertThat(result.getStampSubmitStatus()).isEqualTo(StampSubmitStatus.REJECTED);
