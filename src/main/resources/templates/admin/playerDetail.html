@@ -41,6 +41,18 @@
                     <p class="error" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Chyba - Telefon
                     </p>
                 </div>
+                <div class="form-group">
+                    <label for="city" class="login-form-label">Dědina</label>
+                    <input id="city" class="form-control" type="text" th:field="*{city}"/>
+                    <p class="error" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">Chyba - Dědina
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="age" class="login-form-label">Věk</label>
+                    <input id="age" class="form-control" type="number" th:field="*{age}"/>
+                    <p class="error" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Chyba - Věk
+                    </p>
+                </div>
                 <button type="submit" class="btn btn-primary">Upravit</button>
             </form>
             <div>

@@ -51,6 +51,8 @@ public class PlayerService {
     }
 
     public Player update(final PlayerAdminDTO dto) {
-        return playerRepository.save(new Player(dto.id(), dto.nickname(), dto.email(), dto.phoneNumber(), dto.pin()));
+        return playerRepository.save(
+                new Player(dto.id(), dto.nickname(), dto.email(), dto.phoneNumber(), dto.pin(), dto.age(), dto.city())
+        );
     }
 }
