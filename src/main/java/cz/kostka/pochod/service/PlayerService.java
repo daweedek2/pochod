@@ -47,7 +47,7 @@ public class PlayerService {
     }
 
     public Player getPlayerById(final Long id) {
-        return playerRepository.getById(id);
+        return playerRepository.getPlayerById(id).orElse(null);
     }
 
     public Player update(final PlayerAdminDTO dto) {
