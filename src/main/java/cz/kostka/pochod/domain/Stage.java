@@ -104,4 +104,10 @@ public class Stage {
     public void setInfo(final String beers) {
         this.info = beers;
     }
+
+    @Override
+    public String toString() {
+        return "id = " + id + '\n' +
+                "název = " + number + ". " + name;
+    }
 }
