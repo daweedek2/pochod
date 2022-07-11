@@ -105,9 +105,9 @@ public class StampService implements StampApi {
         final List<Stamp> allStampsOfPlayer = getAllStampsByPlayerOrdered(player);
         final Map<Integer, StampDTO> stampDTOHashMap = new HashMap<>();
         for (int i = 1; i <= totalNumberOfStages; i++) {
-            int finalI = i;
+            int stageNumber = i;
             final var optStamp = allStampsOfPlayer.stream()
-                    .filter(stamp -> stamp.getStage().getNumber() == finalI)
+                    .filter(stamp -> stamp.getStage().getNumber() == stageNumber)
                     .findFirst();
 
             stampDTOHashMap.put(i, createStampDTO(optStamp.orElse(null), player.getId()));

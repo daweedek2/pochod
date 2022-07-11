@@ -64,6 +64,15 @@ public class Player {
         this.phoneNumber = phoneNumber;
     }
 
+    public Player(final String nickname, final String email, final String phone, final int pin, final int age, final String city) {
+        this.nickname = nickname;
+        this.email = email;
+        this.phoneNumber = phone;
+        this.pin = pin;
+        this.age = age;
+        this.city = city;
+    }
+
     public Long getId() {
         return id;
     }
