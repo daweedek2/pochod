@@ -46,7 +46,7 @@ public class PlayersController {
     @GetMapping("/new")
     public String createNewPlayer(@AuthenticationPrincipal final CustomUserDetails admin, final Model model) {
         model.addAttribute("newPlayer", true);
-        model.addAttribute("registrationDto", new RegistrationRequestDTO(null, null, null, null, null, null));
+        model.addAttribute("registrationDto", RegistrationRequestDTO.empty());
         return "admin/players";
     }
 

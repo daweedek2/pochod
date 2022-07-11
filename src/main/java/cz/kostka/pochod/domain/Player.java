@@ -38,12 +38,14 @@ public class Player {
     public Player() {
     }
 
-    public Player(final Long id, final String nickname, final String email, final String phone, final int pin) {
+    public Player(final Long id, final String nickname, final String email, final String phone, final int pin, final int age, final String city) {
         this.id = id;
         this.nickname = nickname;
         this.email = email;
         this.phoneNumber = phone;
         this.pin = pin;
+        this.age = age;
+        this.city = city;
     }
 
     public Player(final String nickname, final String email, final String phone, final int pin, final int age, final String city, final User user) {
@@ -122,6 +124,7 @@ public class Player {
     public String toString() {
         return
                 "id = " + id + '\n' +
+                "jméno = " + nickname + '\n' +
                 "dědina = " + city + '\n' +
                 "věk = " + age;
     }
