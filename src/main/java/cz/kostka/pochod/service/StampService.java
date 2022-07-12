@@ -64,7 +64,7 @@ public class StampService implements StampApi {
     }
 
     public boolean hasPlayerSubmittedAllStamps(final Player player, final List<Stage> allStages) {
-        final var playersStamps = this.getAllStampsByPlayer(player);
+        final var playersStamps = this.getAllStampsByPlayerOrdered(player);
         return allStages.stream()
                 .filter(stage ->
                         playersStamps.stream()
@@ -85,8 +85,8 @@ public class StampService implements StampApi {
         return stampRepository.findAllByStageOrderByTimestamp(stage);
     }
 
-    public List<Stamp> getAllStampsByPlayer(final Player player) {
-        return stampRepository.findAllByPlayer(player);
+    public List<Stamp> getAllStampsByPlayerOrdered(final Player player) {
+        return stampRepository.findAllByPlayerOrderByTimestamp(player);
     }
 
     public int getCountOfStagesWithStamp(final Player player) {
@@ -102,7 +102,7 @@ public class StampService implements StampApi {
 
     public Map<Integer, StampDTO> getStampsMapForUser(final Player player) {
         final int totalNumberOfStages = stageService.getAllStagesCount();
-        final List<Stamp> allStampsOfPlayer = getAllStampsByPlayer(player);
+        final List<Stamp> allStampsOfPlayer = getAllStampsByPlayerOrdered(player);
         final Map<Integer, StampDTO> stampDTOHashMap = new HashMap<>();
         for (int i = 1; i <= totalNumberOfStages; i++) {
             int finalI = i;
@@ -125,6 +125,6 @@ public class StampService implements StampApi {
     }
 
     public void deleteStampsOfPlayer(final Player player) {
-        stampRepository.deleteAll(getAllStampsByPlayer(player));
+        stampRepository.deleteAll(getAllStampsByPlayerOrdered(player));
     }
 }

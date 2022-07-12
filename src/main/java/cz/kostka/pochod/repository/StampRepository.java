@@ -15,5 +15,5 @@ import java.util.List;
 public interface StampRepository extends JpaRepository<Stamp, Long> {
     List<Stamp> findAllByPlayerAndStage(Player player, Stage stage);
     List<Stamp> findAllByStageOrderByTimestamp(Stage stage);
-    List<Stamp> findAllByPlayer(Player player);
+    List<Stamp> findAllByPlayerOrderByTimestamp(Player player);
 }
