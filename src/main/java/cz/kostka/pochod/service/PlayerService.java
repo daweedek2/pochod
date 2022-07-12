@@ -30,7 +30,7 @@ public class PlayerService {
         }
 
         return playerRepository.save(
-                new Player(dto.nickName(), dto.email(), dto.phone(), dto.pin(), dto.age(), dto.city(), user)
+                new Player(dto.nickName(), dto.email(), dto.phone(), dto.pin(), dto.age() == null ? 0 : dto.age(), dto.city(), user)
         );
     }
 
@@ -52,7 +52,7 @@ public class PlayerService {
 
     public Player update(final PlayerAdminDTO dto) {
         return playerRepository.save(
-                new Player(dto.id(), dto.nickname(), dto.email(), dto.phoneNumber(), dto.pin(), dto.age(), dto.city())
+                new Player(dto.id(), dto.nickname(), dto.email(), dto.phoneNumber(), dto.pin(), dto.age() == null ? 0 : dto.age(), dto.city())
         );
     }
 }
