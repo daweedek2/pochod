@@ -32,10 +32,11 @@ public class GameInfoService {
         gameInfo.setStartGame(toTimestamp(gameInfoDTO.startGame()));
         gameInfo.setPartners(gameInfoDTO.partners());
         gameInfo.setMapUrl(gameInfoDTO.mapUrl());
+        gameInfo.setEndGame(toTimestamp(gameInfoDTO.endGame()));
         return gameInfoRepository.save(gameInfo);
     }
 
-    private LocalDateTime toTimestamp(final String startGame) {
+    private static LocalDateTime toTimestamp(final String startGame) {
         return LocalDateTime.parse(startGame, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     }
 

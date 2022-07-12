@@ -23,14 +23,18 @@ public class GameInfo {
     private LocalDateTime startGame;
 
     @Column
+    private LocalDateTime endGame;
+
+    @Column
     private String partners;
 
     @Column
     private String mapUrl;
 
-    public GameInfo(final Long id, final LocalDateTime startGame, final String partners, final String mapUrl) {
+    public GameInfo(final Long id, final LocalDateTime startGame, final LocalDateTime endGame, final String partners, final String mapUrl) {
         this.id = id;
         this.startGame = startGame;
+        this.endGame = endGame;
         this.partners = partners;
         this.mapUrl = mapUrl;
     }
@@ -52,6 +56,14 @@ public class GameInfo {
 
     public void setStartGame(final LocalDateTime timestamp) {
         this.startGame = timestamp;
+    }
+
+    public LocalDateTime getEndGame() {
+        return endGame;
+    }
+
+    public void setEndGame(final LocalDateTime endGame) {
+        this.endGame = endGame;
     }
 
     public String getPartners() {

@@ -22,6 +22,12 @@
                     </p>
                 </div>
                 <div class="form-group">
+                    <label for="endGame" class="input-value-required">Konec akce</label>
+                    <input id="endGame" class="form-control" type="datetime-local" th:field="*{endGame}" required/>
+                    <p class="error" th:if="${#fields.hasErrors('endGame')}" th:errors="*{endGame}">Chyba - endGame
+                    </p>
+                </div>
+                <div class="form-group">
                     <label for="partners" class="input-value-required">Partneři</label>
                     <p><small>Pro oddělení jednotlivých názvů použij středník (;)</small></p>
                     <textarea id="partners" class="form-control" th:field="*{partners}" required></textarea>
