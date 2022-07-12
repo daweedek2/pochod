@@ -80,6 +80,4 @@ public class Stamp {
     public void setPlayer(final Player player) {
         this.player = player;
     }
-
-
 }
