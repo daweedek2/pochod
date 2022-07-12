@@ -48,6 +48,7 @@ public class StageController extends PlayerController {
         setPlayerToModel(user.getPlayer().getId(), model);
         final var stage = stageService.getStageById(id);
         setStageToModel(stage, model);
+        setStartAndEndGameToModel(model);
         model.addAttribute("stamp", getStampDTOForPlayerAndStage(user.getPlayer(), stage));
         return "pop/stage";
     }

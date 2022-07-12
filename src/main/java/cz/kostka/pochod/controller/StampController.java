@@ -29,6 +29,7 @@ public class StampController extends PlayerController {
             @AuthenticationPrincipal final CustomUserDetails user,
             final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
+        setStartAndEndGameToModel(model);
         return "pop/stamp";
     }
 }

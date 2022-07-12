@@ -28,19 +28,27 @@ public class StampService implements StampApi {
     private final StampRepository stampRepository;
     private final PlayerService playerService;
     private final StageService stageService;
+    private final GameInfoService gameInfoService;
 
     public StampService(
             final StampRepository stampRepository,
             final PlayerService playerService,
-            final StageService stageService) {
+            final StageService stageService,
+            final GameInfoService gameInfoService) {
         this.stampRepository = stampRepository;
         this.playerService = playerService;
         this.stageService = stageService;
+        this.gameInfoService = gameInfoService;
     }
 
 
     @Override
     public StampResultDTO submitStamp(final StampRequestDTO stampRequestDTO) {
+
+        if (TimeUtils.hasGameEnded(gameInfoService.get())) {
+            return new StampResultDTO(StampSubmitStatus.REJECTED);
+        }
+
         final Optional<Stage> optionalStage = stageService.getStageByPin(stampRequestDTO.pin());
         final Player player = playerService.getPlayerById(stampRequestDTO.playerId());
 

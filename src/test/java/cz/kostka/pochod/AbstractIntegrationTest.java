@@ -1,8 +1,10 @@
 package cz.kostka.pochod;
 
+import cz.kostka.pochod.domain.GameInfo;
 import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.domain.Stage;
 import cz.kostka.pochod.domain.Stamp;
+import cz.kostka.pochod.repository.GameInfoRepository;
 import cz.kostka.pochod.repository.PlayerRepository;
 import cz.kostka.pochod.repository.StageRepository;
 import cz.kostka.pochod.repository.StampRepository;
@@ -12,6 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.geo.Point;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.Time;
 
 /**
  * Created by dkostka on 7/10/2022.
@@ -27,6 +31,8 @@ public class AbstractIntegrationTest {
     private StageRepository stageRepository;
     @Autowired
     private StampRepository stampRepository;
+    @Autowired
+    private GameInfoRepository gameInfoRepository;
 
     public Player createPlayer(final String nickName, final int pin) {
         return playerRepository.save(new Player(nickName, "dummy@email.com", "+420 800123456", pin, 30, "Polanka"));
@@ -38,5 +44,9 @@ public class AbstractIntegrationTest {
 
     public Stamp createSubmittedStamp(final Stage stage, final Player player) {
         return stampRepository.save(new Stamp(TimeUtils.getCurrentTime(), stage, player));
+    }
+
+    public void setupGameEnded() {
+        gameInfoRepository.save(new GameInfo(1L, TimeUtils.getCurrentTime().minusHours(2L), TimeUtils.getCurrentTime().minusHours(1L), "", ""));
     }
 }

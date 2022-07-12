@@ -5,6 +5,7 @@ import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.domain.Stage;
 import cz.kostka.pochod.dto.StampDTO;
 import cz.kostka.pochod.dto.StampRequestDTO;
+import cz.kostka.pochod.dto.StampResultDTO;
 import cz.kostka.pochod.enums.StampSubmitStatus;
 import cz.kostka.pochod.util.TimeUtils;
 import org.junit.jupiter.api.Test;
@@ -64,6 +65,18 @@ public class StampServiceIntegrationTest extends AbstractIntegrationTest {
         final var result = stampService.submitStamp(new StampRequestDTO(11L, "wrong_pin"));
 
         assertThat(result.getStampSubmitStatus()).isEqualTo(StampSubmitStatus.REJECTED);
+    }
+
+    @Test
+    void testSubmitStamp_Rejected_GameHasEnded() {
+        setupGameEnded();
+        final Player player = createPlayer("pl", 1122);
+        final Stage stage = createStage("first", 1, "1234");
+        final StampResultDTO stampResultDTO = stampService.submitStamp(new StampRequestDTO(player.getId(), stage.getPin()));
+
+        final var stamps = stampService.getAllStampsByPlayerOrdered(player);
+
+        assertThat(stampResultDTO.getStampSubmitStatus()).isEqualTo(StampSubmitStatus.REJECTED);
     }
 
     @Test
