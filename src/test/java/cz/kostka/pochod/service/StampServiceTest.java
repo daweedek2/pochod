@@ -40,7 +40,7 @@ public class StampServiceTest {
     @Test
     void testDeleteStampsOfPlayer() {
         final Stamp stamp = new Stamp(99L, null, null, null);
-        when(stampRepository.findAllByPlayer(any())).thenReturn(List.of(stamp));
+        when(stampRepository.findAllByPlayerOrderByTimestamp(any())).thenReturn(List.of(stamp));
 
         service.deleteStampsOfPlayer(new Player());
 
@@ -49,7 +49,7 @@ public class StampServiceTest {
 
     @Test
     void testDeleteStampsOfPlayer_NoStamps() {
-        when(stampRepository.findAllByPlayer(any())).thenReturn(Collections.emptyList());
+        when(stampRepository.findAllByPlayerOrderByTimestamp(any())).thenReturn(Collections.emptyList());
 
         service.deleteStampsOfPlayer(new Player());
 
@@ -59,9 +59,9 @@ public class StampServiceTest {
     @Test
     void testGetAllStampsByPlayer() {
         final Stamp stamp = new Stamp(99L, null, null, null);
-        when(stampRepository.findAllByPlayer(any())).thenReturn(List.of(stamp));
+        when(stampRepository.findAllByPlayerOrderByTimestamp(any())).thenReturn(List.of(stamp));
 
-        final var result = service.getAllStampsByPlayer(new Player());
+        final var result = service.getAllStampsByPlayerOrdered(new Player());
 
         assertThat(result).containsExactly(stamp);
     }

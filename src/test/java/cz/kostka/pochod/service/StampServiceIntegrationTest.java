@@ -72,7 +72,7 @@ public class StampServiceIntegrationTest extends AbstractIntegrationTest {
         final Stage stage = createStage("first", 1, "1234");
         stampService.submitStamp(new StampRequestDTO(player.getId(), stage.getPin()));
 
-        final var stamps = stampService.getAllStampsByPlayer(player);
+        final var stamps = stampService.getAllStampsByPlayerOrdered(player);
 
         assertThat(stamps).hasSize(1);
 
