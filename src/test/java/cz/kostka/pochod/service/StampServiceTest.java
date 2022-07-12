@@ -3,11 +3,14 @@ package cz.kostka.pochod.service;
 import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.domain.Stage;
 import cz.kostka.pochod.domain.Stamp;
+import cz.kostka.pochod.dto.StampDTO;
 import cz.kostka.pochod.repository.StampRepository;
+import cz.kostka.pochod.util.TimeUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 
@@ -80,5 +83,50 @@ public class StampServiceTest {
         final var result = service.getStampsForPlayerAndStage(player, stage);
 
         verify(stampRepository).findAllByPlayerAndStage(player, stage);
+    }
+
+    @Test
+    void testGetStampDTOForPlayerAndStage_NoStamp() {
+        final Stage stage = new Stage();
+        final Player player = new Player();
+        when(stampRepository.findAllByPlayerAndStage(player, stage)).thenReturn(Collections.emptyList());
+
+        final var stampDTO = service.getStampDTOForPlayerAndStage(player, stage);
+
+        assertThat(stampDTO)
+                .extracting(
+                        StampDTO::playerId, StampDTO::stageId, StampDTO::taken, StampDTO::time
+                )
+                .containsExactly(
+                        player.getId(), null, false, null
+                );
+    }
+
+    @Test
+    void testGetStampDTOForPlayerAndStage_Taken() {
+        final Stage stage = new Stage();
+        stage.setId(44L);
+        final Player player = new Player();
+        player.setId(66L);
+        final LocalDateTime time = TimeUtils.getCurrentTime();
+        final Stamp stamp = new Stamp(56L, time, stage, player);
+        when(stampRepository.findAllByPlayerAndStage(player, stage)).thenReturn(List.of(stamp));
+
+        final var stampDTO = service.getStampDTOForPlayerAndStage(player, stage);
+
+        assertThat(stampDTO)
+                .extracting(
+                        StampDTO::playerId, StampDTO::stageId, StampDTO::taken, StampDTO::time
+                )
+                .containsExactly(
+                        player.getId(), stage.getId(), true, time
+                );
+    }
+
+    @Test
+    void testGetCountOfSubmittedStamps_NullPlayer() {
+        final int result = service.getCountOfStagesWithStamp(null);
+
+        assertThat(result).isZero();
     }
 }

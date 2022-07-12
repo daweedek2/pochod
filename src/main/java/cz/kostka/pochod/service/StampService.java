@@ -78,7 +78,8 @@ public class StampService implements StampApi {
     }
 
     public StampDTO getStampDTOForPlayerAndStage(final Player player, final Stage stage) {
-        return createStampDTO(getStampsForPlayerAndStage(player, stage).get(0), player.getId());
+        final List<Stamp> stamps = getStampsForPlayerAndStage(player, stage);
+        return createStampDTO(stamps.isEmpty() ? null : stamps.get(0), player.getId());
     }
 
     public List<Stamp> getStampsByStageOrdered(final Stage stage) {
