@@ -23,7 +23,7 @@ if(IsInjected($visitor_email))
 }
 
 $email_from = 'pochod@valasskapolanka.cz';//<== update the email address
-$email_subject = 'Pochod okolo Polanky - Registrace';
+$email_subject = "Registrace PoP 2022 - $nickName";
 $email_body = "Děkujeme za registraci pro Pochod okolo Polanky. Pro přihlášení do aplikace použijte následující údaje:\r\n\r\n".
     "URL: https://pochod.herokuapp.com\r\n".
     "Jméno: $nickName\r\n".
@@ -35,7 +35,7 @@ $to = $visitor_email;//<== update the email address
 $headers = 'From: pochod@valasskapolanka.cz' . "\r\n" .
     "Reply-To: pochod@valasskapolanka.cz" . "\r\n" .
     "Content-Type: text/plain; charset=UTF-8" . "\r\n" .
-    'Bcc: daweedek@gmail.com,pochod@valasskapolanka.cz' . "\r\n" .
+    'Bcc: pochod@valasskapolanka.cz' . "\r\n" .
     'X-Mailer: PHP/' . phpversion();
 //Send the email!
 mail($to,$email_subject,$email_body,$headers);

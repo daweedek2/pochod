@@ -19,11 +19,11 @@ function sendEmail(data) {
 }
 
 function registerMe() {
-    var nickName = document.getElementById("username").value
-    var email = document.getElementById("email").value
-    var phone = document.getElementById("phone").value
-    var city = document.getElementById("city").value
-    var age = document.getElementById("age").value
+    var nickName = document.getElementById("username").value.trim();
+    var email = document.getElementById("email").value;
+    var phone = document.getElementById("phone").value;
+    var city = document.getElementById("city").value;
+    var age = document.getElementById("age").value;
     var data = {
         nickName: nickName,
         email: email,
