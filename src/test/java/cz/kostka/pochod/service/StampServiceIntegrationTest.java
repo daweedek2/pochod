@@ -24,6 +24,7 @@ public class StampServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     void testSubmitStamp_Ok() {
+        setupGameStarted();
         final Player player = createPlayer("pl", 1122);
         final Stage stage = createStage("first", 1, "1234");
         final var result = stampService.submitStamp(new StampRequestDTO(player.getId(), stage.getPin()));
@@ -33,6 +34,7 @@ public class StampServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     void testSubmitStamp_AlreadyExist() {
+        setupGameStarted();
         final Player player = createPlayer("pl", 1122);
         final Stage stage = createStage("first", 1, "1234");
         stampService.submitStamp(new StampRequestDTO(player.getId(), stage.getPin()));
@@ -44,6 +46,7 @@ public class StampServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     void testSubmitStamp_Rejected_WrongPin() {
+        setupGameStarted();
         final Player player = createPlayer("pl", 1122);
 
         final var result = stampService.submitStamp(new StampRequestDTO(player.getId(), "wrong pin"));
@@ -53,6 +56,7 @@ public class StampServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     void testSubmitStamp_Rejected_PlayerNotExists() {
+        setupGameStarted();
         final Stage stage = createStage("first", 1, "1234");
 
         final var result = stampService.submitStamp(new StampRequestDTO(11L, stage.getPin()));
@@ -62,6 +66,7 @@ public class StampServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     void testSubmitStamp_Rejected_WrongPinAndPlayerNotExists() {
+        setupGameStarted();
         final var result = stampService.submitStamp(new StampRequestDTO(11L, "wrong_pin"));
 
         assertThat(result.getStampSubmitStatus()).isEqualTo(StampSubmitStatus.REJECTED);
@@ -74,11 +79,13 @@ public class StampServiceIntegrationTest extends AbstractIntegrationTest {
         final Stage stage = createStage("first", 1, "1234");
         final StampResultDTO stampResultDTO = stampService.submitStamp(new StampRequestDTO(player.getId(), stage.getPin()));
 
-        assertThat(stampResultDTO.getStampSubmitStatus()).isEqualTo(StampSubmitStatus.REJECTED);
+        assertThat(stampResultDTO.getStampSubmitStatus())
+                .isEqualTo(StampSubmitStatus.REJECTED);
     }
 
     @Test
     void testSubmitStamp_TimestampIsSet() {
+        setupGameStarted();
         final Player player = createPlayer("pl", 1122);
         final Stage stage = createStage("first", 1, "1234");
         stampService.submitStamp(new StampRequestDTO(player.getId(), stage.getPin()));
