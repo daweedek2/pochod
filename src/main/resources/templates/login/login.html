@@ -33,7 +33,7 @@
 
                     <button type="submit" class="btn btn-primary">Přihlásit</button>
                 </form>
-                <div>
+                <div th:unless="${gameEnded == true}">
                     <a th:href="@{/register}" class="btn btn-secondary">Registrovat</a>
                 </div>
             </div>

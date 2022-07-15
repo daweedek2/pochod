@@ -1,5 +1,6 @@
 package cz.kostka.pochod.service;
 
+import cz.kostka.pochod.domain.GameInfo;
 import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.domain.Stage;
 import cz.kostka.pochod.domain.Stamp;
@@ -27,6 +28,7 @@ public class StampServiceTest {
     private StampRepository stampRepository;
     private PlayerService playerService;
     private StageService stageService;
+    private GameInfoService gameInfoService;
     private StampService service;
 
     @BeforeEach
@@ -34,7 +36,8 @@ public class StampServiceTest {
         stampRepository = Mockito.mock(StampRepository.class);
         playerService = Mockito.mock(PlayerService.class);
         stageService = Mockito.mock(StageService.class);
-        service = new StampService(stampRepository, playerService, stageService);
+        gameInfoService = Mockito.mock(GameInfoService.class);
+        service = new StampService(stampRepository, playerService, stageService, gameInfoService);
     }
 
     @Test

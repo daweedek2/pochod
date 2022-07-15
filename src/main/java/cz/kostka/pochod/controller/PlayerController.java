@@ -18,6 +18,7 @@ import java.util.Map;
 
 public class PlayerController {
     private static final String GAME_STARTED_ATTR = "gameStarted";
+    private static final String GAME_ENDED_ATTR = "gameEnded";
     private static final String GAME_STARTED_TIME_ATTR = "gameStartedTime";
     private static final String PLAYER_ATTR = "player";
     private static final String STAMPS_ATTR = "stamps";
@@ -44,14 +45,12 @@ public class PlayerController {
         model.addAttribute(STAMPS_ATTR, stampService.getCountOfStagesWithStamp(player));
     }
 
-    public void setStartGameToModel(final Model model) {
+    public void setStartAndEndGameToModel(final Model model) {
         final GameInfo gameInfo = gameInfoService.get().orElse(new GameInfo());
         final var startGame = gameInfo.getStartGame();
-        model.addAttribute(
-                GAME_STARTED_ATTR,
-                startGame != null
-                        && TimeUtils.getCurrentTime().isAfter(startGame));
+        model.addAttribute(GAME_STARTED_ATTR, TimeUtils.hasGameStarted(gameInfoService.get()));
         model.addAttribute(GAME_STARTED_TIME_ATTR, startGame);
+        model.addAttribute(GAME_ENDED_ATTR, TimeUtils.hasGameEnded(gameInfoService.get()));
     }
 
     public void setPartnersToModel(final Model model) {

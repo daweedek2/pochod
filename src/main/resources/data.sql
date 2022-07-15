@@ -31,3 +31,9 @@ INSERT INTO user_role(user_id, role_id)
 SELECT 2, 2
     WHERE NOT EXISTS(
     SELECT * FROM user_role WHERE user_id = 2 AND role_id = 2);
+
+-- game info
+INSERT INTO game_info(id)
+SELECT 1
+    WHERE NOT EXISTS(
+    SELECT * FROM game_info WHERE id = 1);

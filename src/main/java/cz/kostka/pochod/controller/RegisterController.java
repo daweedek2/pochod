@@ -2,6 +2,8 @@ package cz.kostka.pochod.controller;
 
 import cz.kostka.pochod.api.RegistrationApi;
 import cz.kostka.pochod.dto.RegistrationRequestDTO;
+import cz.kostka.pochod.service.GameInfoService;
+import cz.kostka.pochod.util.TimeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,14 +17,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/register")
 public class RegisterController {
     private final RegistrationApi registrationApi;
+    private final GameInfoService gameInfoService;
     private final Logger LOG = LoggerFactory.getLogger(RegisterController.class);
 
-    public RegisterController(final RegistrationApi registrationApi) {
+    public RegisterController(final RegistrationApi registrationApi, final GameInfoService gameInfoService) {
         this.registrationApi = registrationApi;
+        this.gameInfoService = gameInfoService;
     }
 
     @GetMapping
     public String getRegisterView() {
+        final var gameInfo = gameInfoService.get();
+        if (TimeUtils.hasGameEnded(gameInfo)) {
+            return "redirect:/login";
+        }
+
         return "login/register";
     }
 

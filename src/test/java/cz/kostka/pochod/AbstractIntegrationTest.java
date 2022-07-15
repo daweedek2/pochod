@@ -1,17 +1,23 @@
 package cz.kostka.pochod;
 
+import cz.kostka.pochod.domain.GameInfo;
 import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.domain.Stage;
 import cz.kostka.pochod.domain.Stamp;
+import cz.kostka.pochod.dto.GameInfoDTO;
+import cz.kostka.pochod.repository.GameInfoRepository;
 import cz.kostka.pochod.repository.PlayerRepository;
 import cz.kostka.pochod.repository.StageRepository;
 import cz.kostka.pochod.repository.StampRepository;
+import cz.kostka.pochod.service.GameInfoService;
 import cz.kostka.pochod.util.TimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.geo.Point;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by dkostka on 7/10/2022.
@@ -27,6 +33,10 @@ public class AbstractIntegrationTest {
     private StageRepository stageRepository;
     @Autowired
     private StampRepository stampRepository;
+    @Autowired
+    protected GameInfoService gameInfoService;
+    @Autowired
+    protected GameInfoRepository gameInfoRepository;
 
     public Player createPlayer(final String nickName, final int pin) {
         return playerRepository.save(new Player(nickName, "dummy@email.com", "+420 800123456", pin, 30, "Polanka"));
@@ -36,7 +46,35 @@ public class AbstractIntegrationTest {
         return stageRepository.save(new Stage(name, number, new Point(12L, 21L), pin, "info"));
     }
 
-    public Stamp createSubmittedStamp(final Stage stage, final Player player) {
-        return stampRepository.save(new Stamp(TimeUtils.getCurrentTime(), stage, player));
+    public void createSubmittedStamp(final Stage stage, final Player player) {
+        stampRepository.save(new Stamp(TimeUtils.getCurrentTime(), stage, player));
+    }
+
+    public void setupGameEnded() {
+        if (gameInfoService.get().isEmpty()) {
+            gameInfoRepository.save(new GameInfo());
+        }
+
+        gameInfoService.update(
+                new GameInfoDTO(
+                        1L,
+                        TimeUtils.getCurrentTime().minusHours(2L).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
+                        TimeUtils.getCurrentTime().minusHours(1L).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
+                    "",
+                    ""));
+    }
+
+    public void setupGameStarted() {
+        if (gameInfoService.get().isEmpty()) {
+            gameInfoRepository.save(new GameInfo());
+        }
+
+        gameInfoService.update(
+                new GameInfoDTO(
+                        1L,
+                        TimeUtils.getCurrentTime().minusHours(1L).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
+                        TimeUtils.getCurrentTime().plusHours(1L).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
+                        "",
+                        ""));
     }
 }

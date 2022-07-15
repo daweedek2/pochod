@@ -7,7 +7,7 @@
 <div th:insert="fragments/header :: header(|${player.id} ${player.nickname}|, ${stamps})"></div>
 <div class="container">
     <div class="row cypher-list">
-        <div class="col-sm-12">
+        <div class="col-sm-12" th:unless="${gameEnded == true}">
             <h1 class="login-form-header">Pochod okolo Polanky</h1>
             <h1>Získat razítko</h1>
             <h2>Jak na to?</h2>
@@ -34,6 +34,12 @@
                     html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess);
                 </script>
             </div>
+            <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
+        </div>
+        <div class="col-sm-12" th:if="${gameEnded == true}">
+            <h1 class="login-form-header">Pochod okolo Polanky</h1>
+            <h1>Získat razítko</h1>
+            <h2>Hra je ukončena. Už není možné sbírat razítka.</h2>
             <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
         </div>
     </div>
