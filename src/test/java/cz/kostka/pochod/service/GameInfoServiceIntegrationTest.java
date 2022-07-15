@@ -53,9 +53,4 @@ public class GameInfoServiceIntegrationTest extends AbstractIntegrationTest {
                 dto.mapUrl()
         );
     }
-
-    @Test
-    void testGetGameInfo_NotExists() {
-        assertThat(service.get()).isEmpty();
-    }
 }
