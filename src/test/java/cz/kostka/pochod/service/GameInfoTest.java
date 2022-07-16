@@ -16,12 +16,11 @@ import static org.mockito.Mockito.when;
 public class GameInfoTest {
     private GameInfoService service;
     private GameInfoRepository gameInfoRepository;
-    private StageService stageService;
 
     @BeforeEach
     void setup() {
         gameInfoRepository = Mockito.mock(GameInfoRepository.class);
-        stageService = Mockito.mock(StageService.class);
+        StageService stageService = Mockito.mock(StageService.class);
         service = new GameInfoService(gameInfoRepository, stageService);
     }
 

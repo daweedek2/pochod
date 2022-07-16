@@ -1,6 +1,5 @@
 package cz.kostka.pochod.service;
 
-import cz.kostka.pochod.domain.GameInfo;
 import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.domain.Stage;
 import cz.kostka.pochod.domain.Stamp;

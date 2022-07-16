@@ -17,6 +17,7 @@ import org.springframework.data.geo.Point;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -58,8 +59,8 @@ public class AbstractIntegrationTest {
         gameInfoService.update(
                 new GameInfoDTO(
                         1L,
-                        TimeUtils.getCurrentTime().minusHours(2L).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
-                        TimeUtils.getCurrentTime().minusHours(1L).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
+                        getTimeMinusHours(2L),
+                        getTimeMinusHours(1L),
                     "",
                     ""));
     }
@@ -72,9 +73,27 @@ public class AbstractIntegrationTest {
         gameInfoService.update(
                 new GameInfoDTO(
                         1L,
-                        TimeUtils.getCurrentTime().minusHours(1L).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
-                        TimeUtils.getCurrentTime().plusHours(1L).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME),
+                        getTimeMinusHours(1L),
+                        getTimePlusHours(1L),
                         "",
                         ""));
+    }
+
+    private static String getTimePlusHours(final long hours) {
+        return getTimeString(hours, true);
+    }
+
+    private static String getTimeMinusHours(final long hours) {
+        return getTimeString(hours, false);
+    }
+
+    private static LocalDateTime getTime(final long hours, final boolean inFuture) {
+        return inFuture
+                ? TimeUtils.getCurrentTime().plusHours(hours)
+                : TimeUtils.getCurrentTime().minusHours(hours);
+    }
+
+    private static String getTimeString(final long hours, final boolean inFuture) {
+        return getTime(hours, inFuture).format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     }
 }
