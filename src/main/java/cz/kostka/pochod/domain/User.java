@@ -78,6 +78,6 @@ public class User {
                 "User with id %s, username %s is connected to player %s.",
                 this.getId(),
                 this.getUsername(),
-                this.getPlayer().toString());
+                this.getPlayer() == null ? null : this.getPlayer().toString());
     }
 }
