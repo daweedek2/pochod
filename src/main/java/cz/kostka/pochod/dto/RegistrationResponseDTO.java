@@ -34,4 +34,16 @@ public class RegistrationResponseDTO {
     public void setRegisteredPlayer(final Player registeredPlayer) {
         this.registeredPlayer = registeredPlayer;
     }
+
+    public static RegistrationResponseDTO error() {
+        return new RegistrationResponseDTO(RegistrationStatus.ERROR);
+    }
+
+    public static RegistrationResponseDTO alreadyPresent() {
+        return new RegistrationResponseDTO(RegistrationStatus.ALREADY_PRESENT);
+    }
+
+    public static RegistrationResponseDTO success(final Player player) {
+        return new RegistrationResponseDTO(RegistrationStatus.CREATED, player);
+    }
 }

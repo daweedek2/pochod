@@ -19,7 +19,7 @@ function sendEmail(data) {
 }
 
 function registerMe() {
-    var nickName = document.getElementById("username").value
+    var nickName = document.getElementById("username").value.replace(/\s+/g, ' ').trim()
     var email = document.getElementById("email").value
     var phone = document.getElementById("phone").value
     var data = {
