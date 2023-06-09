@@ -15,7 +15,8 @@
             <img class="img-billy" th:src="${qrCode}" />
             <form action="#" th:action="@{/admin/stages/update}" th:object="${stageAdminDTO}" method="post">
                 <div class="form-group">
-                    <input id="id" class="form-control" type="text" th:field="*{id}" hidden/>
+                    <label for="id" class="input-value-required">Id</label>
+                    <input id="id" class="form-control" type="text" th:field="*{id}" readonly/>
                     <p class="error" th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Chyba - id
                     </p>
                 </div>
@@ -58,6 +59,8 @@
                     Smazat
                 </a>
             </div>
+            <br>
+            <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
         </div>
     </div>
 </div>
