@@ -71,4 +71,13 @@ public class User {
     public void setPlayer(final Player player) {
         this.player = player;
     }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "User with id %s, username %s is connected to player %s.",
+                this.getId(),
+                this.getUsername(),
+                this.getPlayer().toString());
+    }
 }
