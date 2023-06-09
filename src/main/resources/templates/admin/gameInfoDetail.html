@@ -16,9 +16,15 @@
                     </p>
                 </div>
                 <div class="form-group">
-                    <label for="startGame" class="input-value-required">Začátek akce</label>
+                    <label for="startGame" class="input-value-required">Odemčení aplikace</label>
                     <input id="startGame" class="form-control" type="datetime-local" th:field="*{startGame}" required/>
                     <p class="error" th:if="${#fields.hasErrors('startGame')}" th:errors="*{startGame}">Chyba - startGame
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="endGame" class="input-value-required">Zamknutí sběru razítek</label>
+                    <input id="endGame" class="form-control" type="datetime-local" th:field="*{endGame}" required/>
+                    <p class="error" th:if="${#fields.hasErrors('endGame')}" th:errors="*{endGame}">Chyba - endGame
                     </p>
                 </div>
                 <div class="form-group">
