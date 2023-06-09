@@ -25,6 +25,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(final String username) {
+        LOG.info("User with name '{}' tries to login.", username);
+
         final Optional<User> user = userRepository.findByUsername(username);
 
         if (user.isEmpty()) {

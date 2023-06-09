@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -20,6 +21,14 @@ public class LoginController {
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             return LoginUtils.getRedirectUrlAfterLoginForRole(authentication.getAuthorities());
         }
+
+        final WebAuthenticationDetails webAuthenticationDetails = ((WebAuthenticationDetails) authentication.getDetails());
+        if (webAuthenticationDetails.getSessionId() != null) {
+            LOG.info("SessionId '{}' is not logged in.", webAuthenticationDetails.getSessionId());
+        } else {
+            LOG.info("New browser opened login page.");
+        }
+
         return "login/login";
     }
 
@@ -31,12 +40,14 @@ public class LoginController {
     @GetMapping("/successfulLogin")
     public String redirectUserBasedOnRole() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         if (!(authentication.getPrincipal() instanceof CustomUserDetails)) {
+            LOG.warn(
+                    "Login failed, sessionId: {}",
+                    ((WebAuthenticationDetails) authentication.getDetails()).getSessionId());
             return "login/login";
         }
 
-        LOG.info("User '{}' is successfully logged in.",
-                ((CustomUserDetails) authentication.getPrincipal()).getUser().getUsername());
         return LoginUtils.getRedirectUrlAfterLoginForRole(authentication.getAuthorities());
     }
 }
