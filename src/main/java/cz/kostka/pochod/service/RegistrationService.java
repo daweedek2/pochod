@@ -5,7 +5,8 @@ import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.domain.User;
 import cz.kostka.pochod.dto.RegistrationRequestDTO;
 import cz.kostka.pochod.dto.RegistrationResponseDTO;
-import cz.kostka.pochod.enums.RegistrationStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RegistrationService implements RegistrationApi {
+    private final Logger logger = LoggerFactory.getLogger(RegistrationService.class);
     private final UserService userService;
     private final PlayerService playerService;
 
@@ -23,17 +25,29 @@ public class RegistrationService implements RegistrationApi {
 
     @Override
     public RegistrationResponseDTO register(final RegistrationRequestDTO registrationRequestDTO) {
-        if (isPlayerAlreadyExisting(registrationRequestDTO)) {
-            return new RegistrationResponseDTO(RegistrationStatus.ALREADY_PRESENT);
+        if (registrationRequestDTO == null) {
+            logger.error("Nothing to register.");
+            return RegistrationResponseDTO.error();
         }
+
+        if (isPlayerAlreadyExisting(registrationRequestDTO)) {
+            logger.warn("User with name {} already exists.", registrationRequestDTO.nickName());
+            return RegistrationResponseDTO.alreadyPresent();
+        }
+
+        return registerWithNormalizedUsername(registrationRequestDTO);
+    }
+
+    private RegistrationResponseDTO registerWithNormalizedUsername(final RegistrationRequestDTO registrationRequestDTO) {
         final User newUser = userService.createUser(registrationRequestDTO);
         final Player newPlayer = playerService.createPlayer(registrationRequestDTO, newUser);
 
         if (newUser == null) {
-            return new RegistrationResponseDTO(RegistrationStatus.ERROR);
+            return RegistrationResponseDTO.error();
         }
 
-        return new RegistrationResponseDTO(RegistrationStatus.CREATED, newPlayer);
+        logger.info("New player registered successfully: {}.", newPlayer);
+        return RegistrationResponseDTO.success(newPlayer);
     }
 
     private boolean isPlayerAlreadyExisting(final RegistrationRequestDTO registrationRequestDTO) {

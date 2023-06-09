@@ -22,7 +22,7 @@ public class RegistrationRestController {
     public static final String ENDPOINT = "api/register";
 
     private final RegistrationApi registrationApi;
-    private final Logger LOG = LoggerFactory.getLogger(RegistrationRestController.class);
+    private final Logger logger = LoggerFactory.getLogger(RegistrationRestController.class);
 
 
     public RegistrationRestController(final RegistrationApi registrationApi) {
@@ -31,26 +31,16 @@ public class RegistrationRestController {
 
     @PostMapping
     public ResponseEntity<RegistrationResponseDTO> register(@RequestBody RegistrationRequestDTO registrationRequestDTO) {
-        LOG.info("Request to register player with name: {}, email: {}, phone: {} with pin: {}.",
-                registrationRequestDTO.nickName(),
-                registrationRequestDTO.email(),
-                registrationRequestDTO.phone(),
-                registrationRequestDTO.pin());
-        final RegistrationRequestDTO normalizedRequest = normalize(registrationRequestDTO);
-        final RegistrationResponseDTO responseDTO = registrationApi.register(normalizedRequest);
-        LOG.info("Registration of player with name: {} finished with the status {}.",
+        logger.info("Request to register player: {}.", registrationRequestDTO);
+
+        final RegistrationResponseDTO responseDTO = registrationApi.register(registrationRequestDTO);
+
+        logger.info("Registration of player with name: {} finished with the status {}.",
                 registrationRequestDTO.nickName(),
                 responseDTO.getRegistrationStatus());
+
         return responseDTO.getRegistrationStatus() != RegistrationStatus.CREATED
                 ? ResponseEntity.internalServerError().build()
                 : ResponseEntity.ok(responseDTO);
-    }
-
-    private RegistrationRequestDTO normalize(final RegistrationRequestDTO registrationRequestDTO) {
-        return new RegistrationRequestDTO(
-                registrationRequestDTO.nickName().stripTrailing().stripLeading(),
-                registrationRequestDTO.email(),
-                registrationRequestDTO.phone(),
-                registrationRequestDTO.pin());
     }
 }
