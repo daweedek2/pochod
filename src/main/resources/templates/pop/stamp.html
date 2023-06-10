@@ -5,6 +5,7 @@
 
 <body>
 <div th:insert="fragments/header :: header(|${player.id} ${player.nickname}|, ${stamps})"></div>
+<div th:insert="fragments/endWarning :: endWarning(${hasGameEnded}, ${gameEndedTime}, ${isEndWarningActive})"></div>
 <div class="container">
     <div class="row cypher-list">
         <div class="col-sm-12">

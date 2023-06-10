@@ -10,6 +10,7 @@ import cz.kostka.pochod.service.StampService;
 import cz.kostka.pochod.util.TimeUtils;
 import org.springframework.ui.Model;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 /**
@@ -17,8 +18,11 @@ import java.util.Map;
  */
 
 public class PlayerController {
-    private static final String GAME_STARTED_ATTR = "gameStarted";
+    private static final String GAME_STARTED_ATTR = "hasGameStarted";
+    private static final String GAME_ENDED_ATTR = "hasGameEnded";
     private static final String GAME_STARTED_TIME_ATTR = "gameStartedTime";
+    private static final String GAME_ENDED_TIME_ATTR = "gameEndedTime";
+    private static final String IS_END_WARNING_ACTIVE_ATTR = "isEndWarningActive";
     private static final String PLAYER_ATTR = "player";
     private static final String STAMPS_ATTR = "stamps";
     private static final String PARTNERS_ATTR = "partners";
@@ -46,12 +50,25 @@ public class PlayerController {
 
     public void setStartGameToModel(final Model model) {
         final GameInfo gameInfo = gameInfoService.get().orElse(new GameInfo());
-        final var startGame = gameInfo.getStartGame();
-        model.addAttribute(
-                GAME_STARTED_ATTR,
-                startGame != null
-                        && TimeUtils.getCurrentTime().isAfter(startGame));
-        model.addAttribute(GAME_STARTED_TIME_ATTR, startGame);
+        final LocalDateTime startGameTime = gameInfo.getStartGame();
+        model.addAttribute(GAME_STARTED_ATTR, hasGameAlreadyEnded(startGameTime));
+        model.addAttribute(GAME_STARTED_TIME_ATTR, startGameTime);
+    }
+
+    public void setEndGameToModel(final Model model) {
+        final GameInfo gameInfo = gameInfoService.get().orElse(new GameInfo());
+        final LocalDateTime endGameTime = gameInfo.getEndGame();
+        model.addAttribute(GAME_ENDED_ATTR, hasGameAlreadyEnded(endGameTime));
+        model.addAttribute(IS_END_WARNING_ACTIVE_ATTR, isEndWarningActive(endGameTime));
+        model.addAttribute(GAME_ENDED_TIME_ATTR, endGameTime);
+    }
+
+    private static boolean hasGameAlreadyEnded(LocalDateTime endGameTime) {
+        return endGameTime != null && TimeUtils.getCurrentTime().isAfter(endGameTime);
+    }
+
+    private static boolean isEndWarningActive(LocalDateTime endGameTime) {
+        return endGameTime != null && TimeUtils.getCurrentTime().isAfter(endGameTime.minusHours(1));
     }
 
     public void setPartnersToModel(final Model model) {
