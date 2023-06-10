@@ -101,20 +101,31 @@ public class StampService implements StampApi {
     }
 
     public Map<Integer, StampDTO> getStampsMapForUser(final Player player) {
-        final int totalNumberOfStages = stageService.getAllStagesCount();
+        final List<Stage> allStages = stageService.getAllStages();
         final List<Stamp> allStampsOfPlayer = getAllStampsByPlayerOrdered(player);
-        final Map<Integer, StampDTO> stampDTOHashMap = new HashMap<>();
-        for (int i = 1; i <= totalNumberOfStages; i++) {
-            int finalI = i;
-            final var optStamp = allStampsOfPlayer.stream()
-                    .filter(stamp -> stamp.getStage().getNumber() == finalI)
-                    .findFirst();
 
-            stampDTOHashMap.put(i, createStampDTO(optStamp.orElse(null), player.getId()));
+        final Map<Integer, StampDTO> stampDTOMap = new HashMap<>(allStages.size());
+
+        for (final Stage stage : allStages) {
+            stampDTOMap.put(stage.getNumber(), createStampDTOFromStamps(allStampsOfPlayer, player.getId(), stage));
         }
 
-        return stampDTOHashMap;
+        return stampDTOMap;
     }
+
+    private static StampDTO createStampDTOFromStamps(
+            final List<Stamp> allStampsOfPlayer,
+            final Long playerId,
+            final Stage stage) {
+
+        final Optional<Stamp> optionalStamp = allStampsOfPlayer.stream()
+                .filter(stamp -> stamp.getStage() == stage)
+                .findFirst();
+
+        return createStampDTO(optionalStamp.orElse(null), playerId);
+    }
+
+
 
     private static StampDTO createStampDTO(final Stamp stamp, final Long playerId) {
         if (stamp == null) {
