@@ -4,7 +4,7 @@
 </head>
 <body>
     <div th:insert="fragments/header :: header(|${player.id} ${player.nickname}|, ${stamps})"></div>
-
+    <div th:insert="fragments/endWarning :: endWarning(${hasGameEnded}, ${gameEndedTime}, ${isEndWarningActive})"></div>
     <div class="container">
         <div class="row cypher-list">
             <div class="col-sm-12">
@@ -12,10 +12,10 @@
                 <img src="/img/bota-large.jpg" alt="PoP 2022" class="img-billy"/>
             </div>
         </div>
-        <div class="row cypher-list" th:if="${gameStarted == true}">
+        <div class="row cypher-list" th:if="${hasGameStarted == true}">
             <div class="center-elements">
                 <h2>Kam dál?</h2>
-                <a class="btn btn-primary btn-square-md" th:href="@{/pop/stamp}">Získat razítko</a>
+                <a th:if="${hasGameEnded == false}" class="btn btn-primary btn-square-md" th:href="@{/pop/stamp}">Získat razítko</a>
                 <a class="btn btn-primary btn-square-md" th:href="@{/pop/progress}">Můj postup</a>
                 <a class="btn btn-primary btn-square-md" th:href="@{/pop/stages}">Stanoviště</a>
                 <a class="btn btn-primary btn-square-md" th:href="@{/pop/map}">Mapa 2022</a>
@@ -24,7 +24,7 @@
                 </div>
             </div>
         </div>
-        <div class="row cypher-list" th:if="${gameStarted == false}">
+        <div class="row cypher-list" th:if="${hasGameStarted == false}">
             <div class="center-elements col-centered">
                 <h2 th:text="|Začínáme ${#temporals.format(gameStartedTime, 'dd.MM.yyyy HH:mm')}|"></h2>
                 <h2>Sledujte náš <a class="fb-icon" href="https://www.facebook.com/events/411855370753844">

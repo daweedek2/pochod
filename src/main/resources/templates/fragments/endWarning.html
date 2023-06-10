@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="endWarning(hasGameEnded, gameEndedTime, isEndWarningActive)">
+    <div th:if="${isEndWarningActive == true and hasGameEnded == false}">
+        <div class="time-alert">
+            <h2 th:text="|Upozornění! Sbírání razítek bude ukončeno v ${#temporals.format(gameEndedTime, 'HH:mm')}!|"></h2>
+        </div>
+    </div>
+    <div th:if="${hasGameEnded == true}">
+        <div class="time-alert">
+            <h2 th:text="|Sbírání razítek bylo ukončeno v ${#temporals.format(gameEndedTime, 'HH:mm')}!|"></h2>
+            <h2>Losování tomboly proběhne na posledním stanovišti.</h2>
+        </div>
+    </div>
+</div>
+</body>
+</html>

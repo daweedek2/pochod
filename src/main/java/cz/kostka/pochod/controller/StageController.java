@@ -34,6 +34,7 @@ public class StageController extends PlayerController {
     @GetMapping
     public String getAllStages(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
+        setEndGameToModel(model);
         model.addAttribute("allStages", stageService.getAllStages());
         model.addAttribute("stampsMap", getStampsMapForPlayer(user.getPlayer()));
         setMapUrlToModel(model);
@@ -46,6 +47,7 @@ public class StageController extends PlayerController {
             @AuthenticationPrincipal final CustomUserDetails user,
             final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
+        setEndGameToModel(model);
         final var stage = stageService.getStageById(id);
         setStageToModel(stage, model);
         model.addAttribute("stamp", getStampDTOForPlayerAndStage(user.getPlayer(), stage));

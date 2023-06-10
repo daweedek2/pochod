@@ -26,7 +26,8 @@ public class GameInfoController {
 
     @GetMapping
     public String getGameInfo(final Model model) {
-        model.addAttribute("gameInfoDto",
+        model.addAttribute(
+                "gameInfoDto",
                 GameInfoMapper.INSTANCE.gameInfoToDto(gameInfoService.get().orElse(new GameInfo())));
         return "admin/gameInfoDetail";
     }

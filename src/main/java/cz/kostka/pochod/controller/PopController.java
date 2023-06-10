@@ -31,12 +31,14 @@ public class PopController extends PlayerController {
     public String viewHome(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
         setStartGameToModel(model);
+        setEndGameToModel(model);
         return "pop/welcome";
     }
 
     @GetMapping("/progress")
     public String viewProgress(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
+        setEndGameToModel(model);
         model.addAttribute("allStagesCount", gameInfoService.getAllStagesCount());
         return "pop/progress";
     }
@@ -44,6 +46,7 @@ public class PopController extends PlayerController {
     @GetMapping("/partners")
     public String viewPartners(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
+        setEndGameToModel(model);
         setPartnersToModel(model);
         return "pop/partners";
     }
@@ -51,6 +54,7 @@ public class PopController extends PlayerController {
     @GetMapping("/map")
     public String getAllStages(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
+        setEndGameToModel(model);
         setMapUrlToModel(model);
         return "pop/map";
     }

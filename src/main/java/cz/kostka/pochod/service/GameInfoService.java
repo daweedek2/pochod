@@ -30,6 +30,7 @@ public class GameInfoService {
     public GameInfo update(final GameInfoDTO gameInfoDTO) {
         final GameInfo gameInfo = get().orElse(new GameInfo());
         gameInfo.setStartGame(toTimestamp(gameInfoDTO.startGame()));
+        gameInfo.setEndGame(toTimestamp(gameInfoDTO.endGame()));
         gameInfo.setPartners(gameInfoDTO.partners());
         gameInfo.setMapUrl(gameInfoDTO.mapUrl());
         return gameInfoRepository.save(gameInfo);

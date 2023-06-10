@@ -40,6 +40,7 @@ public class FeedbackController extends PlayerController {
     public String getFeedbackView(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
         final Long playerId = user.getPlayer().getId();
         setPlayerToModel(playerId, model);
+        setEndGameToModel(model);
         model.addAttribute("feedbackDTO", new FeedbackDTO(null, playerId));
         model.addAttribute("playersFeedbacks", feedbackService.getAllFeedbacksByPlayer(playerId));
         return "pop/feedback";
