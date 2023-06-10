@@ -17,7 +17,7 @@
             <div th:if="${stamp.taken == true}">
                 <h2>Razítko je v kapse!</h2>
                 <p th:text="|Čas: ${#temporals.format(stamp.time, 'HH:mm')}|"></p>
-                <img src="/img/beer_full.png" alt="PoP 2022" class="img-billy"/>
+                <img src="/img/beer_full.png" alt="PoP" class="img-billy"/>
             </div>
             <h2>Popis</h2>
             <th:block th:each="info : ${stage.info}">
