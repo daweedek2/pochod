@@ -88,7 +88,7 @@ public class StagesController {
 
     @GetMapping("delete/{id}")
     public String deleteStage(final @PathVariable Long id) {
-        // TODO: delete stamps first
+        stampService.deleteStampsOfStage(id);
         stageService.delete(id);
         return "redirect:" + StagesController.ENDPOINT;
     }

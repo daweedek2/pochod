@@ -138,4 +138,8 @@ public class StampService implements StampApi {
     public void deleteStampsOfPlayer(final Player player) {
         stampRepository.deleteAll(getAllStampsByPlayerOrdered(player));
     }
+
+    public void deleteStampsOfStage(final Long stageId) {
+        stampRepository.deleteAll(getStampsByStageOrdered(stageService.getStageById(stageId)));
+    }
 }
