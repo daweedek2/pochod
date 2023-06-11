@@ -32,6 +32,7 @@ public class PopController extends PlayerController {
         setPlayerToModel(user.getPlayer().getId(), model);
         setStartGameToModel(model);
         setEndGameToModel(model);
+        model.addAttribute("allStagesCount", gameInfoService.getAllStagesCount());
         return "pop/welcome";
     }
 

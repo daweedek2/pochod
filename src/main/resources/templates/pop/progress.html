@@ -11,8 +11,8 @@
         <div class="col-sm-12">
             <h1 class="login-form-header">Pochod okolo Polanky</h1>
             <h1 style="text-align: center" th:text="|Máš ${stamps} z ${allStagesCount} razítek.|"></h1>
-            <p th:if="${stamps} == ${allStagesCount}">Jsi zařazen/a do slosování o tombolu.</p>
-            <p th:unless="${stamps} == ${allStagesCount}">Po získaní všech razítek budeš zařazen/a do slosování o tombolu.</p>
+            <p th:if="${stamps == allStagesCount}">Jsi zařazen/a do slosování o tombolu.</p>
+            <p th:unless="${stamps == allStagesCount}">Po získaní všech razítek budeš zařazen/a do slosování o tombolu.</p>
             <div class="progress">
                 <div class="progress-bar progress-bar-striped bg-dark" role="progressbar"
                      aria-valuemin="0" aria-valuemax="100"
@@ -20,6 +20,7 @@
                      th:text="|${stamps} / ${allStagesCount}|">
                 </div>
             </div>
+            <a th:if="${stamps == allStagesCount}" class="btn btn-primary btn-square-md" th:href="@{/pop/diplom}">Stáhnout diplom</a>
             <br>
             <br>
             <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
