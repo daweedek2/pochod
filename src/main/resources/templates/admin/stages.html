@@ -31,8 +31,8 @@
                     </p>
                 </div>
                 <div class="form-group">
-                    <label for="location">GPS souřadnice</label>
-                    <input id="location" class="form-control" type="text" th:field="*{location}"/>
+                    <label for="location" class="input-value-required">GPS souřadnice</label>
+                    <input id="location" class="form-control" type="text" th:field="*{location}" required/>
                     <p class="error" th:if="${#fields.hasErrors('location')}" th:errors="*{location}">Chyba - GPS
                     </p>
                 </div>

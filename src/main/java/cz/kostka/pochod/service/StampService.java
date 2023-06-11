@@ -78,7 +78,8 @@ public class StampService implements StampApi {
     }
 
     public StampDTO getStampDTOForPlayerAndStage(final Player player, final Stage stage) {
-        return createStampDTO(getStampsForPlayerAndStage(player, stage).get(0), player.getId());
+        final var stamps = getStampsForPlayerAndStage(player, stage);
+        return createStampDTO(stamps.stream().findFirst(), player.getId());
     }
 
     public List<Stamp> getStampsByStageOrdered(final Stage stage) {
@@ -122,17 +123,13 @@ public class StampService implements StampApi {
                 .filter(stamp -> stamp.getStage() == stage)
                 .findFirst();
 
-        return createStampDTO(optionalStamp.orElse(null), playerId);
+        return createStampDTO(optionalStamp, playerId);
     }
 
-
-
-    private static StampDTO createStampDTO(final Stamp stamp, final Long playerId) {
-        if (stamp == null) {
-            return new StampDTO(null, playerId, false, null);
-        }
-
-        return new StampDTO(stamp.getStage().getId(), playerId, true, stamp.getTimestamp());
+    private static StampDTO createStampDTO(final Optional<Stamp> optionalStamp, final Long playerId) {
+        return optionalStamp
+                .map(stamp -> StampDTO.taken(stamp, playerId))
+                .orElseGet(() -> StampDTO.notTaken(playerId));
     }
 
     public void deleteStampsOfPlayer(final Player player) {
