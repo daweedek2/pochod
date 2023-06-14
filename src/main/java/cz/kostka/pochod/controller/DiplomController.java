@@ -41,6 +41,6 @@ public class DiplomController extends PlayerController {
             throws IOException {
         LOG.info("User '{}' tries to download a diplom.", user.getUsername());
 
-        diplomService.download(user.getUsername(), response, DiplomSize.BIG);
+        diplomService.download(user.getPlayer().getNickname(), response, DiplomSize.BIG);
     }
 }

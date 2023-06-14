@@ -38,7 +38,7 @@ public class DiplomService {
         // color of the username
         graphics.setColor(Color.BLACK);
         // font and size of the username
-        graphics.setFont(new Font("Arial black", Font.PLAIN, 50));
+        graphics.setFont(new Font("Arial black", Font.PLAIN, 60));
         setUserNameToPossition(username, graphics, diplomSize);
     }
 
@@ -48,7 +48,7 @@ public class DiplomService {
             final DiplomSize diplomSize) {
         // middle position of the username 1200px: [600, 950], 800px: [400, 650]
         // middle of the image minus half of the username chars multiplied by 40 (if font is 50)
-        final int xPosition = getXCoordinateMiddle(diplomSize) - username.length() / 2 * 40;
+        final int xPosition = getXCoordinateMiddle(diplomSize) - username.length() / 2 * 43;
         final int yPosition = getYCoordinateMiddle(diplomSize);
         graphics.drawString(username.toUpperCase(), xPosition, yPosition); // y 650 is okay
     }
