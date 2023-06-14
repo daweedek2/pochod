@@ -1,8 +1,9 @@
 package cz.kostka.pochod.service;
 
+import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.domain.Stage;
 import cz.kostka.pochod.domain.Stamp;
-import cz.kostka.pochod.dto.PlayerAdminDTO;
+import cz.kostka.pochod.dto.PlayerStatisticDTO;
 import cz.kostka.pochod.dto.StageStatisticDTO;
 import cz.kostka.pochod.mapper.PlayerMapper;
 import cz.kostka.pochod.mapper.StageMapper;
@@ -10,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 /**
  * Created by dkostka on 7/2/2022.
@@ -28,12 +31,41 @@ public class StatisticsService {
         this.stampService = stampService;
     }
 
-    public List<StageStatisticDTO> collect() {
+    public List<StageStatisticDTO> collectStageStats() {
         final List<Stage> allStages = stageService.getAllStages();
 
         return allStages.stream()
                 .map(this::fetchStatisticsForStage)
                 .collect(Collectors.toList());
+    }
+
+    public List<PlayerStatisticDTO> collectPlayersStats() {
+        final List<Player> allPlayers = playerService.getAllPlayers();
+
+        return allPlayers.stream()
+                .map(this::fetchStatisticsForPlayer)
+                .sorted(Comparator.comparing(PlayerStatisticDTO::stampsTakenNumber).reversed())
+                .collect(Collectors.toList());
+    }
+
+    private PlayerStatisticDTO fetchStatisticsForPlayer(final Player player) {
+        final List<Stamp> stampsTakenByPlayerOrderer = stampService.getAllStampsByPlayerOrdered(player);
+
+        if (stampsTakenByPlayerOrderer.isEmpty()) {
+            return new PlayerStatisticDTO(
+                    PlayerMapper.INSTANCE.playerToDTO(player),
+                    0,
+                    null,
+                    null
+            );
+        }
+
+        return new PlayerStatisticDTO(
+                PlayerMapper.INSTANCE.playerToDTO(player),
+                stampsTakenByPlayerOrderer.size(),
+                stampsTakenByPlayerOrderer.get(0).getTimestamp(),
+                stampsTakenByPlayerOrderer.get(stampsTakenByPlayerOrderer.size() - 1).getTimestamp()
+        );
     }
 
     private StageStatisticDTO fetchStatisticsForStage(final Stage stage) {
