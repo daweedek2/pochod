@@ -3,6 +3,7 @@ package cz.kostka.pochod.controller;
 import cz.kostka.pochod.security.CustomUserDetails;
 import cz.kostka.pochod.service.GameInfoService;
 import cz.kostka.pochod.service.PlayerService;
+import cz.kostka.pochod.service.StageService;
 import cz.kostka.pochod.service.StampService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -18,13 +19,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PopController extends PlayerController {
 
     private final GameInfoService gameInfoService;
+    private final StageService stageService;
 
     public PopController(
             final PlayerService playerService,
             final StampService stampService,
-            final GameInfoService gameInfoService) {
+            final GameInfoService gameInfoService, StageService stageService) {
         super(playerService, stampService, gameInfoService);
         this.gameInfoService = gameInfoService;
+        this.stageService = stageService;
     }
 
     @GetMapping
@@ -42,6 +45,17 @@ public class PopController extends PlayerController {
         setEndGameToModel(model);
         model.addAttribute("allStagesCount", gameInfoService.getAllStagesCount());
         return "pop/progress";
+    }
+
+    @GetMapping("/progress2")
+    public String viewProgressV2(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
+        setPlayerToModel(user.getPlayer().getId(), model);
+        setEndGameToModel(model);
+        setMapUrlToModel(model);
+        model.addAttribute("allStages", stageService.getAllStages());
+        model.addAttribute("stampsMap", getStampsMapForPlayer(user.getPlayer()));
+        model.addAttribute("allStagesCount", gameInfoService.getAllStagesCount());
+        return "pop/listV2";
     }
 
     @GetMapping("/partners")

@@ -872,3 +872,8 @@ ul.contact i {
     display: -webkit-box;
     -webkit-box-orient: vertical;
 }
+
+.bg-red-progressbar {
+    --bs-bg-opacity: 1;
+    background-color: red !important;
+}

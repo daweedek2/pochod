@@ -11,7 +11,7 @@
         <div class="col-sm-12">
             <h1 class="login-form-header">Pochod okolo Polanky</h1>
             <h1 th:text="|${stage.number}. ${stage.name}|">1. Stanoviště</h1>
-            <div th:if="${stamp.taken == false}">
+            <div th:if="${stamp.taken == false and hasGameEnded == false}">
                 <a class="btn btn-primary" th:href="@{/pop/stamp}" role="button">Získat razítko</a>
             </div>
             <div th:if="${stamp.taken == true}">
