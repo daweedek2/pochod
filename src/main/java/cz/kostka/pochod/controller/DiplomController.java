@@ -1,5 +1,6 @@
 package cz.kostka.pochod.controller;
 
+import cz.kostka.pochod.enums.DiplomSize;
 import cz.kostka.pochod.security.CustomUserDetails;
 import cz.kostka.pochod.service.DiplomService;
 import cz.kostka.pochod.service.GameInfoService;
@@ -40,6 +41,6 @@ public class DiplomController extends PlayerController {
             throws IOException {
         LOG.info("User '{}' tries to download a diplom.", user.getUsername());
 
-        diplomService.download(user.getUsername(), response);
+        diplomService.download(user.getUsername(), response, DiplomSize.BIG);
     }
 }

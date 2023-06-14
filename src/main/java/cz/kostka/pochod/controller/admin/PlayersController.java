@@ -67,6 +67,7 @@ public class PlayersController {
     @PostMapping("/update")
     public String updatePlayer(final @ModelAttribute("playerAdminDTO") PlayerAdminDTO dto) {
         playerService.update(dto);
+        // TODO: edit also user here
         return "redirect:/admin/players";
     }
 
