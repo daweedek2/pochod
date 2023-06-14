@@ -53,7 +53,6 @@ public class PlayersController {
     @GetMapping("/delete/{id}")
     public String deletePlayer(final @PathVariable("id") Long id) {
         stampService.deleteStampsOfPlayer(playerService.getPlayerById(id));
-        //TODO: delete stamps first
         playerService.deletePlayer(id);
         return "redirect:/admin/players";
     }
