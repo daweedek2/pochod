@@ -37,7 +37,8 @@ public class StageService implements StageApi {
     }
 
     public Stage create(final StageCreationDTO dto) {
-        return stageRepository.save(new Stage(dto.name(), dto.number(), dto.location(), dto.pin(), dto.info()));
+        return stageRepository.save(
+                new Stage(dto.name(), dto.number(), dto.location(), dto.pin(), dto.info(), dto.color()));
     }
 
     public Stage getStageById(final Long id) {
@@ -52,6 +53,7 @@ public class StageService implements StageApi {
     }
 
     public Stage update(final StageAdminDTO dto) {
-        return stageRepository.save(new Stage(dto.id(), dto.name(), dto.number(), dto.location(), dto.pin(), dto.info()));
+        return stageRepository.save
+                (new Stage(dto.id(), dto.name(), dto.number(), dto.location(), dto.pin(), dto.info(), dto.color()));
     }
 }

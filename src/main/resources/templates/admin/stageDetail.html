@@ -45,6 +45,13 @@
                     </p>
                 </div>
                 <div class="form-group">
+                    <p><small>Například: color: black; (;) taky!</small></p>
+                    <label for="color" class="input-value-required">Barva razítka</label>
+                    <textarea id="color" class="form-control" type="" th:field="*{color}"></textarea>
+                    <p class="error" th:if="${#fields.hasErrors('color')}" th:errors="*{color}">Chyba - Barva
+                    </p>
+                </div>
+                <div class="form-group">
                     <p><small>Pro oddělení řádků použij středník (;)</small></p>
                     <label for="info" class="login-form-label">Info</label>
                     <textarea id="info" class="form-control" th:field="*{info}"></textarea>
