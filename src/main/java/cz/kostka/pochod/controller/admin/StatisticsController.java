@@ -18,9 +18,15 @@ public class StatisticsController {
         this.statisticsService = statisticsService;
     }
 
-    @GetMapping
-    public String get(final Model model) {
-        model.addAttribute("stageList", statisticsService.collect());
+    @GetMapping("/stages")
+    public String getStageStats(final Model model) {
+        model.addAttribute("stageList", statisticsService.collectStageStats());
+        return "admin/statistics";
+    }
+
+    @GetMapping("/players")
+    public String getPlayerStats(final Model model) {
+        model.addAttribute("playerList", statisticsService.collectPlayersStats());
         return "admin/statistics";
     }
 }
