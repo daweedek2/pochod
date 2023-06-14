@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Created by dkostka on 7/10/2022.
  */
-public class StampServiceIntegrationTest extends AbstractIntegrationTest {
+class StampServiceIntegrationTest extends AbstractIntegrationTest {
     @Autowired
     private StampService stampService;
 
