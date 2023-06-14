@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by dkostka on 7/11/2022.
  */
-public class StampServiceTest {
+class StampServiceTest {
 
     private StampRepository stampRepository;
     private PlayerService playerService;
@@ -85,7 +85,6 @@ public class StampServiceTest {
         verify(stampRepository).findAllByPlayerAndStage(player, stage);
     }
 
-    /* TODO will be fixed in release_1.2022.2
     @Test
     void testGetStampDTOForPlayerAndStage_NoStamp() {
         final Stage stage = new Stage();
@@ -102,7 +101,6 @@ public class StampServiceTest {
                         player.getId(), null, false, null
                 );
     }
-     */
 
     @Test
     void testGetStampDTOForPlayerAndStage_Taken() {
