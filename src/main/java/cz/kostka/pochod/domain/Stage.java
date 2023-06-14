@@ -36,25 +36,42 @@ public class Stage {
     @Column
     private String info;
 
+    @Column
+    private String color;
+
     public Stage() {
     }
 
-    public Stage(final Long id, final String name, final int number, final Point location, final String pin,
-                 final String info) {
+    public Stage(
+            final Long id,
+            final String name,
+            final int number,
+            final Point location,
+            final String pin,
+            final String info,
+            final String color) {
         this.id = id;
         this.name = name;
         this.number = number;
         this.location = location;
         this.pin = pin;
         this.info = info;
+        this.color = color;
     }
 
-    public Stage(final String name, final Integer number, final Point location, final String pin, final String info) {
+    public Stage(
+            final String name,
+            final Integer number,
+            final Point location,
+            final String pin,
+            final String info,
+            final String color) {
         this.name = name;
         this.number = number;
         this.location = location;
         this.pin = pin;
         this.info = info;
+        this.color = color;
     }
 
     public Long getId() {
@@ -103,5 +120,13 @@ public class Stage {
 
     public void setInfo(final String beers) {
         this.info = beers;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }
