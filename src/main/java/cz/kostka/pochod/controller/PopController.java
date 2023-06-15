@@ -18,15 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/pop")
 public class PopController extends PlayerController {
 
-    private final GameInfoService gameInfoService;
     private final StageService stageService;
 
     public PopController(
             final PlayerService playerService,
             final StampService stampService,
-            final GameInfoService gameInfoService, StageService stageService) {
+            final GameInfoService gameInfoService,
+            final StageService stageService) {
         super(playerService, stampService, gameInfoService);
-        this.gameInfoService = gameInfoService;
         this.stageService = stageService;
     }
 
@@ -35,7 +34,7 @@ public class PopController extends PlayerController {
         setPlayerToModel(user.getPlayer().getId(), model);
         setStartGameToModel(model);
         setEndGameToModel(model);
-        model.addAttribute("allStagesCount", gameInfoService.getAllStagesCount());
+        model.addAttribute(AttributeConstants.ALL_STAGES_COUNT, stageService.getAllStagesCount());
         return "pop/welcome";
     }
 
@@ -43,7 +42,7 @@ public class PopController extends PlayerController {
     public String viewProgress(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
         setEndGameToModel(model);
-        model.addAttribute("allStagesCount", gameInfoService.getAllStagesCount());
+        model.addAttribute(AttributeConstants.ALL_STAGES_COUNT, stageService.getAllStagesCount());
         return "pop/progress";
     }
 
@@ -52,9 +51,9 @@ public class PopController extends PlayerController {
         setPlayerToModel(user.getPlayer().getId(), model);
         setEndGameToModel(model);
         setMapUrlToModel(model);
-        model.addAttribute("allStages", stageService.getAllStages());
-        model.addAttribute("stampsMap", getStampsMapForPlayer(user.getPlayer()));
-        model.addAttribute("allStagesCount", gameInfoService.getAllStagesCount());
+        model.addAttribute(AttributeConstants.ALL_STAGES, stageService.getAllStages());
+        model.addAttribute(AttributeConstants.STAMPS_MAP, getStampsMapForPlayer(user.getPlayer()));
+        model.addAttribute(AttributeConstants.ALL_STAGES_COUNT, stageService.getAllStagesCount());
         return "pop/listV2";
     }
 
