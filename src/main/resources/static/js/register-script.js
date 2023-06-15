@@ -1,7 +1,8 @@
 
 function sendEmail(data) {
     $.ajax({
-        url: "https://daweedek.wz.cz/register-pop.php",
+        url: "https://pochod.valasskapolanka.cz/register-pop.php",
+        // url: "https://daweedek.wz.cz/register-pop.php",
         type: 'post',
         data: data,
         beforeSend: function(xhr) {
