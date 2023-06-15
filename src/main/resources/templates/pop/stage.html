@@ -4,36 +4,43 @@
 </head>
 
 <body>
-<div th:insert="fragments/pop-header :: popHeader(${player.id}, ${player.nickname}, ${stamps})"></div>
-<div th:insert="fragments/endWarning :: endWarning(${hasGameEnded}, ${gameEndedTime}, ${isEndWarningActive})"></div>
-<div class="container">
-    <div class="row cypher-list">
-        <div class="col-sm-12">
-            <h1 class="login-form-header">Pochod okolo Polanky</h1>
-            <h1 th:text="|${stage.number}. ${stage.name}|">1. Stanoviště</h1>
-            <div th:if="${stamp.taken == false and hasGameEnded == false}">
-                <a class="btn btn-primary" th:href="@{/pop/stamp}" role="button">Získat razítko</a>
-            </div>
-            <div th:if="${stamp.taken == true}">
-                <div class="cypher">
-                    <div class="row align-items-center">
-                        <div class="col">Splněno!</div>
-                        <div class="col status" th:style="${stage.color}">
-                            <i class="fas fa-beer-mug-empty"></i>
-                            <span th:text="${#temporals.format(stamp.time, 'HH:mm')}"></span>
+    <div th:insert="fragments/pop-header :: popHeader(${player.id}, ${player.nickname}, ${stamps})"></div>
+    <div th:insert="fragments/endWarning :: endWarning(${hasGameEnded}, ${gameEndedTime}, ${isEndWarningActive})"></div>
+    <div th:insert="fragments/pop-title :: popTitle()"></div>
+    <div class="container">
+        <div class="row cypher-list">
+            <div class="col-sm-12">
+                <h2 th:text="|${stage.number}. ${stage.name}|">1. Stanoviště</h2>
+                <div th:if="${stamp.taken == false and hasGameEnded == false}">
+                    <a class="btn btn-primary" th:href="@{/pop/stamp}" role="button">Získat razítko</a>
+                </div>
+                <div th:if="${stamp.taken == true}">
+                    <div class="cypher">
+                        <div class="row align-items-center">
+                            <div class="col">Splněno!</div>
+                            <div class="col status" th:style="${stage.color}">
+                                <i class="fas fa-beer-mug-empty"></i>
+                                <span th:text="${#temporals.format(stamp.time, 'HH:mm')}"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <h2>Popis</h2>
+                <th:block th:each="info : ${stage.info}">
+                    <p th:text="${info}">Info</p>
+                </th:block>
+                <h2>GPS souřdnice</h2>
+                <p th:text="|${stage.location.x}E, ${stage.location.y}N|">18.0342303E, 49.2673764N</p>
             </div>
-            <h2>Popis</h2>
-            <th:block th:each="info : ${stage.info}">
-                <p th:text="${info}">Info</p>
-            </th:block>
-            <h2>GPS souřdnice</h2>
-            <p th:text="|${stage.location.x}E, ${stage.location.y}N|">18.0342303E, 49.2673764N</p>
-            <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
+        </div>
+        <div class="row cypher-list">
+            <div class="col-sm-12">
+                <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
+            </div>
         </div>
     </div>
-</div>
 </body>
+<footer>
+    <div th:insert="fragments/pop-footer :: popFooter()"></div>
+</footer>
 </html>

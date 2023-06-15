@@ -3,24 +3,27 @@
 <head th:replace="fragments/head :: head('Pop 2023')">
 </head>
 <body>
-<div th:insert="fragments/pop-header :: popHeader(${player.id}, ${player.nickname}, ${stamps})"></div>
-<div th:insert="fragments/endWarning :: endWarning(${hasGameEnded}, ${gameEndedTime}, ${isEndWarningActive})"></div>
+    <div th:insert="fragments/pop-header :: popHeader(${player.id}, ${player.nickname}, ${stamps})"></div>
+    <div th:insert="fragments/endWarning :: endWarning(${hasGameEnded}, ${gameEndedTime}, ${isEndWarningActive})"></div>
+    <div th:insert="fragments/pop-title :: popTitle()"></div>
     <div class="container">
-        <div class="row cypher-list">
-            <div class="col-sm-12">
-                <h1 class="login-form-header">Pochod okolo Polanky</h1>
-                <img src="/img/bota-large.jpg" alt="PoP" class="img-billy"/>
-            </div>
+        <div class="col-sm-12">
+            <h2>Naši partneři</h2>
+            <br>
         </div>
         <div class="row cypher-list">
-            <div class="center-elements">
-                <h2 class="col-centered">Naši partneři</h2>
-                <th:block th:each="partner : ${partners}">
-                    <p class="col-centered" th:text="${partner}">Partneři</p>
-                </th:block>
-                <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
+            <div class="col-sm-12">
+                <div class="center-elements">
+                    <th:block th:each="partner : ${partners}">
+                        <p class="col-centered" th:text="${partner}">Partneři</p>
+                    </th:block>
+                    <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
+                </div>
             </div>
         </div>
     </div>
 </body>
+<footer>
+    <div th:insert="fragments/pop-footer :: popFooter()"></div>
+</footer>
 </html>
