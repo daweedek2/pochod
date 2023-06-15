@@ -58,7 +58,7 @@ public class StampService implements StampApi {
             return new StampResultDTO(StampSubmitStatus.ALREADY_PRESENT);
         }
 
-        final Stamp submittedStamp =  stampRepository.save(new Stamp(TimeUtils.getCurrentTime(), stage, player));
+        stampRepository.save(new Stamp(TimeUtils.getCurrentTime(), stage, player));
 
         return new StampResultDTO(StampSubmitStatus.OK);
     }
@@ -133,6 +133,9 @@ public class StampService implements StampApi {
     }
 
     public void deleteStampsOfPlayer(final Player player) {
+        if (player == null) {
+            return;
+        }
         stampRepository.deleteAll(getAllStampsByPlayerOrdered(player));
     }
 

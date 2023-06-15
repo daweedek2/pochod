@@ -50,7 +50,6 @@ class StampServiceIntegrationTest extends AbstractIntegrationTest {
         assertThat(result.getStampSubmitStatus()).isEqualTo(StampSubmitStatus.REJECTED);
     }
 
-    /* TODO will be fixed in release_1.2022.2
     @Test
     void testSubmitStamp_Rejected_PlayerNotExists() {
         final Player player = createPlayer("pl", 1122);
@@ -60,7 +59,6 @@ class StampServiceIntegrationTest extends AbstractIntegrationTest {
 
         assertThat(result.getStampSubmitStatus()).isEqualTo(StampSubmitStatus.REJECTED);
     }
-     */
 
     @Test
     void testSubmitStamp_Rejected_WrongPinAndPlayerNotExists() {

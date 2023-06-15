@@ -45,11 +45,16 @@ public class PlayerService {
     }
 
     public Player getPlayerById(final Long id) {
-        return playerRepository.getById(id);
+        return playerRepository.findById(id).orElse(null);
     }
 
     public Player update(final PlayerAdminDTO dto) {
-        final Player player = getPlayerById(dto.id());
+        final var player = getPlayerById(dto.id());
+
+        if (player == null) {
+            return null;
+        }
+
         player.setNickname(dto.nickname());
         player.setEmail(dto.email());
         player.setPhoneNumber(dto.phoneNumber());
