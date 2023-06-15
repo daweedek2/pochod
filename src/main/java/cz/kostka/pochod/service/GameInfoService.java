@@ -15,16 +15,14 @@ import java.util.Optional;
 @Service
 public class GameInfoService {
     private final GameInfoRepository gameInfoRepository;
-    private final StageService stageService;
 
 
-    public GameInfoService(final GameInfoRepository gameInfoRepository, final StageService stageService) {
+    public GameInfoService(final GameInfoRepository gameInfoRepository) {
         this.gameInfoRepository = gameInfoRepository;
-        this.stageService = stageService;
     }
 
     public Optional<GameInfo> get() {
-        return gameInfoRepository.findById(1L);
+        return gameInfoRepository.findAll().stream().findFirst();
     }
 
     public GameInfo update(final GameInfoDTO gameInfoDTO) {
@@ -38,9 +36,5 @@ public class GameInfoService {
 
     private LocalDateTime toTimestamp(final String startGame) {
         return LocalDateTime.parse(startGame, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-    }
-
-    public int getAllStagesCount() {
-        return stageService.getAllStagesCount();
     }
 }

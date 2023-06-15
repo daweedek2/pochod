@@ -1,7 +1,6 @@
 package cz.kostka.pochod.service;
 
 import cz.kostka.pochod.enums.DiplomSize;
-import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
 import javax.imageio.ImageIO;
@@ -13,10 +12,12 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-@Service
-public class DiplomService {
+public final class DiplomCreator {
 
-    public void download(
+    private DiplomCreator() {
+    }
+
+    public static void download(
             final String username,
             final HttpServletResponse response,
             final DiplomSize diplomSize)
