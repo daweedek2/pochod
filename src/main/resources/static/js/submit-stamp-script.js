@@ -20,7 +20,7 @@ function submitStamp(playerId, pin) {
         success: function () {
             console.log("stamp submit is successful")
             alert('Razítko bylo zaregistrováno.')
-            location.replace("/pop/stages");
+            location.replace("/pop/progress2");
         },
         error: function () {
             console.log("stamp submit failed")
