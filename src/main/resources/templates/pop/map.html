@@ -3,23 +3,27 @@
 <head th:replace="fragments/head :: head('Pop 2023')">
 </head>
 <body>
-<div th:insert="fragments/pop-header :: popHeader(${player.id}, ${player.nickname}, ${stamps})"></div>
-<div th:insert="fragments/endWarning :: endWarning(${hasGameEnded}, ${gameEndedTime}, ${isEndWarningActive})"></div>
-<div class="container">
-    <div class="row cypher-list">
-        <div class="col-sm-12">
-            <h1 class="login-form-header">Pochod okolo Polanky</h1>
-            <h1>Mapa</h1>
-            <div th:insert="fragments/openMapButton :: openMapButton(${mapUrl})"></div>
-            <div th:insert="fragments/mapPicture :: map(${mapUrl})"></div>
-            <a class="btn btn-secondary btn-square-md" href="/files_trasa/PoP_2022_Google.kml">Stažení souboru KML (Google)</a>
-            <a class="btn btn-secondary btn-square-md" href="/files_trasa/PoP_2022_Google.kmz">Stažení souboru KMZ (Google)</a>
-            <a class="btn btn-secondary btn-square-md" href="/files_trasa/mapy_cz.gpx">Stažení souboru GPX (Mapy.cz)</a>
-            <br>
-            <br>
-            <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
+    <div th:insert="fragments/pop-header :: popHeader(${player.id}, ${player.nickname}, ${stamps})"></div>
+    <div th:insert="fragments/endWarning :: endWarning(${hasGameEnded}, ${gameEndedTime}, ${isEndWarningActive})"></div>
+    <div th:insert="fragments/pop-title :: popTitle()"></div>
+    <div class="container">
+        <div class="row cypher-list">
+            <div class="col-sm-12">
+                <h2>Mapa</h2>
+                <div th:insert="fragments/mapPicture :: map(${mapUrl})"></div>
+                <div th:insert="fragments/openMapButton :: openMapButton(${mapUrl})"></div>
+                <br>
+                <a class="btn btn-secondary btn-square-md" href="/files_trasa/PoP_2022_Google.kml">Stažení souboru KML (Google)</a>
+                <a class="btn btn-secondary btn-square-md" href="/files_trasa/PoP_2022_Google.kmz">Stažení souboru KMZ (Google)</a>
+                <a class="btn btn-secondary btn-square-md" href="/files_trasa/mapy_cz.gpx">Stažení souboru GPX (Mapy.cz)</a>
+                <br>
+                <br>
+                <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
+            </div>
         </div>
     </div>
-</div>
 </body>
+<footer>
+    <div th:insert="fragments/pop-footer :: popFooter()"></div>
+</footer>
 </html>

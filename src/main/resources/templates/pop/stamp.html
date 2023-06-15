@@ -4,43 +4,46 @@
 </head>
 
 <body>
-<div th:insert="fragments/pop-header :: popHeader(${player.id}, ${player.nickname}, ${stamps})"></div>
-<div th:insert="fragments/endWarning :: endWarning(${hasGameEnded}, ${gameEndedTime}, ${isEndWarningActive})"></div>
-<div class="container">
-    <div class="row cypher-list">
-        <div class="col-sm-12">
-            <h1 class="login-form-header">Pochod okolo Polanky</h1>
-            <h1>Získat razítko</h1>
-            <h2>Jak na to?</h2>
-            <p>1. Povol používání kamery na zařízení</p>
-            <p>2. Zaměř QR kód a počkej na upozornění z aplikace</p>
-            <div>
-                <script th:src="@{/js/qr-scanner-script.js}"></script>
-                <div class="col">
-                    <div class="scanner" id="reader"></div>
+    <div th:insert="fragments/pop-header :: popHeader(${player.id}, ${player.nickname}, ${stamps})"></div>
+    <div th:insert="fragments/endWarning :: endWarning(${hasGameEnded}, ${gameEndedTime}, ${isEndWarningActive})"></div>
+    <div th:insert="fragments/pop-title :: popTitle()"></div>
+    <div class="container">
+        <div class="row cypher-list">
+            <div class="col-sm-12">
+                <h2>Získat razítko</h2>
+                <div>
+                    <script th:src="@{/js/qr-scanner-script.js}"></script>
+                    <div class="col">
+                        <div class="scanner" id="reader"></div>
+                    </div>
+                    <script type="text/javascript" th:inline="javascript">
+                        var playerId = [[${player.id}]]
+                        function onScanSuccess(qrCodeMessage) {
+                            submitStamp(playerId, qrCodeMessage)
+                            alert('Skenování proběhlo úspěšně. QR kód se ověřuje.')
+
+                        }
+                        function onScanError(errorMessage) {
+                            // alert('Skenování se nezdařilo.')
+                        }
+
+                        const html5QrCode = new Html5Qrcode(/* element id */ "reader");
+                        const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+                        html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess);
+                    </script>
                 </div>
-                <script type="text/javascript" th:inline="javascript">
-                    var playerId = [[${player.id}]]
-                    function onScanSuccess(qrCodeMessage) {
-                        submitStamp(playerId, qrCodeMessage)
-                        alert('Skenování proběhlo úspěšně. QR kód se ověřuje.')
-
-                    }
-                    function onScanError(errorMessage) {
-                        // alert('Skenování se nezdařilo.')
-                    }
-
-                    const html5QrCode = new Html5Qrcode(/* element id */ "reader");
-                    const config = { fps: 10, qrbox: { width: 250, height: 250 } };
-                    html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess);
-                </script>
+                <p>Jak na to?</p>
+                <p>1. Povol používání kamery na zařízení</p>
+                <p>2. Zaměř QR kód a počkej na upozornění z aplikace</p>
+                <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
             </div>
-            <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
         </div>
     </div>
-</div>
 <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 <script th:src="@{/js/submit-stamp-script.js}"></script>
 
 </body>
+<footer>
+    <div th:insert="fragments/pop-footer :: popFooter()"></div>
+</footer>
 </html>
