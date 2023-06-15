@@ -35,14 +35,14 @@ public class RegistrationService implements RegistrationApi {
             return RegistrationResponseDTO.alreadyPresent();
         }
 
-        return registerWithNormalizedUsername(registrationRequestDTO);
+        return registerInternal(registrationRequestDTO);
     }
 
-    private RegistrationResponseDTO registerWithNormalizedUsername(final RegistrationRequestDTO registrationRequestDTO) {
+    private RegistrationResponseDTO registerInternal(final RegistrationRequestDTO registrationRequestDTO) {
         final User newUser = userService.createUser(registrationRequestDTO);
         final Player newPlayer = playerService.createPlayer(registrationRequestDTO, newUser);
 
-        if (newUser == null) {
+        if (newUser == null || newPlayer == null) {
             return RegistrationResponseDTO.error();
         }
 
