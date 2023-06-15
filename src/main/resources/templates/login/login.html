@@ -27,8 +27,10 @@
                         <label for="remember-me" class="login-form-label">Pamatovat přihlášení</label>
                     </div>
 
-                    <div class="login-form-error-wrapper">
-                        <span th:if="${param.error != null}" class="login-form-error">Přihlášení se nezdařilo</span>
+                    <div class="login-form-error-wrapper" th:if="${#request.getParameter('error')}">
+                        <p class="login-form-error">Přihlášení se nezdařilo!</p>
+                        <p class="login-form-error">Špatně zadané jméno nebo heslo!</p>
+                        <br>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Přihlásit</button>
