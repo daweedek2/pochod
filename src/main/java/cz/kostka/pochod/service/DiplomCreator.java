@@ -11,8 +11,11 @@ import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.URL;
 
 public final class DiplomCreator {
+
+    private static final String DIPLOM_UTL_PATH = "https://pochod.valasskapolanka.cz/assets/img/";
 
     private DiplomCreator() {
     }
@@ -25,7 +28,7 @@ public final class DiplomCreator {
 
         prepareResponseHeaders(username, response);
         BufferedImage diplomImage = ImageIO
-                .read(ResourceUtils.getFile("classpath:static/img/diplom/" + getFileNameForSize(diplomSize)));
+                .read(ResourceUtils.getFile(DIPLOM_UTL_PATH + getFileNameForSize(diplomSize)));
         addUserNameToDiplomImage(username, diplomImage, diplomSize);
         attachDiplomToResponse(response, diplomImage);
     }
