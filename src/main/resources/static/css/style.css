@@ -679,7 +679,7 @@ td .btn-default {
     min-height:20pt;
 }
 .login-form-error{
-    color: white;
+    color: darkred;
 }
 
 ul.contact {
