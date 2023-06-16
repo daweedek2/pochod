@@ -2,7 +2,6 @@ package cz.kostka.pochod.service;
 
 import cz.kostka.pochod.enums.DiplomSize;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.util.ResourceUtils;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +11,6 @@ import java.awt.Font;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.URL;
 
 public final class DiplomCreator {
 
@@ -26,11 +24,8 @@ public final class DiplomCreator {
             throws IOException {
 
         prepareResponseHeaders(username, response);
-        final ClassPathResource file = new ClassPathResource("/static" +
-                "/img/diplom/" + getFileNameForSize(diplomSize));
-        BufferedImage diplomImage = ImageIO
-                .read(file.getInputStream());
-//                .read(ResourceUtils.getFile("file:/static/img/diplom/" + getFileNameForSize(diplomSize)));
+        BufferedImage diplomImage = ImageIO.read(
+                new ClassPathResource("/static/img/diplom/" + getFileNameForSize(diplomSize)).getInputStream());
         addUserNameToDiplomImage(username, diplomImage, diplomSize);
         attachDiplomToResponse(response, diplomImage);
     }
@@ -44,7 +39,7 @@ public final class DiplomCreator {
         // color of the username
         graphics.setColor(Color.BLACK);
         // font and size of the username
-        graphics.setFont(new Font("Arial black", Font.PLAIN, 60));
+        graphics.setFont(new Font("Arial black", Font.BOLD, 60));
         setUserNameToPossition(username, graphics, diplomSize);
     }
 
