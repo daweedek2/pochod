@@ -26,10 +26,10 @@ public final class DiplomCreator {
             throws IOException {
 
         prepareResponseHeaders(username, response);
-        final ClassPathResource file = new ClassPathResource("/main/static" +
+        final ClassPathResource file = new ClassPathResource("/static" +
                 "/img/diplom/" + getFileNameForSize(diplomSize));
         BufferedImage diplomImage = ImageIO
-                .read(file.getFile());
+                .read(file.getInputStream());
 //                .read(ResourceUtils.getFile("file:/static/img/diplom/" + getFileNameForSize(diplomSize)));
         addUserNameToDiplomImage(username, diplomImage, diplomSize);
         attachDiplomToResponse(response, diplomImage);
