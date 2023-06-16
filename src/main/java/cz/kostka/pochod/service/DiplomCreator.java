@@ -26,7 +26,7 @@ public final class DiplomCreator {
             throws IOException {
 
         prepareResponseHeaders(username, response);
-        final ClassPathResource file = new ClassPathResource("/static" +
+        final ClassPathResource file = new ClassPathResource("/main/static" +
                 "/img/diplom/" + getFileNameForSize(diplomSize));
         BufferedImage diplomImage = ImageIO
                 .read(file.getFile());
