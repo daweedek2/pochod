@@ -1,6 +1,7 @@
 package cz.kostka.pochod.service;
 
 import cz.kostka.pochod.enums.DiplomSize;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.ResourceUtils;
 
 import javax.imageio.ImageIO;
@@ -15,8 +16,6 @@ import java.net.URL;
 
 public final class DiplomCreator {
 
-    private static final String DIPLOM_UTL_PATH = "https://pochod.valasskapolanka.cz/assets/img/";
-
     private DiplomCreator() {
     }
 
@@ -27,8 +26,11 @@ public final class DiplomCreator {
             throws IOException {
 
         prepareResponseHeaders(username, response);
+        final ClassPathResource file = new ClassPathResource("/static" +
+                "/img/diplom/" + getFileNameForSize(diplomSize));
         BufferedImage diplomImage = ImageIO
-                .read(ResourceUtils.getFile(DIPLOM_UTL_PATH + getFileNameForSize(diplomSize)));
+                .read(file.getFile());
+//                .read(ResourceUtils.getFile("file:/static/img/diplom/" + getFileNameForSize(diplomSize)));
         addUserNameToDiplomImage(username, diplomImage, diplomSize);
         attachDiplomToResponse(response, diplomImage);
     }
