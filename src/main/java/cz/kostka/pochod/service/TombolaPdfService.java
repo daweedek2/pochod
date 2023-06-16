@@ -4,7 +4,6 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import cz.kostka.pochod.domain.Player;
-import cz.kostka.pochod.domain.Stage;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,15 +17,12 @@ public class TombolaPdfService extends AbstractPdfService {
 
     private final PlayerService playerService;
     private final StampService stampService;
-    private final StageService stageService;
 
     public TombolaPdfService(
             final PlayerService playerService,
-            final StampService stampService,
-            final StageService stageService) {
+            final StampService stampService) {
         this.playerService = playerService;
         this.stampService = stampService;
-        this.stageService = stageService;
     }
 
     @Override
@@ -38,13 +34,12 @@ public class TombolaPdfService extends AbstractPdfService {
 
     private void addPlayersToTable(final PdfPTable pdfTable) {
         final List<Player> allPlayers = playerService.getAllPlayers();
-        final List<Stage> allStages = stageService.getAllStages();
 
         final List<Player> playersWithAllStamps = allPlayers.stream()
-                .filter(player -> stampService.hasPlayerSubmittedAllStamps(player, allStages))
+                .filter(stampService::hasPlayerSubmittedAllStamps)
                 .collect(Collectors.toList());
 
-        if (playersWithAllStamps.size() == 0) {
+        if (playersWithAllStamps.isEmpty()) {
             printNoPlayerWithAllStamps(pdfTable);
             return;
         }
@@ -82,9 +77,5 @@ public class TombolaPdfService extends AbstractPdfService {
         cell.setPhrase(new Phrase(content));
         cell.setFixedHeight(125f);
         pdfTable.addCell(cell);
-    }
-
-    public int getNumberOfStages() {
-        return stageService.getAllStagesCount();
     }
 }
