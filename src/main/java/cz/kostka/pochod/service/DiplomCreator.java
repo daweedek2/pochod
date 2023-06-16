@@ -1,7 +1,10 @@
 package cz.kostka.pochod.service;
 
 import cz.kostka.pochod.enums.DiplomSize;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletResponse;
@@ -12,16 +15,20 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public final class DiplomCreator {
+@Component
+public class DiplomCreator {
+    private static final Logger log = LoggerFactory.getLogger(DiplomCreator.class);
 
-    private DiplomCreator() {
-    }
-
-    public static void download(
+    public void download(
             final String username,
             final HttpServletResponse response,
             final DiplomSize diplomSize)
             throws IOException {
+
+        if (response == null) {
+            log.error("Diplom cannot be created because response is NULL!");
+            return;
+        }
 
         prepareResponseHeaders(username, response);
         BufferedImage diplomImage = ImageIO.read(

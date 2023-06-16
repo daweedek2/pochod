@@ -67,13 +67,12 @@ public class ReportPdfService extends AbstractPdfService {
 
     private void addPlayersReportToTable(final PdfPTable pdfTable) {
         final List<Player> allPlayers = playerService.getAllPlayers();
-        final List<Stage> allStages = stageService.getAllStages();
         int counter = 1;
 
         for (final Player player : allPlayers) {
             pdfTable.addCell("\n"
                     + counter + " "
-                    + printAllStampsCollected(player, allStages)
+                    + printAllStampsCollected(player)
                     + player.getId() + " "
                     + player.getNickname());
             final PdfPTable playerStampsTable = getEmptyPdfTable(2, 75);
@@ -89,7 +88,7 @@ public class ReportPdfService extends AbstractPdfService {
         playerStampsTable.addCell(stamp.getTimestamp().format(DateTimeFormatter.ISO_TIME));
     }
 
-    private String printAllStampsCollected(final Player player, final List<Stage> allStages) {
-        return stampService.hasPlayerSubmittedAllStamps(player, allStages) ? "WINNER " : "";
+    private String printAllStampsCollected(final Player player) {
+        return stampService.hasPlayerSubmittedAllStamps(player) ? "WINNER " : "";
     }
 }
