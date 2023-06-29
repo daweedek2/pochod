@@ -7,7 +7,7 @@
     <nav class="navbar navbar-default navbar-grey">
         <div class="navbar-content">
             <a th:href="@{/successfulLogin}">
-                <p class="team-name" th:text="${id}">1200</p>
+                <p class="team-name" th:text="|ID: ${id}|">1200</p>
                 <p class="team-name" th:text="${name}">Franta Kůrka</p>
                 <p class="team-name" th:unless="${stamps==0}">
                     <i class="fas fa-beer-mug-empty" th:each="stamp:${#numbers.sequence(1, stamps)}"></i>
