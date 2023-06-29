@@ -33,7 +33,7 @@ public class Stage {
     @Column(nullable = false)
     private String pin;
 
-    @Column
+    @Column(length = 1000)
     private String info;
 
     @Column

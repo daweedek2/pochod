@@ -54,7 +54,7 @@
                 <div class="form-group">
                     <p><small>Pro oddělení řádků použij středník (;)</small></p>
                     <label for="info" class="login-form-label">Info</label>
-                    <textarea id="info" class="form-control" th:field="*{info}"></textarea>
+                    <textarea id="info" class="form-control" th:field="*{info}" rows="10" maxlength="1000"></textarea>
                     <p class="error" th:if="${#fields.hasErrors('info')}" th:errors="*{info}">Chyba - Info
                     </p>
                 </div>
