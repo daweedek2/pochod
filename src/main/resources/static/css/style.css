@@ -669,6 +669,11 @@ td .btn-default {
     color: black;
     /*font-weight: bolder;*/
 }
+
+.checkbox-red {
+    accent-color: red;
+}
+
 .login-form-submit-btn {
     margin-top: 20pt;
     font-weight: bold;
