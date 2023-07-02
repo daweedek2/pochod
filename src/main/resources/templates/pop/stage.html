@@ -30,7 +30,7 @@
                     <p th:text="${info}">Info</p>
                 </th:block>
                 <h2>GPS souřdnice</h2>
-                <p th:text="|${stage.location.x}E, ${stage.location.y}N|">18.0342303E, 49.2673764N</p>
+                <p th:text="|${#numbers.formatDecimal(stage.location.x, 0, 5)}E, ${#numbers.formatDecimal(stage.location.y, 0, 5)}N|">18.0342303E, 49.2673764N</p>
             </div>
         </div>
         <div class="row cypher-list">
