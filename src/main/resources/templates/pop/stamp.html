@@ -19,8 +19,8 @@
                     <script type="text/javascript" th:inline="javascript">
                         var playerId = [[${player.id}]]
                         function onScanSuccess(qrCodeMessage) {
-                            submitStamp(playerId, qrCodeMessage)
                             alert('Skenování proběhlo úspěšně. QR kód se ověřuje.')
+                            submitStamp(playerId, qrCodeMessage)
 
                         }
                         function onScanError(errorMessage) {
