@@ -9,6 +9,13 @@
                 <h1 class="login-form-header">Pochod okolo Polanky</h1>
                 <img src="/img/ikonka-large.jpg" alt="PoP 2023" class="img-billy"/>
 
+                <br>
+                <div class="login-form-error-wrapper" th:if="${#request.getParameter('error')}">
+                    <p class="login-form-error">Přihlášení se nezdařilo!</p>
+                    <p class="login-form-error">Špatně zadané jméno nebo heslo!</p>
+                    <br>
+                </div>
+
                 <form action="/login" th:action="@{/login}" method="post">
                     <input th:if="${_csrf}" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
@@ -25,12 +32,6 @@
                     <div class="form-group">
                         <input type="checkbox" class="checkbox" id="remember-me" name="remember-me"/>
                         <label for="remember-me" class="login-form-label">Pamatovat přihlášení</label>
-                    </div>
-
-                    <div class="login-form-error-wrapper" th:if="${#request.getParameter('error')}">
-                        <p class="login-form-error">Přihlášení se nezdařilo!</p>
-                        <p class="login-form-error">Špatně zadané jméno nebo heslo!</p>
-                        <br>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Přihlásit</button>
