@@ -49,7 +49,7 @@
 
     <div class="row cypher-list" th:unless="${newPlayer == true}">
         <div class="col-sm-12">
-            <h2>Hráči</h2>
+            <h2 th:text="|Hráči (${allPlayers.size()})|"></h2>
             <th:block th:each="player : ${allPlayers}">
             <div class="cypher">
                 <a th:href="@{/admin/players/{id}(id=${player.id})}">
