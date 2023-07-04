@@ -46,7 +46,7 @@
             </form>
             <div>
                 <a class="btn btn-secondary" href="#" th:href="@{/admin/players/delete/{id}(id=${player.id})}"
-                   th:attr="onclick='return confirm(\'' + 'Opravdu chcete smazat tým ' + ${player.nickname} + '?' + '\');'">
+                   th:attr="onclick='return confirm(\'' + 'Opravdu chcete smazat hráče ' + ${player.nickname} + '?' + '\');'">
                     Smazat
                 </a>
             </div>
