@@ -50,11 +50,13 @@ public class StatisticsService {
 
     private PlayerStatisticDTO fetchStatisticsForPlayer(final Player player) {
         final List<Stamp> stampsTakenByPlayerOrderer = stampService.getAllStampsByPlayerOrdered(player);
+        final var allStagesCount = stageService.getAllStages().size();
 
         if (stampsTakenByPlayerOrderer.isEmpty()) {
             return new PlayerStatisticDTO(
                     PlayerMapper.INSTANCE.playerToDTO(player),
                     0,
+                    allStagesCount,
                     null,
                     null
             );
@@ -63,6 +65,7 @@ public class StatisticsService {
         return new PlayerStatisticDTO(
                 PlayerMapper.INSTANCE.playerToDTO(player),
                 stampsTakenByPlayerOrderer.size(),
+                allStagesCount,
                 stampsTakenByPlayerOrderer.get(0).getTimestamp(),
                 stampsTakenByPlayerOrderer.get(stampsTakenByPlayerOrderer.size() - 1).getTimestamp()
         );
@@ -70,13 +73,14 @@ public class StatisticsService {
 
     private StageStatisticDTO fetchStatisticsForStage(final Stage stage) {
         final var stampsTaken = stampService.getStampsByStageOrdered(stage);
+        final var allPlayersCount = playerService.getAllPlayers().size();
 
         if (stampsTaken.isEmpty()) {
             return new StageStatisticDTO(
                     StageMapper.INSTANCE.stageToDTO(stage),
                     stampsTaken.size(),
-                    playerService.getAllPlayers().size(),
-                    getPercentage(stampsTaken.size(), playerService.getAllPlayers().size()),
+                    allPlayersCount,
+                    getPercentage(stampsTaken.size(), allPlayersCount),
                     null,
                     null,
                     null,

@@ -14,6 +14,8 @@
             <th:block th:each="stage : ${stageList}">
                 <div class="cypher">
                     <h2 class="col" th:text="|${stage.stage.number}. ${stage.stage.name}|"></h2>
+                </div>
+                <div class="cypher">
                     <div class="row align-items-center">
                         <div class="col">Úspěšnost:</div>
                         <div class="col statistic">
@@ -41,10 +43,11 @@
             <th:block th:each="player : ${playerList}">
                 <div class="cypher">
                     <h2 class="col" th:text="|${player.playerAdminDTO.id}. ${player.playerAdminDTO.nickname}|"></h2>
+                </div>
+            <div class="cypher">
                     <div class="row align-items-center">
                         <div class="col">Razítka:
-                            <span th:text="${player.stampsTakenNumber}"></span>
-                        </div>
+                            <span th:text="|${player.stampsTakenNumber} z ${player.allStagesCount}|"></span>                        </div>
                         <div class="col statistic">
                             <span th:unless="${player.firstStampTakenTimestamp} == null" th:text="|${#temporals.format(player.firstStampTakenTimestamp, 'HH:mm')}|"></span>
                              ...
@@ -52,22 +55,6 @@
                         </div>
                     </div>
                 </div>
-<!--                <div class="cypher" th:unless="${player.firstStampTakenTimestamp} == null">-->
-<!--                    <div class="row align-items-center">-->
-<!--                        <div class="col">První razítko:</div>-->
-<!--                        <div class="col statistic">-->
-<!--                            <span th:text="|${#temporals.format(player.firstStampTakenTimestamp, 'HH:mm')}|"></span>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="cypher" th:unless="${player.lastStampTakenTimestamp} == null">-->
-<!--                    <div class="row align-items-center">-->
-<!--                        <div class="col">Poslední razítko:</div>-->
-<!--                        <div class="col statistic">-->
-<!--                            <span th:text="|${#temporals.format(player.lastStampTakenTimestamp, 'HH:mm')}|"></span>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
             </th:block>
             <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
         </div>

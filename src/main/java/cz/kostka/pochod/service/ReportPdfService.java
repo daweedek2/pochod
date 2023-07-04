@@ -48,7 +48,7 @@ public class ReportPdfService extends AbstractPdfService {
 
         for (final Stage stage : allStages) {
             // add stage name as header
-            pdfTable.addCell("\n" + stage.getId() + ". " + stage.getName());
+            pdfTable.addCell("\n" + stage.getNumber() + ". " + stage.getName());
             final PdfPTable stageStampsTable = getEmptyPdfTable(3, 75);
             final List<Stamp> stageStamps = stampService.getStampsByStageOrdered(stage);
             int counter = 1;

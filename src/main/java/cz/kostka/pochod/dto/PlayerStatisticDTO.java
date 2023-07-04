@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 public record PlayerStatisticDTO(
         PlayerAdminDTO playerAdminDTO,
         Integer stampsTakenNumber,
+        Integer allStagesCount,
         LocalDateTime firstStampTakenTimestamp,
         LocalDateTime lastStampTakenTimestamp) {
 }
