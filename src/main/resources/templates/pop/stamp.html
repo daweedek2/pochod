@@ -19,7 +19,7 @@
                     <script type="text/javascript" th:inline="javascript">
                         var playerId = [[${player.id}]]
                         function onScanSuccess(qrCodeMessage) {
-                            location.replace("/pop/progress2");
+                            // location.replace("/pop/progress2");
                             alert('Skenování proběhlo úspěšně. QR kód se ověřuje.')
                             submitStamp(playerId, qrCodeMessage)
                         }
