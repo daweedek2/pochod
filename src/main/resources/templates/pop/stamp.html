@@ -20,7 +20,8 @@
                         var playerId = [[${player.id}]]
                         function onScanSuccess(qrCodeMessage) {
                             // location.replace("/pop/progress2");
-                            // alert('Skenování proběhlo úspěšně. QR kód se ověřuje.')
+                            html5QrCode.stop();
+                            alert('Skenování proběhlo úspěšně. QR kód se ověřuje.')
                             submitStamp(playerId, qrCodeMessage)
                         }
                         function onScanError(errorMessage) {
