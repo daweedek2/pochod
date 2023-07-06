@@ -19,13 +19,13 @@ function submitStamp(playerId, pin) {
         },
         success: function () {
             console.log("stamp submit is successful")
-            alert('Razítko bylo zaregistrováno.')
             location.replace("/pop/progress2");
+            alert('Razítko bylo zaregistrováno.')
         },
         error: function () {
             console.log("stamp submit failed")
-            alert('Skenování se nezdařilo. QR kód nebyl rozpoznán.')
             location.replace("/pop");
+            alert('Skenování se nezdařilo. QR kód nebyl rozpoznán.')
         }
     });
 }
