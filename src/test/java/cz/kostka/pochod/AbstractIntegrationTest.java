@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @SpringBootTest
 @Transactional
-@Sql(scripts = "classpath:/data.sql")
+@Sql(scripts = "classpath:/test-data.sql")
 public class AbstractIntegrationTest {
     @Autowired
     private StageService stageService;
