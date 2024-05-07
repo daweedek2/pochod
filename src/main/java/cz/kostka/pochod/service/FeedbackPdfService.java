@@ -4,6 +4,7 @@ import com.lowagie.text.pdf.PdfPTable;
 import cz.kostka.pochod.domain.Feedback;
 import org.springframework.stereotype.Service;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ public class FeedbackPdfService extends AbstractPdfService {
     PdfPTable createTableWithData() {
         final PdfPTable pdfTable = super.getEmptyPdfTable(2, 100);
         pdfTable.addCell("Hráč");
+        pdfTable.addCell("Čas");
         pdfTable.addCell("Feedback");
         addFeedbacksToTable(pdfTable);
         return pdfTable;
@@ -32,11 +34,13 @@ public class FeedbackPdfService extends AbstractPdfService {
 
         if (allFeedbacks.isEmpty()) {
             pdfTable.addCell("Zadny hrac");
+            pdfTable.addCell("zatim");
             pdfTable.addCell("Nenechal zadny feedback");
         }
 
         for (final Feedback feedback : allFeedbacks) {
             pdfTable.addCell(feedback.getPlayer().getNickname());
+            pdfTable.addCell(feedback.getTimestamp().format(DateTimeFormatter.ISO_TIME));
             pdfTable.addCell(feedback.getText());
         }
     }

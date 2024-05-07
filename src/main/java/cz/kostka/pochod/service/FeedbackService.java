@@ -4,6 +4,7 @@ import cz.kostka.pochod.domain.Feedback;
 import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.dto.FeedbackDTO;
 import cz.kostka.pochod.repository.FeedbackRepository;
+import cz.kostka.pochod.util.TimeUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +26,8 @@ public class FeedbackService {
         return feedbackRepository
                 .save(new Feedback(
                         feedbackDTO.text(),
-                        getPlayer(feedbackDTO.playerId())));
+                        getPlayer(feedbackDTO.playerId()),
+                        TimeUtils.getCurrentTime()));
     }
 
     public List<Feedback> getAllFeedbacksByPlayer(final Long playerId) {

@@ -1,13 +1,7 @@
 package cz.kostka.pochod.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 /**
  * Created by dkostka on 6/30/2022.
@@ -23,6 +17,9 @@ public class Feedback {
     @Column(length = 4000)
     private String text;
 
+    @Column
+    private LocalDateTime timestamp;
+
     @ManyToOne
     @JoinColumn(name = "player_id")
     private Player player;
@@ -30,15 +27,17 @@ public class Feedback {
     public Feedback() {
     }
 
-    public Feedback(final Long id, final String text, final Player player) {
+    public Feedback(final Long id, final String text, final LocalDateTime timestamp, final Player player) {
         this.id = id;
         this.text = text;
+        this.timestamp = timestamp;
         this.player = player;
     }
 
-    public Feedback(final String text, final Player player) {
+    public Feedback(final String text, final Player player, final LocalDateTime timestamp) {
         this.text = text;
         this.player = player;
+        this.timestamp = timestamp;
     }
 
     public Long getId() {
@@ -55,6 +54,14 @@ public class Feedback {
 
     public void setText(final String text) {
         this.text = text;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
     }
 
     public Player getPlayer() {
