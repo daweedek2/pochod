@@ -39,6 +39,9 @@ public class Stage {
     @Column
     private String color;
 
+    @Column
+    private int year;
+
     public Stage() {
     }
 
@@ -49,7 +52,8 @@ public class Stage {
             final Point location,
             final String pin,
             final String info,
-            final String color) {
+            final String color,
+            final int year) {
         this.id = id;
         this.name = name;
         this.number = number;
@@ -57,6 +61,7 @@ public class Stage {
         this.pin = pin;
         this.info = info;
         this.color = color;
+        this.year = year;
     }
 
     public Stage(
@@ -65,13 +70,15 @@ public class Stage {
             final Point location,
             final String pin,
             final String info,
-            final String color) {
+            final String color,
+            final int year) {
         this.name = name;
         this.number = number;
         this.location = location;
         this.pin = pin;
         this.info = info;
         this.color = color;
+        this.year = year;
     }
 
     public Long getId() {
@@ -128,5 +135,13 @@ public class Stage {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 }
