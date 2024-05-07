@@ -31,15 +31,3 @@ INSERT INTO user_role(user_id, role_id)
 SELECT 2, 2
     WHERE NOT EXISTS(
     SELECT * FROM user_role WHERE user_id = 2 AND role_id = 2);
-
--- year 2023 data:
-
-INSERT INTO public.game_info (id, map_url, partners, start_game, end_game) VALUES (1, 'https://www.google.com/maps/d/edit?mid=1SZtqKoT6KsR1jtIXcfyw1104VoXloWk&usp=sharing', 'Agrospol Lužná;
-Cash&Carry Salvetová;
-Dřevoobchod Liška;
-Jiří Daněk - Invia Prostějov;
-Obec Prlov;
-Obec Valašská Polanka;
-Pivní Anděl Zlín;
-Pivovar Hubertus Kácov;
-Stavebniny Tradix Vsetín;', '2023-07-05 14:00:00', '2023-07-05 20:00:00');
