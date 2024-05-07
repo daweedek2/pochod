@@ -9,12 +9,12 @@ import java.time.LocalDateTime;
  * Created by dkostka on 6/30/2022.
  */
 @Entity
-@SequenceGenerator(name = "seq-feedback", initialValue = DomainConfiguration.INITIAL_VALUE, allocationSize = 1)
+@SequenceGenerator(name = "seqFeedback", initialValue = DomainConfiguration.INITIAL_VALUE, allocationSize = 1)
 @Table(name = "pop_feedback")
 public class Feedback {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqFeedback")
     private Long id;
 
     @Column(length = 4000)

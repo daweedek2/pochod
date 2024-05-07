@@ -10,11 +10,11 @@ import java.util.Set;
  * Created by dkostka on 5/29/2022.
  */
 @Entity
-@SequenceGenerator(name = "seq-user", initialValue = DomainConfiguration.INITIAL_VALUE, allocationSize = 1)
+@SequenceGenerator(name = "seqUser", initialValue = DomainConfiguration.INITIAL_VALUE, allocationSize = 1)
 @Table(name = "pop_user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "seq2")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "seqUser")
     @Column(name = "id")
     private Long id;
 

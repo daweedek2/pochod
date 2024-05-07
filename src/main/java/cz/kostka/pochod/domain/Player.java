@@ -8,11 +8,11 @@ import javax.persistence.*;
  * Created by dkostka on 2/6/2022.
  */
 @Entity
-@SequenceGenerator(name = "seq-player", initialValue = DomainConfiguration.INITIAL_VALUE, allocationSize = 1)
+@SequenceGenerator(name = "seqPlayer", initialValue = DomainConfiguration.INITIAL_VALUE, allocationSize = 1)
 @Table(name = "pop_player")
 public class Player {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqPlayer")
     private Long id;
 
     @Column(nullable = false, unique = true)

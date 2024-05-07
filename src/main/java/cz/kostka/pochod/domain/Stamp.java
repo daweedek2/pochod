@@ -9,12 +9,12 @@ import java.time.LocalDateTime;
  * Created by dkostka on 2/6/2022.
  */
 @Entity
-@SequenceGenerator(name = "seq-stamp", initialValue = DomainConfiguration.INITIAL_VALUE, allocationSize = 1)
+@SequenceGenerator(name = "seqStamp", initialValue = DomainConfiguration.INITIAL_VALUE, allocationSize = 1)
 @Table(name = "pop_stamp")
 public class Stamp {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqStamp")
     private Long id;
 
     @Column
