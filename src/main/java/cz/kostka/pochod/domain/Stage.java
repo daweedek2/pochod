@@ -1,19 +1,16 @@
 package cz.kostka.pochod.domain;
 
 
+import cz.kostka.pochod.configuration.DomainConfiguration;
 import org.springframework.data.geo.Point;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by dkostka on 2/6/2022.
  */
 @Entity
+@SequenceGenerator(name = "seq", initialValue = DomainConfiguration.INITIAL_VALUE, allocationSize = 1)
 @Table(name = "pop_stage")
 public class Stage {
 

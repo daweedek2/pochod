@@ -1,17 +1,15 @@
 package cz.kostka.pochod.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import cz.kostka.pochod.configuration.DomainConfiguration;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
  * Created by dkostka on 6/20/2022.
  */
 @Entity
+@SequenceGenerator(name = "seq", initialValue = DomainConfiguration.INITIAL_VALUE, allocationSize = 1)
 @Table
 public class GameInfo {
 

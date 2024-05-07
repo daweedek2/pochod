@@ -1,5 +1,7 @@
 package cz.kostka.pochod.domain;
 
+import cz.kostka.pochod.configuration.DomainConfiguration;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.Set;
@@ -8,7 +10,7 @@ import java.util.Set;
  * Created by dkostka on 5/29/2022.
  */
 @Entity
-@SequenceGenerator(name = "seq2", initialValue = 2000, allocationSize = 1)
+@SequenceGenerator(name = "seq", initialValue = DomainConfiguration.INITIAL_VALUE, allocationSize = 1)
 @Table(name = "pop_user")
 public class User {
     @Id
