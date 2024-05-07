@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
  * Created by dkostka on 6/30/2022.
  */
 @Entity
-@SequenceGenerator(name = "seq", initialValue = DomainConfiguration.INITIAL_VALUE, allocationSize = 1)
+@SequenceGenerator(name = "seq-feedback", initialValue = DomainConfiguration.INITIAL_VALUE, allocationSize = 1)
 @Table(name = "pop_feedback")
 public class Feedback {
 

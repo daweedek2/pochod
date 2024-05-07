@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
  * Created by dkostka on 2/6/2022.
  */
 @Entity
-@SequenceGenerator(name = "seq", initialValue = DomainConfiguration.INITIAL_VALUE, allocationSize = 1)
+@SequenceGenerator(name = "seq-stamp", initialValue = DomainConfiguration.INITIAL_VALUE, allocationSize = 1)
 @Table(name = "pop_stamp")
 public class Stamp {
 
