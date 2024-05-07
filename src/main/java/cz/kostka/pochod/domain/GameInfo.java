@@ -31,12 +31,15 @@ public class GameInfo {
     @Column
     private String mapUrl;
 
-    public GameInfo(final Long id, final LocalDateTime startGame, final LocalDateTime endGame, final String partners, final String mapUrl) {
+    @Column int year;
+
+    public GameInfo(final Long id, final LocalDateTime startGame, final LocalDateTime endGame, final String partners, final String mapUrl, final int year) {
         this.id = id;
         this.startGame = startGame;
         this.endGame = endGame;
         this.partners = partners;
         this.mapUrl = mapUrl;
+        this.year = year;
     }
 
     public GameInfo() {
@@ -80,5 +83,13 @@ public class GameInfo {
 
     public void setMapUrl(final String mapUrl) {
         this.mapUrl = mapUrl;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 }
