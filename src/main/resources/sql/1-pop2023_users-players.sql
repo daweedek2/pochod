@@ -7,8 +7,8 @@
 -- Data for Name: pop_user; Type: TABLE DATA; Schema: public; Owner: yvfqbqqqabpzca
 --
 
-INSERT INTO public.pop_user (id, password, username) VALUES (1, '$2a$12$gzQQy9oVY1v20qWzIcfWP.fp0FSWOV01c7tM5gfdwR9v8c6QoAyEW', 'admin');
-INSERT INTO public.pop_user (id, password, username) VALUES (2, '$2a$10$7s.PnBW19pd8y7dgYrxDCeSflx4P/QI4Mk3TOuoBHLIEt2qQna9wG', 'organizator');
+-- INSERT INTO public.pop_user (id, password, username) VALUES (1, '$2a$12$gzQQy9oVY1v20qWzIcfWP.fp0FSWOV01c7tM5gfdwR9v8c6QoAyEW', 'admin');
+-- INSERT INTO public.pop_user (id, password, username) VALUES (2, '$2a$10$7s.PnBW19pd8y7dgYrxDCeSflx4P/QI4Mk3TOuoBHLIEt2qQna9wG', 'organizator');
 INSERT INTO public.pop_user (id, password, username) VALUES (1001, '$2a$10$9fOPGgITlvz55r1E2XappeW9afFJ.c6KL3VXjkFdRn54zmYZ2/RNm', 'Pavel');
 INSERT INTO public.pop_user (id, password, username) VALUES (1003, '$2a$10$qMEss1/Fk7bo9isV0IKP1eZKvi1ys.dF0lb.9CxahhxFPnODPYVcS', 'Johana');
 INSERT INTO public.pop_user (id, password, username) VALUES (1004, '$2a$10$EN0KH1HRmqFeEU0av3k6O.i5V44H8AoXygqjgZK4bFCj30BkssMZa', 'Sepletinho');
@@ -232,8 +232,8 @@ INSERT INTO public.pop_user (id, password, username) VALUES (1221, '$2a$10$1bS8I
 -- Data for Name: user_role; Type: TABLE DATA; Schema: public; Owner: yvfqbqqqabpzca
 --
 
-INSERT INTO public.user_role (user_id, role_id) VALUES (1, 1);
-INSERT INTO public.user_role (user_id, role_id) VALUES (2, 2);
+-- INSERT INTO public.user_role (user_id, role_id) VALUES (1, 1);
+-- INSERT INTO public.user_role (user_id, role_id) VALUES (2, 2);
 INSERT INTO public.user_role (user_id, role_id) VALUES (1001, 3);
 INSERT INTO public.user_role (user_id, role_id) VALUES (1003, 3);
 INSERT INTO public.user_role (user_id, role_id) VALUES (1004, 3);

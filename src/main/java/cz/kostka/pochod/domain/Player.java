@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by dkostka on 2/6/2022.
  */
 @Entity
-@SequenceGenerator(name = "seq", initialValue = 1000, allocationSize = 1)
+@SequenceGenerator(name = "seq", initialValue = 2000, allocationSize = 1)
 @Table(name = "pop_player")
 public class Player {
     @Id

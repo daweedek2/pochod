@@ -6,29 +6,29 @@
 -- Data for Name: pop_stage; Type: TABLE DATA; Schema: public; Owner: yvfqbqqqabpzca
 --
 
-INSERT INTO public.pop_stage (id, info, location, name, number, pin, color) VALUES (2, '- Radegast 10°, 12°;
+INSERT INTO public.pop_stage (id, info, location, name, number, pin, color, year) VALUES (2, '- Radegast 10°, 12°;
 - Birell Pomelo, Kofola, Pomeranč;
 - Radegast Ratar;
 ;
-K občerstvení kyselice, vepřový steak, topinka s kuřecí směsí...', '\xaced0005737200226f72672e737072696e676672616d65776f726b2e646174612e67656f2e506f696e7431b9e90ef11a4006020002440001784400017978704031fefaff3dc43b4048a19f54f65960', 'Hospoda U NÁS', 1, '1. hospoda U NÁS', 'color: green;');
-INSERT INTO public.pop_stage (id, info, location, name, number, pin, color) VALUES (3, 'CYKLOPARTYJA VALAŠSKÁ POLANKA;
+K občerstvení kyselice, vepřový steak, topinka s kuřecí směsí...', '\xaced0005737200226f72672e737072696e676672616d65776f726b2e646174612e67656f2e506f696e7431b9e90ef11a4006020002440001784400017978704031fefaff3dc43b4048a19f54f65960', 'Hospoda U NÁS', 1, '1. hospoda U NÁS', 'color: green;', 2023);
+INSERT INTO public.pop_stage (id, info, location, name, number, pin, color, year) VALUES (3, 'CYKLOPARTYJA VALAŠSKÁ POLANKA;
 ;
 - Radegast 10°;
 - Birell;
 - malinovka;
-- k jídlu speciality od Cyklopartyje!', '\xaced0005737200226f72672e737072696e676672616d65776f726b2e646174612e67656f2e506f696e7431b9e90ef11a4006020002440001784400017978704032053783240c4f4048a2cdba329655', 'NA TOČNĚ', 2, '2. NA TOČNĚ', 'color: red;');
-INSERT INTO public.pop_stage (id, info, location, name, number, pin, color) VALUES (4, 'SDH Valašská Polanka;
+- k jídlu speciality od Cyklopartyje!', '\xaced0005737200226f72672e737072696e676672616d65776f726b2e646174612e67656f2e506f696e7431b9e90ef11a4006020002440001784400017978704032053783240c4f4048a2cdba329655', 'NA TOČNĚ', 2, '2. NA TOČNĚ', 'color: red;', 2023);
+INSERT INTO public.pop_stage (id, info, location, name, number, pin, color, year) VALUES (4, 'SDH Valašská Polanka;
 ;
 - Radegast 10°;
 - Birell;
 - malinovka;
-- k zakousnutí výborné ... od hasičů;', '\xaced0005737200226f72672e737072696e676672616d65776f726b2e646174612e67656f2e506f696e7431b9e90ef11a400602000244000178440001797870403207ac8f3fa3844048a217a02fb5d0', 'NA VYHLÍDCE', 3, '3. NA VYHLÍDCE', 'color: purple;');
-INSERT INTO public.pop_stage (id, info, location, name, number, pin, color) VALUES (5, 'Myslivecký spolek Hrubá dolina Valašská Polanka;
+- k zakousnutí výborné ... od hasičů;', '\xaced0005737200226f72672e737072696e676672616d65776f726b2e646174612e67656f2e506f696e7431b9e90ef11a400602000244000178440001797870403207ac8f3fa3844048a217a02fb5d0', 'NA VYHLÍDCE', 3, '3. NA VYHLÍDCE', 'color: purple;', 2023);
+INSERT INTO public.pop_stage (id, info, location, name, number, pin, color, year) VALUES (5, 'Myslivecký spolek Hrubá dolina Valašská Polanka;
 ;
 - Radegast 10°;
 - malinovka;
-- zvěřinové speciality od myslivců, guláš, udírna...', '\xaced0005737200226f72672e737072696e676672616d65776f726b2e646174612e67656f2e506f696e7431b9e90ef11a4006020002440001784400017978704032050b0f27bb304048a15ae7ad22e3', 'V DUGLASCE', 4, '4. V DUGLASCE', 'color: blue;');
-INSERT INTO public.pop_stage (id, info, location, name, number, pin, color) VALUES (6, '- Radegast 10°;
+- zvěřinové speciality od myslivců, guláš, udírna...', '\xaced0005737200226f72672e737072696e676672616d65776f726b2e646174612e67656f2e506f696e7431b9e90ef11a4006020002440001784400017978704032050b0f27bb304048a15ae7ad22e3', 'V DUGLASCE', 4, '4. V DUGLASCE', 'color: blue;', 2023);
+INSERT INTO public.pop_stage (id, info, location, name, number, pin, color, year) VALUES (6, '- Radegast 10°;
 - Kanec 10°;
 - Hubertus 12° Kvasničák;
 - malinovka;
@@ -36,7 +36,7 @@ INSERT INTO public.pop_stage (id, info, location, name, number, pin, color) VALU
 - k zakousnutí velký výběr jídla;
 - mobilní kavárna U nás kafe z Lipiny;
 - speciality z La Tazza Bistro ze Vsetína;
-KAPELA - ASTMATIC k tanci i poslechu, tombola-letos losovaná na tanečním kole, překvapení z nebes!', '\xaced0005737200226f72672e737072696e676672616d65776f726b2e646174612e67656f2e506f696e7431b9e90ef11a4006020002440001784400017978704031ff843de7c21c4048a0bd58bb82f8', 'NA KOLE', 5, '5.NA KOLE', 'color: grey;');
+KAPELA - ASTMATIC k tanci i poslechu, tombola-letos losovaná na tanečním kole, překvapení z nebes!', '\xaced0005737200226f72672e737072696e676672616d65776f726b2e646174612e67656f2e506f696e7431b9e90ef11a4006020002440001784400017978704031ff843de7c21c4048a0bd58bb82f8', 'NA KOLE', 5, '5.NA KOLE', 'color: grey;', 2023);
 
 
 --
