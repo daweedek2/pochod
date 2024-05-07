@@ -48,7 +48,8 @@ class GameInfoServiceIntegrationTest extends AbstractIntegrationTest {
                         "2023-06-11T08:37",
                         "2023-06-11T10:37",
                         "b",
-                        "www.ef.at"));
+                        "www.ef.at",
+                        LocalDateTime.now().getYear()));
 
         assertThat(gameInfoRepository.findAll())
                 .hasSize(1);
@@ -77,7 +78,8 @@ class GameInfoServiceIntegrationTest extends AbstractIntegrationTest {
                             "2023-06-11T08:37",
                             "2023-06-11T10:37",
                             "b",
-                            "www.ef.at"));
+                            "www.ef.at",
+                            LocalDateTime.now().getYear()));
         }
 
 
@@ -103,6 +105,7 @@ class GameInfoServiceIntegrationTest extends AbstractIntegrationTest {
                 LocalDateTime.parse("2023-06-10T08:37"),
                 LocalDateTime.parse("2023-06-10T10:37"),
                 "a",
-                "www.se.se");
+                "www.se.se",
+                LocalDateTime.now().getYear());
     }
 }

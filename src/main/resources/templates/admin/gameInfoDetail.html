@@ -40,6 +40,12 @@
                     <p class="error" th:if="${#fields.hasErrors('mapUrl')}" th:errors="*{mapUrl}">Chyba - mapUrl
                     </p>
                 </div>
+                <div class="form-group">
+                    <label for="year" class="input-value-required">Ročník</label>
+                    <input id="year" class="form-control" type="number" th:field="*{year}" required/>
+                    <p class="error" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Chyba - year
+                    </p>
+                </div>
                 <button type="submit" class="btn btn-primary">Uložit</button>
             </form>
         </div>
