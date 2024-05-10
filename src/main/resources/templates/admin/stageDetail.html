@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-6">
             <h1 class="login-form-header">Pochod okolo Polanky - ADMIN</h1>
-            <h1 th:text="|${stage.number}. ${stage.name}|">1. Stanoviště</h1>
+            <h1 th:text="${stage.name}">1. Stanoviště</h1>
             <h2>Počet razítek</h2>
             <p th:text="${stamps}"></p>
             <h2>QR code</h2>
@@ -45,6 +45,18 @@
                     </p>
                 </div>
                 <div class="form-group">
+                    <label for="year" class="login-form-label">Ročník</label>
+                    <input id="year" class="form-control" th:field="*{year}" type="number" required></input>
+                    <p class="error" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Chyba - Ročník
+                    </p>
+                </div>
+                <div class="form-group">
+                    <label for="distanceInMeters" class="login-form-label">Vzdálenost od začátku (m)</label>
+                    <input id="distanceInMeters" class="form-control" th:field="*{distanceInMeters}" type="number"></input>
+                    <p class="error" th:if="${#fields.hasErrors('distanceInMeters')}" th:errors="*{distanceInMeters}">Chyba - Vzdálenost
+                    </p>
+                </div>
+                <div class="form-group">
                     <p><small>Například: color: black; (;) taky!</small></p>
                     <label for="color" class="input-value-required">Barva razítka</label>
                     <textarea id="color" class="form-control" type="" th:field="*{color}"></textarea>
@@ -56,12 +68,6 @@
                     <label for="info" class="login-form-label">Info</label>
                     <textarea id="info" class="form-control" th:field="*{info}" rows="10" maxlength="1000"></textarea>
                     <p class="error" th:if="${#fields.hasErrors('info')}" th:errors="*{info}">Chyba - Info
-                    </p>
-                </div>
-                <div class="form-group">
-                    <label for="year" class="login-form-label">Ročník</label>
-                    <input id="year" class="form-control" th:field="*{year}" type="number"></input>
-                    <p class="error" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Chyba - Ročník
                     </p>
                 </div>
                 <button type="submit" class="btn btn-primary">Upravit</button>

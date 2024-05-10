@@ -53,7 +53,14 @@ public class StageService implements StageApi {
     }
 
     public Stage update(final StageAdminDTO dto) {
-        return stageRepository.save
-                (new Stage(dto.id(), dto.name(), dto.number(), dto.location(), dto.pin(), dto.info(), dto.color(), dto.year()));
+        return stageRepository.save(
+                new Stage(
+                        dto.id(), dto.name(), dto.number(),
+                        dto.location(), dto.pin(), dto.info(),
+                        dto.color(), dto.year(), dto.distanceInMeters()));
+    }
+
+    public List<Stage> getAllStagesByYear(final int year) {
+        return stageRepository.findAllByYearOrderByNumber(year);
     }
 }

@@ -10,7 +10,7 @@
     <div class="container">
         <div class="row cypher-list">
             <div class="col-sm-12">
-                <h2 th:text="|${stage.number}. ${stage.name}|">1. Stanoviště</h2>
+                <h2 th:text="${stage.name}">1. Stanoviště</h2>
                 <div th:if="${stamp.taken == false and hasGameEnded == false}">
                     <a class="btn btn-primary" th:href="@{/pop/stamp}" role="button">Získat razítko</a>
                 </div>
@@ -31,6 +31,8 @@
                 </th:block>
                 <h2>GPS souřdnice</h2>
                 <p th:text="|${#numbers.formatDecimal(stage.location.x, 0, 5)}E, ${#numbers.formatDecimal(stage.location.y, 0, 5)}N|">18.0342303E, 49.2673764N</p>
+                <h2>Vzdálenost od startu</h2>
+                <p th:text="|${#numbers.formatDecimal(stage.distanceInMeters / 1000, 0, 2)}km|">12.5 km</p>
             </div>
         </div>
         <div class="row cypher-list">
