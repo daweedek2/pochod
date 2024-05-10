@@ -51,9 +51,9 @@
                     </p>
                 </div>
                 <div class="form-group">
-                    <label for="distanceInMeters" class="login-form-label">Vzdálenost od začátku (m)</label>
-                    <input id="distanceInMeters" class="form-control" th:field="*{distanceInMeters}" type="number"></input>
-                    <p class="error" th:if="${#fields.hasErrors('distanceInMeters')}" th:errors="*{distanceInMeters}">Chyba - Vzdálenost
+                    <label for="distance" class="login-form-label">Vzdálenost od začátku (km)</label>
+                    <input id="distance" class="form-control" th:field="*{distance}" type="number"></input>
+                    <p class="error" th:if="${#fields.hasErrors('distance')}" th:errors="*{distance}">Chyba - Vzdálenost
                     </p>
                 </div>
                 <div class="form-group">

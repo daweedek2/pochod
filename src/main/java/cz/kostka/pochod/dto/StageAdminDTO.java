@@ -5,5 +5,5 @@ import org.springframework.data.geo.Point;
 /**
  * Created by dkostka on 6/14/2022.
  */
-public record StageAdminDTO(Long id, String name, Integer number, Point location, String pin, String info, String color, Integer year, Integer distanceInMeters, Double distance) {
+public record StageAdminDTO(Long id, String name, Integer number, Point location, String pin, String info, String color, Integer year, Double distance) {
 }

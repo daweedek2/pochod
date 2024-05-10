@@ -46,7 +46,7 @@ public class StagesController {
 
     @GetMapping("/new")
     public String createStage(@AuthenticationPrincipal final CustomUserDetails admin, final Model model) {
-        model.addAttribute("stageCreationDTO", new StageCreationDTO(null, null, null, null, null, null, null, null, null));
+        model.addAttribute("stageCreationDTO", new StageCreationDTO(null, null, null, null, null, null, null, null));
         model.addAttribute("newStage", true);
         return "admin/stages";
     }
