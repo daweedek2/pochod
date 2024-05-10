@@ -28,12 +28,15 @@
                         <a th:href="@{/pop/stages/{id}(id=${stage.id})}">
                             <div class="row align-items-center">
                                 <div class="col" th:text="${stage.name}">1. U zeleného háje</div>
-                                <div th:if="${stampsMap.get(stage.number).taken == true}"
-                                     class="col status"
-                                     th:style="${stage.color}">
-                                    <i class="fas fa-beer-mug-empty"></i>
-                                    <span th:text="${#temporals.format(stampsMap.get(stage.number).time, 'HH:mm')}"></span>
-                                </div>
+                                <th:block th:if="${stampsMap.get(stage.number).taken == true}">
+                                    <div class="col status" th:style="${stage.color}">
+                                        <i class="fas fa-beer-mug-empty"></i>
+                                        <span th:text="${#temporals.format(stampsMap.get(stage.number).time, 'HH:mm')}"></span>
+                                    </div>
+                                    <div class="col status" th:style="${stage.color}">
+                                        <span th:text="|${stage.distance} km|"></span>
+                                    </div>
+                                </th:block>
                             </div>
                         </a>
                     </div>
