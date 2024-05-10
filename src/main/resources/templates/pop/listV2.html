@@ -27,7 +27,7 @@
                     <div class="cypher">
                         <a th:href="@{/pop/stages/{id}(id=${stage.id})}">
                             <div class="row align-items-center">
-                                <div class="col" th:text="|${stage.number}. ${stage.name}|">1. U zeleného háje</div>
+                                <div class="col" th:text="${stage.name}">1. U zeleného háje</div>
                                 <div th:if="${stampsMap.get(stage.number).taken == true}"
                                      class="col status"
                                      th:style="${stage.color}">
