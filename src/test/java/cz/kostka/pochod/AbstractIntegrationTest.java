@@ -30,6 +30,6 @@ public class AbstractIntegrationTest {
     }
 
     public Stage createStage(final String name, final int number, final String pin) {
-        return stageService.create(new StageCreationDTO(name, number, null, pin, null, null, 2024, 1000));
+        return stageService.create(new StageCreationDTO(name, number, null, pin, null, null, 2024, 1000, 1.5));
     }
 }

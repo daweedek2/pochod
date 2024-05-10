@@ -32,7 +32,8 @@
                 <h2>GPS souřdnice</h2>
                 <p th:text="|${#numbers.formatDecimal(stage.location.x, 0, 5)}E, ${#numbers.formatDecimal(stage.location.y, 0, 5)}N|">18.0342303E, 49.2673764N</p>
                 <h2>Vzdálenost od startu</h2>
-                <p th:text="|${#numbers.formatDecimal(stage.distanceInMeters, 1, 2)}km|">12.5 km</p>
+                <p th:text="|${#numbers.formatDecimal(stage.distanceInMeters, 1, 2)} km|">12.5 km</p>
+                <p th:text="|${#numbers.formatDecimal(stage.distance, 1, 2)} km|">12.5 km</p>
             </div>
         </div>
         <div class="row cypher-list">

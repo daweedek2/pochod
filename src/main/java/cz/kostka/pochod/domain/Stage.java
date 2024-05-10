@@ -42,6 +42,9 @@ public class Stage {
     @Column
     private int distanceInMeters;
 
+    @Column
+    private double distance;
+
     public Stage() {
     }
 
@@ -54,7 +57,8 @@ public class Stage {
             final String info,
             final String color,
             final int year,
-            final int distanceInMeters) {
+            final int distanceInMeters,
+            final double distance) {
         this.id = id;
         this.name = name;
         this.number = number;
@@ -64,6 +68,7 @@ public class Stage {
         this.color = color;
         this.year = year;
         this.distanceInMeters = distanceInMeters;
+        this.distance = distance;
     }
 
     public Stage(
@@ -74,7 +79,8 @@ public class Stage {
             final String info,
             final String color,
             final int year,
-            final int distanceInMeters) {
+            final int distanceInMeters,
+            final double distance) {
         this.name = name;
         this.number = number;
         this.location = location;
@@ -83,6 +89,7 @@ public class Stage {
         this.color = color;
         this.year = year;
         this.distanceInMeters = distanceInMeters;
+        this.distance = distance;
     }
 
     public Long getId() {
@@ -155,5 +162,13 @@ public class Stage {
 
     public void setDistanceInMeters(final int distanceInMeters) {
         this.distanceInMeters = distanceInMeters;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(final double distance) {
+        this.distance = distance;
     }
 }
