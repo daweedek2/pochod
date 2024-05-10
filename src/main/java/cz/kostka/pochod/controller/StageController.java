@@ -61,6 +61,7 @@ public class StageController extends PlayerController {
                         stage.getName(),
                         stage.getInfo().split(";"),
                         stage.getLocation(),
-                        stage.getColor()));
+                        stage.getColor(),
+                        stage.getDistanceInMeters()));
     }
 }
