@@ -6,6 +6,7 @@ import cz.kostka.pochod.service.FeedbackService;
 import cz.kostka.pochod.service.GameInfoService;
 import cz.kostka.pochod.service.PlayerService;
 import cz.kostka.pochod.service.StampService;
+import cz.kostka.pochod.util.TimeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -39,7 +40,7 @@ public class FeedbackController extends PlayerController {
     @GetMapping
     public String getFeedbackView(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
         final Long playerId = user.getPlayer().getId();
-        setPlayerToModel(playerId, model);
+        setPlayerToModel(playerId, model, TimeUtils.getCurrentYear());
         setEndGameToModel(model);
         model.addAttribute("feedbackDTO", new FeedbackDTO(null, playerId));
         model.addAttribute("playersFeedbacks", feedbackService.getAllFeedbacksByPlayer(playerId));

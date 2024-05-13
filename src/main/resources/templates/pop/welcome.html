@@ -12,9 +12,7 @@
                 <h2>Kam dál?</h2>
                 <a th:if="${hasGameEnded == false and stamps != allStagesCount}" class="btn btn-primary btn-square-md" th:href="@{/pop/stamp}">Získat razítko</a>
                 <a th:if="${stamps == allStagesCount}" class="btn btn-primary btn-square-md" th:href="@{/pop/diplom}">Stáhnout diplom</a>
-<!--                <a class="btn btn-primary btn-square-md" th:href="@{/pop/progress}">Můj postup</a>-->
-                <a class="btn btn-primary btn-square-md" th:href="@{/pop/progress2}">Můj pochod</a>
-<!--                <a class="btn btn-primary btn-square-md" th:href="@{/pop/stages}">Stanoviště</a>-->
+                <a class="btn btn-primary btn-square-md" th:href="@{/pop/progress2/2024}">Můj pochod</a>
                 <a class="btn btn-primary btn-square-md" th:href="@{/pop/map}">Mapa</a>
                 <a class="btn btn-primary btn-square-md" th:href="@{/pop/partners}">Partneři</a>
                 <a class="btn btn-primary btn-square-md" th:href="@{/pop/feedback}">Feedback</a>
@@ -28,6 +26,12 @@
                 </a>
                     nebo <a href="https://pochod.valasskapolanka.cz">WEB</a></h2>
 
+            </div>
+        </div>
+        <div class="row cypher-list">
+            <div class="center-elements">
+                <h2>Uplynulé ročníky</h2>
+                <a class="btn btn-primary btn-square-md" th:href="@{/pop/progress2/2023}">10. ročník (2023)</a>
             </div>
         </div>
     </div>

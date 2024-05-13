@@ -11,7 +11,7 @@
         <div class="row cypher-list">
             <div class="col-sm-12">
                 <h2 th:text="${stage.name}">1. Stanoviště</h2>
-                <div th:if="${stamp.taken == false and hasGameEnded == false}">
+                <div th:if="${stamp.taken == false and hasGameEnded == false and stage.year() == year}">
                     <a class="btn btn-primary" th:href="@{/pop/stamp}" role="button">Získat razítko</a>
                 </div>
                 <div th:if="${stamp.taken == true}">

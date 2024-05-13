@@ -102,20 +102,20 @@ public class StampService implements StampApi {
                 .toList();
     }
 
-    public int getCountOfStagesWithStamp(final Player player) {
+    public int getCountOfStagesWithStamp(final Player player, final int year) {
         if (player == null) {
             return 0;
         }
 
-        return stageService.getAllStages(TimeUtils.getCurrentYear()).stream()
+        return stageService.getAllStages(year).stream()
                 .filter(stage -> !getStampsForPlayerAndStage(player, stage).isEmpty())
                 .toList()
                 .size();
     }
 
-    public Map<Integer, StampDTO> getStampsMapForUser(final Player player) {
-        final List<Stage> allStages = stageService.getAllStages(TimeUtils.getCurrentYear());
-        final List<Stamp> allStampsOfPlayer = getAllStampsByPlayerOrdered(player, TimeUtils.getCurrentYear());
+    public Map<Integer, StampDTO> getStampsMapForUser(final Player player, final int year) {
+        final List<Stage> allStages = stageService.getAllStages(year);
+        final List<Stamp> allStampsOfPlayer = getAllStampsByPlayerOrdered(player, year);
 
         final Map<Integer, StampDTO> stampDTOMap = new HashMap<>(allStages.size());
 

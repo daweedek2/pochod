@@ -10,6 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -32,35 +33,28 @@ public class PopController extends PlayerController {
 
     @GetMapping
     public String viewHome(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
-        setPlayerToModel(user.getPlayer().getId(), model);
+        setPlayerToModel(user.getPlayer().getId(), model, TimeUtils.getCurrentYear());
         setStartGameToModel(model);
         setEndGameToModel(model);
         model.addAttribute(AttributeConstants.ALL_STAGES_COUNT, stageService.getAllStagesCount(TimeUtils.getCurrentYear()));
         return "pop/welcome";
     }
 
-    @GetMapping("/progress")
-    public String viewProgress(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
-        setPlayerToModel(user.getPlayer().getId(), model);
-        setEndGameToModel(model);
-        model.addAttribute(AttributeConstants.ALL_STAGES_COUNT, stageService.getAllStagesCount(TimeUtils.getCurrentYear()));
-        return "pop/progress";
-    }
-
-    @GetMapping("/progress2")
-    public String viewProgressV2(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
-        setPlayerToModel(user.getPlayer().getId(), model);
+    @GetMapping("/progress2/{year}")
+    public String viewProgressV2(@AuthenticationPrincipal final CustomUserDetails user, @PathVariable final Integer year, final Model model) {
+        setPlayerToModel(user.getPlayer().getId(), model, year);
         setEndGameToModel(model);
         setMapUrlToModel(model);
-        model.addAttribute(AttributeConstants.ALL_STAGES, stageService.getAllStages(TimeUtils.getCurrentYear()));
-        model.addAttribute(AttributeConstants.STAMPS_MAP, getStampsMapForPlayer(user.getPlayer()));
-        model.addAttribute(AttributeConstants.ALL_STAGES_COUNT, stageService.getAllStagesCount(TimeUtils.getCurrentYear()));
+        setYearToModel(model, year);
+        model.addAttribute(AttributeConstants.ALL_STAGES, stageService.getAllStages(year));
+        model.addAttribute(AttributeConstants.STAMPS_MAP, getStampsMapForPlayer(user.getPlayer(), year));
+        model.addAttribute(AttributeConstants.ALL_STAGES_COUNT, stageService.getAllStagesCount(year));
         return "pop/listV2";
     }
 
     @GetMapping("/partners")
     public String viewPartners(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
-        setPlayerToModel(user.getPlayer().getId(), model);
+        setPlayerToModel(user.getPlayer().getId(), model, TimeUtils.getCurrentYear());
         setEndGameToModel(model);
         setPartnersToModel(model);
         return "pop/partners";
@@ -68,7 +62,7 @@ public class PopController extends PlayerController {
 
     @GetMapping("/map")
     public String getAllStages(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
-        setPlayerToModel(user.getPlayer().getId(), model);
+        setPlayerToModel(user.getPlayer().getId(), model, TimeUtils.getCurrentYear());
         setEndGameToModel(model);
         setMapUrlToModel(model);
         return "pop/map";

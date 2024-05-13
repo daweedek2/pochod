@@ -32,24 +32,15 @@ public class StageController extends PlayerController {
         this.stageService = stageService;
     }
 
-    @GetMapping
-    public String getAllStages(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
-        setPlayerToModel(user.getPlayer().getId(), model);
-        setEndGameToModel(model);
-        model.addAttribute("allStages", stageService.getAllStages(TimeUtils.getCurrentYear()));
-        model.addAttribute("stampsMap", getStampsMapForPlayer(user.getPlayer()));
-        setMapUrlToModel(model);
-        return "pop/list";
-    }
-
     @GetMapping("/{id}")
     public String getStageDetail(
             @PathVariable final Long id,
             @AuthenticationPrincipal final CustomUserDetails user,
             final Model model) {
-        setPlayerToModel(user.getPlayer().getId(), model);
         setEndGameToModel(model);
+        setYearToModel(model, TimeUtils.getCurrentYear());
         final var stage = stageService.getStageById(id);
+        setPlayerToModel(user.getPlayer().getId(), model, stage.getYear());
         setStageToModel(stage, model);
         model.addAttribute("stamp", getStampDTOForPlayerAndStage(user.getPlayer(), stage));
         return "pop/stage";
@@ -63,6 +54,7 @@ public class StageController extends PlayerController {
                         stage.getInfo().split(";"),
                         stage.getLocation(),
                         stage.getColor(),
-                        stage.getDistance()));
+                        stage.getDistance(),
+                        stage.getYear()));
     }
 }

@@ -40,10 +40,10 @@ public class PlayerController {
         this.gameInfoService = gameInfoService;
     }
 
-    public void setPlayerToModel(final Long playerId, final Model model) {
+    public void setPlayerToModel(final Long playerId, final Model model, final int year) {
         final Player player = playerService.getPlayerById(playerId);
         model.addAttribute(PLAYER_ATTR, player);
-        model.addAttribute(STAMPS_ATTR, stampService.getCountOfStagesWithStamp(player));
+        model.addAttribute(STAMPS_ATTR, stampService.getCountOfStagesWithStamp(player, year));
     }
 
     public void setStartGameToModel(final Model model) {
@@ -67,11 +67,16 @@ public class PlayerController {
         model.addAttribute(MAP_URL_ATTR, gameInfo.getMapUrl());
     }
 
-    public Map<Integer, StampDTO> getStampsMapForPlayer(final Player player) {
-        return stampService.getStampsMapForUser(player);
+    public Map<Integer, StampDTO> getStampsMapForPlayer(final Player player, final int year) {
+        return stampService.getStampsMapForUser(player, year);
     }
 
     public StampDTO getStampDTOForPlayerAndStage(final Player player, final Stage stage) {
         return stampService.getStampDTOForPlayerAndStage(player, stage);
+    }
+
+
+    public void setYearToModel(final Model model, final Integer year) {
+        model.addAttribute(AttributeConstants.YEAR, year);
     }
 }

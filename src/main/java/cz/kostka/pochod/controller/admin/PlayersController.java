@@ -7,6 +7,7 @@ import cz.kostka.pochod.security.CustomUserDetails;
 import cz.kostka.pochod.service.PlayerService;
 import cz.kostka.pochod.service.RegistrationService;
 import cz.kostka.pochod.service.StampService;
+import cz.kostka.pochod.util.TimeUtils;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -74,7 +75,7 @@ public class PlayersController {
     public String getPlayerDetail(final @PathVariable("id") Long id, final Model model) {
         final var player = playerService.getPlayerById(id);
         model.addAttribute("player", player);
-        model.addAttribute("stamps", stampService.getCountOfStagesWithStamp(player));
+        model.addAttribute("stamps", stampService.getCountOfStagesWithStamp(player, TimeUtils.getCurrentYear()));
         model.addAttribute("playerAdminDTO", PlayerMapper.INSTANCE.playerToDTO(player));
         return "admin/playerDetail";
     }
