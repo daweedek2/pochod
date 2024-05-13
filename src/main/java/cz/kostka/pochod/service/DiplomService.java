@@ -20,9 +20,9 @@ public class DiplomService {
         this.diplomCreator = diplomCreator;
     }
 
-    public void createDiplom(final Player player, final HttpServletResponse response) throws IOException {
-        if (stampService.hasPlayerSubmittedAllStamps(player)) {
-            diplomCreator.download(player.getNickname(), response, DiplomSize.BIG);
+    public void createDiplom(final Player player, final HttpServletResponse response, final int year) throws IOException {
+        if (stampService.hasPlayerSubmittedAllStamps(player, year)) {
+            diplomCreator.download(player.getNickname(), response, DiplomSize.BIG, year);
         }
     }
 }

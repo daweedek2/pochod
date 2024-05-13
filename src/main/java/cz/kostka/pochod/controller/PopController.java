@@ -44,7 +44,7 @@ public class PopController extends PlayerController {
     public String viewProgressV2(@AuthenticationPrincipal final CustomUserDetails user, @PathVariable final Integer year, final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model, year);
         setEndGameToModel(model);
-        setMapUrlToModel(model);
+        setMapUrlToModel(model, year);
         setYearToModel(model, year);
         model.addAttribute(AttributeConstants.ALL_STAGES, stageService.getAllStages(year));
         model.addAttribute(AttributeConstants.STAMPS_MAP, getStampsMapForPlayer(user.getPlayer(), year));
@@ -64,7 +64,7 @@ public class PopController extends PlayerController {
     public String getAllStages(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model, TimeUtils.getCurrentYear());
         setEndGameToModel(model);
-        setMapUrlToModel(model);
+        setMapUrlToModel(model, TimeUtils.getCurrentYear());
         return "pop/map";
     }
 }

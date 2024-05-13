@@ -4,6 +4,7 @@ import cz.kostka.pochod.AbstractIntegrationTest;
 import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.dto.StampRequestDTO;
 import cz.kostka.pochod.enums.DiplomSize;
+import cz.kostka.pochod.util.TimeUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -33,9 +34,9 @@ class DiplomServiceIntegrationTest extends AbstractIntegrationTest {
         createStage("first", 1, "one");
         stampService.submitStamp(new StampRequestDTO(player.getId(), "one"));
 
-        diplomService.createDiplom(player, null);
+        diplomService.createDiplom(player, null, TimeUtils.getCurrentYear());
 
-        verify(diplomCreatorMock).download("pepa", null, DiplomSize.BIG);
+        verify(diplomCreatorMock).download("pepa", null, DiplomSize.BIG, TimeUtils.getCurrentYear());
     }
 
     @Test
@@ -43,8 +44,8 @@ class DiplomServiceIntegrationTest extends AbstractIntegrationTest {
         final Player player = createPlayer("pepa", 5566);
         createStage("first", 1, "one");
 
-        diplomService.createDiplom(player, null);
+        diplomService.createDiplom(player, null, TimeUtils.getCurrentYear());
 
-        verify(diplomCreatorMock, never()).download("pepa", null, DiplomSize.BIG);
+        verify(diplomCreatorMock, never()).download("pepa", null, DiplomSize.BIG, TimeUtils.getCurrentYear());
     }
 }

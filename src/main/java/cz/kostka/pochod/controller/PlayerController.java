@@ -7,6 +7,7 @@ import cz.kostka.pochod.dto.StampDTO;
 import cz.kostka.pochod.service.GameInfoService;
 import cz.kostka.pochod.service.PlayerService;
 import cz.kostka.pochod.service.StampService;
+import cz.kostka.pochod.util.TimeUtils;
 import org.springframework.ui.Model;
 
 import java.util.Map;
@@ -62,9 +63,11 @@ public class PlayerController {
         model.addAttribute(PARTNERS_ATTR, gameInfo.getPartners().split(";"));
     }
 
-    public void setMapUrlToModel(final Model model) {
+    public void setMapUrlToModel(final Model model, final Integer year) {
         final GameInfo gameInfo = gameInfoService.get().orElse(new GameInfo());
-        model.addAttribute(MAP_URL_ATTR, gameInfo.getMapUrl());
+        if (year == TimeUtils.getCurrentYear()) {
+            model.addAttribute(MAP_URL_ATTR, gameInfo.getMapUrl());
+        }
     }
 
     public Map<Integer, StampDTO> getStampsMapForPlayer(final Player player, final int year) {

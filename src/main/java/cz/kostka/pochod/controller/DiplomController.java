@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletResponse;
@@ -26,12 +27,12 @@ public class DiplomController {
         this.diplomService = diplomService;
     }
 
-    @GetMapping
+    @GetMapping("/{year}")
     public void download(
-            @AuthenticationPrincipal final CustomUserDetails user, final HttpServletResponse response)
+            @AuthenticationPrincipal final CustomUserDetails user, final HttpServletResponse response, @PathVariable final int year)
             throws IOException {
-        LOG.info("User '{}' tries to download a diplom.", user.getUsername());
+        LOG.info("User '{}' tries to download a diplom for year {}.", user.getUsername(), year);
 
-        diplomService.createDiplom(user.getPlayer(), response);
+        diplomService.createDiplom(user.getPlayer(), response, year);
     }
 }

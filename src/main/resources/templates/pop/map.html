@@ -10,7 +10,7 @@
         <div class="row cypher-list">
             <div class="col-sm-12">
                 <h2>Mapa</h2>
-                <div th:insert="fragments/mapPicture :: map(${mapUrl})"></div>
+                <div th:insert="fragments/mapPicture :: map(${mapUrl}, 2024)"></div>
                 <div th:insert="fragments/openMapButton :: openMapButton(${mapUrl})"></div>
                 <br>
                 <a class="btn btn-secondary btn-square-md" href="/files_trasa/2023/PoP_2023.kml">Stažení souboru KML (Google)</a>

@@ -45,8 +45,8 @@
         </div>
         <div class="row cypher-list">
             <div class="col-sm-12">
-                <a th:if="${stamps == allStagesCount}" class="btn btn-primary btn-square-md" th:href="@{/pop/diplom}">Stáhnout diplom</a>
-                <div th:insert="fragments/mapPicture :: map(${mapUrl})"></div>
+                <a th:if="${stamps == allStagesCount}" class="btn btn-primary btn-square-md" th:href="@{/pop/diplom/{year}(year=${year})}">Stáhnout diplom</a>
+                <div th:insert="fragments/mapPicture :: map(${mapUrl}, ${year})"></div>
                 <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>
             </div>
         </div>

@@ -71,9 +71,9 @@ public class StampService implements StampApi {
         return new StampResultDTO(StampSubmitStatus.OK);
     }
 
-    public boolean hasPlayerSubmittedAllStamps(final Player player) {
-        final var playersStamps = this.getAllStampsByPlayerOrdered(player, TimeUtils.getCurrentYear());
-        final var allStages = stageService.getAllStages(TimeUtils.getCurrentYear());
+    public boolean hasPlayerSubmittedAllStamps(final Player player, final int year) {
+        final var playersStamps = this.getAllStampsByPlayerOrdered(player, year);
+        final var allStages = stageService.getAllStages(year);
         return allStages.stream()
                 .filter(stage ->
                         playersStamps.stream()

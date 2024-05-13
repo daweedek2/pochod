@@ -22,7 +22,8 @@ public class DiplomCreator {
     public void download(
             final String username,
             final HttpServletResponse response,
-            final DiplomSize diplomSize)
+            final DiplomSize diplomSize,
+            final int year)
             throws IOException {
 
         if (response == null) {
@@ -30,9 +31,9 @@ public class DiplomCreator {
             return;
         }
 
-        prepareResponseHeaders(username, response);
+        prepareResponseHeaders(username, response, year);
         BufferedImage diplomImage = ImageIO.read(
-                new ClassPathResource("/static/img/diplom/" + getFileNameForSize(diplomSize)).getInputStream());
+                new ClassPathResource("/static/img/diplom/" + getFileNameForSize(diplomSize, year)).getInputStream());
         addUserNameToDiplomImage(username, diplomImage, diplomSize);
         attachDiplomToResponse(response, diplomImage);
     }
@@ -61,10 +62,10 @@ public class DiplomCreator {
         graphics.drawString(username.toUpperCase(), xPosition, yPosition); // y 650 is okay
     }
 
-    private static String getFileNameForSize(final DiplomSize diplomSize) {
+    private static String getFileNameForSize(final DiplomSize diplomSize, final int year) {
         return switch (diplomSize) {
-            case SMALL -> "diplom_FIN_800px.jpg";
-            case BIG -> "diplom_FIN_1200px.jpg";
+            case SMALL -> "diplom%s_FIN_800px.jpg".formatted(year);
+            case BIG -> "diplom%s_FIN_1200px.jpg".formatted(year);
         };
     }
 
@@ -93,10 +94,10 @@ public class DiplomCreator {
         out.close();
     }
 
-    private static void prepareResponseHeaders(final String username, final HttpServletResponse response) {
+    private static void prepareResponseHeaders(final String username, final HttpServletResponse response, final int year) {
         response.setContentType("application/jpg");
         final String headerKey = "Content-Disposition";
-        final String headerValue = "attachment; filename=diplom_PoP2023_" + username + ".jpg";
+        final String headerValue = "attachment; filename=diplom_PoP%s_%s.jpg".formatted(year, username);
         response.setHeader(headerKey, headerValue);
     }
 }
