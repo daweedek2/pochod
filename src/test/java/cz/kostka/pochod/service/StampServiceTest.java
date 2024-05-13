@@ -28,13 +28,14 @@ class StampServiceTest {
     private PlayerService playerService;
     private StageService stageService;
     private StampService service;
+    private GameInfoService gameInfoService;
 
     @BeforeEach
     void setup() {
         stampRepository = Mockito.mock(StampRepository.class);
         playerService = Mockito.mock(PlayerService.class);
         stageService = Mockito.mock(StageService.class);
-        service = new StampService(stampRepository, playerService, stageService);
+        service = new StampService(stampRepository, playerService, stageService, gameInfoService);
     }
 
     @Test
@@ -58,10 +59,14 @@ class StampServiceTest {
 
     @Test
     void testGetAllStampsByPlayer() {
+        final Stage stage = new Stage();
+        stage.setYear(2024);
         final Stamp stamp = new Stamp(99L, null, null, null);
+        stamp.setStage(stage);
+
         when(stampRepository.findAllByPlayerOrderByTimestamp(any())).thenReturn(List.of(stamp));
 
-        final var result = service.getAllStampsByPlayerOrdered(new Player());
+        final var result = service.getAllStampsByPlayerOrdered(new Player(), 2024);
 
         assertThat(result).containsExactly(stamp);
     }
@@ -125,7 +130,7 @@ class StampServiceTest {
 
     @Test
     void testGetCountOfSubmittedStamps_NullPlayer() {
-        final int result = service.getCountOfStagesWithStamp(null);
+        final int result = service.getCountOfStagesWithStamp(null, 2024);
 
         assertThat(result).isZero();
     }

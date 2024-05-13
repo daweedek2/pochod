@@ -102,6 +102,10 @@ public class StampService implements StampApi {
                 .toList();
     }
 
+    public List<Stamp> getAllStampsByPlayerOrderedAdmin(final Player player) {
+        return stampRepository.findAllByPlayerOrderByTimestamp(player);
+    }
+
     public int getCountOfStagesWithStamp(final Player player, final int year) {
         if (player == null) {
             return 0;
@@ -148,7 +152,7 @@ public class StampService implements StampApi {
         if (player == null) {
             return;
         }
-        stampRepository.deleteAll(getAllStampsByPlayerOrdered(player, TimeUtils.getCurrentYear()));
+        stampRepository.deleteAll(getAllStampsByPlayerOrderedAdmin(player));
     }
 
     public void deleteStampsOfStage(final Long stageId) {
