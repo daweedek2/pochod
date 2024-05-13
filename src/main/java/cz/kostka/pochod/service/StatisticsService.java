@@ -7,6 +7,7 @@ import cz.kostka.pochod.dto.PlayerStatisticDTO;
 import cz.kostka.pochod.dto.StageStatisticDTO;
 import cz.kostka.pochod.mapper.PlayerMapper;
 import cz.kostka.pochod.mapper.StageMapper;
+import cz.kostka.pochod.util.TimeUtils;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -32,7 +33,7 @@ public class StatisticsService {
     }
 
     public List<StageStatisticDTO> collectStageStats() {
-        final List<Stage> allStages = stageService.getAllStages();
+        final List<Stage> allStages = stageService.getAllStages(TimeUtils.getCurrentYear());
 
         return allStages.stream()
                 .map(this::fetchStatisticsForStage)
@@ -49,8 +50,8 @@ public class StatisticsService {
     }
 
     private PlayerStatisticDTO fetchStatisticsForPlayer(final Player player) {
-        final List<Stamp> stampsTakenByPlayerOrderer = stampService.getAllStampsByPlayerOrdered(player);
-        final var allStagesCount = stageService.getAllStages().size();
+        final List<Stamp> stampsTakenByPlayerOrderer = stampService.getAllStampsByPlayerOrdered(player, TimeUtils.getCurrentYear());
+        final var allStagesCount = stageService.getAllStages(TimeUtils.getCurrentYear()).size();
 
         if (stampsTakenByPlayerOrderer.isEmpty()) {
             return new PlayerStatisticDTO(

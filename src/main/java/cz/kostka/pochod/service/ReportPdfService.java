@@ -4,6 +4,7 @@ import com.lowagie.text.pdf.PdfPTable;
 import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.domain.Stage;
 import cz.kostka.pochod.domain.Stamp;
+import cz.kostka.pochod.util.TimeUtils;
 import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeFormatter;
@@ -44,7 +45,7 @@ public class ReportPdfService extends AbstractPdfService {
     }
 
     private void addStagesReportToTable(final PdfPTable pdfTable) {
-        final List<Stage> allStages = stageService.getAllStages();
+        final List<Stage> allStages = stageService.getAllStages(TimeUtils.getCurrentYear());
 
         for (final Stage stage : allStages) {
             // add stage name as header
@@ -76,7 +77,7 @@ public class ReportPdfService extends AbstractPdfService {
                     + player.getId() + " "
                     + player.getNickname());
             final PdfPTable playerStampsTable = getEmptyPdfTable(2, 75);
-            stampService.getAllStampsByPlayerOrdered(player)
+            stampService.getAllStampsByPlayerOrdered(player, TimeUtils.getCurrentYear())
                     .forEach(stamp -> addPlayersStampToTable(stamp, playerStampsTable));
             pdfTable.addCell(playerStampsTable);
             counter++;

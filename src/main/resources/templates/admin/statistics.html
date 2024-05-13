@@ -13,7 +13,7 @@
             <h1>Statistiky</h1>
             <th:block th:each="stage : ${stageList}">
                 <div class="cypher">
-                    <h2 class="col" th:text="|${stage.stage.number}. ${stage.stage.name}|"></h2>
+                    <h2 class="col" th:text="${stage.stage.name}"></h2>
                 </div>
                 <div class="cypher">
                     <div class="row align-items-center">

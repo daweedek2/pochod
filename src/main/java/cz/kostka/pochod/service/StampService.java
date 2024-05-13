@@ -72,8 +72,8 @@ public class StampService implements StampApi {
     }
 
     public boolean hasPlayerSubmittedAllStamps(final Player player) {
-        final var playersStamps = this.getAllStampsByPlayerOrdered(player);
-        final var allStages = stageService.getAllStages();
+        final var playersStamps = this.getAllStampsByPlayerOrdered(player, TimeUtils.getCurrentYear());
+        final var allStages = stageService.getAllStages(TimeUtils.getCurrentYear());
         return allStages.stream()
                 .filter(stage ->
                         playersStamps.stream()
@@ -95,8 +95,11 @@ public class StampService implements StampApi {
         return stampRepository.findAllByStageOrderByTimestamp(stage);
     }
 
-    public List<Stamp> getAllStampsByPlayerOrdered(final Player player) {
-        return stampRepository.findAllByPlayerOrderByTimestamp(player);
+    public List<Stamp> getAllStampsByPlayerOrdered(final Player player, final int year) {
+        return stampRepository.findAllByPlayerOrderByTimestamp(player)
+                .stream()
+                .filter(stamp -> stamp.getStage().getYear() == year)
+                .toList();
     }
 
     public int getCountOfStagesWithStamp(final Player player) {
@@ -104,15 +107,15 @@ public class StampService implements StampApi {
             return 0;
         }
 
-        return stageService.getAllStages().stream()
+        return stageService.getAllStages(TimeUtils.getCurrentYear()).stream()
                 .filter(stage -> !getStampsForPlayerAndStage(player, stage).isEmpty())
                 .toList()
                 .size();
     }
 
     public Map<Integer, StampDTO> getStampsMapForUser(final Player player) {
-        final List<Stage> allStages = stageService.getAllStages();
-        final List<Stamp> allStampsOfPlayer = getAllStampsByPlayerOrdered(player);
+        final List<Stage> allStages = stageService.getAllStages(TimeUtils.getCurrentYear());
+        final List<Stamp> allStampsOfPlayer = getAllStampsByPlayerOrdered(player, TimeUtils.getCurrentYear());
 
         final Map<Integer, StampDTO> stampDTOMap = new HashMap<>(allStages.size());
 
@@ -145,7 +148,7 @@ public class StampService implements StampApi {
         if (player == null) {
             return;
         }
-        stampRepository.deleteAll(getAllStampsByPlayerOrdered(player));
+        stampRepository.deleteAll(getAllStampsByPlayerOrdered(player, TimeUtils.getCurrentYear()));
     }
 
     public void deleteStampsOfStage(final Long stageId) {

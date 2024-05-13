@@ -7,6 +7,7 @@ import cz.kostka.pochod.service.GameInfoService;
 import cz.kostka.pochod.service.PlayerService;
 import cz.kostka.pochod.service.StageService;
 import cz.kostka.pochod.service.StampService;
+import cz.kostka.pochod.util.TimeUtils;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +36,7 @@ public class StageController extends PlayerController {
     public String getAllStages(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
         setEndGameToModel(model);
-        model.addAttribute("allStages", stageService.getAllStages());
+        model.addAttribute("allStages", stageService.getAllStages(TimeUtils.getCurrentYear()));
         model.addAttribute("stampsMap", getStampsMapForPlayer(user.getPlayer()));
         setMapUrlToModel(model);
         return "pop/list";

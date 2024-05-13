@@ -5,6 +5,7 @@ import cz.kostka.pochod.service.GameInfoService;
 import cz.kostka.pochod.service.PlayerService;
 import cz.kostka.pochod.service.StageService;
 import cz.kostka.pochod.service.StampService;
+import cz.kostka.pochod.util.TimeUtils;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +35,7 @@ public class PopController extends PlayerController {
         setPlayerToModel(user.getPlayer().getId(), model);
         setStartGameToModel(model);
         setEndGameToModel(model);
-        model.addAttribute(AttributeConstants.ALL_STAGES_COUNT, stageService.getAllStagesCount());
+        model.addAttribute(AttributeConstants.ALL_STAGES_COUNT, stageService.getAllStagesCount(TimeUtils.getCurrentYear()));
         return "pop/welcome";
     }
 
@@ -42,7 +43,7 @@ public class PopController extends PlayerController {
     public String viewProgress(@AuthenticationPrincipal final CustomUserDetails user, final Model model) {
         setPlayerToModel(user.getPlayer().getId(), model);
         setEndGameToModel(model);
-        model.addAttribute(AttributeConstants.ALL_STAGES_COUNT, stageService.getAllStagesCount());
+        model.addAttribute(AttributeConstants.ALL_STAGES_COUNT, stageService.getAllStagesCount(TimeUtils.getCurrentYear()));
         return "pop/progress";
     }
 
@@ -51,9 +52,9 @@ public class PopController extends PlayerController {
         setPlayerToModel(user.getPlayer().getId(), model);
         setEndGameToModel(model);
         setMapUrlToModel(model);
-        model.addAttribute(AttributeConstants.ALL_STAGES, stageService.getAllStages());
+        model.addAttribute(AttributeConstants.ALL_STAGES, stageService.getAllStages(TimeUtils.getCurrentYear()));
         model.addAttribute(AttributeConstants.STAMPS_MAP, getStampsMapForPlayer(user.getPlayer()));
-        model.addAttribute(AttributeConstants.ALL_STAGES_COUNT, stageService.getAllStagesCount());
+        model.addAttribute(AttributeConstants.ALL_STAGES_COUNT, stageService.getAllStagesCount(TimeUtils.getCurrentYear()));
         return "pop/listV2";
     }
 

@@ -28,12 +28,12 @@ public class StageService implements StageApi {
         return null;
     }
 
-    public List<Stage> getAllStages() {
-        return stageRepository.findAllByOrderByNumber();
+    public List<Stage> getAllStages(final int year) {
+        return stageRepository.findAllByYearOrderByNumber(year);
     }
 
-    public int getAllStagesCount() {
-        return getAllStages().size();
+    public int getAllStagesCount(final int year) {
+        return getAllStages(year).size();
     }
 
     public Stage create(final StageCreationDTO dto) {
@@ -60,7 +60,7 @@ public class StageService implements StageApi {
                         dto.color(), dto.year(), dto.distance()));
     }
 
-    public List<Stage> getAllStagesByYear(final int year) {
-        return stageRepository.findAllByYearOrderByNumber(year);
+    public List<Stage> getAllStagesAdmin() {
+        return stageRepository.findAllByOrderByNumberDesc();
     }
 }

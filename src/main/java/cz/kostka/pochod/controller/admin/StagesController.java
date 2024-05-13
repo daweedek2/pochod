@@ -39,7 +39,7 @@ public class StagesController {
 
     @GetMapping
     public String getStagesList(@AuthenticationPrincipal final CustomUserDetails admin, final Model model) {
-        model.addAttribute("allStages", stageService.getAllStages());
+        model.addAttribute("allStages", stageService.getAllStagesAdmin());
         model.addAttribute("newStage", false);
         return "admin/stages";
     }

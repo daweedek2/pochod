@@ -15,4 +15,8 @@ public final class TimeUtils {
     public static LocalDateTime getCurrentTime() {
         return LocalDateTime.now(ZoneId.of("Europe/Vienna"));
     }
+
+    public static int getCurrentYear() {
+        return getCurrentTime().getYear();
+    }
 }

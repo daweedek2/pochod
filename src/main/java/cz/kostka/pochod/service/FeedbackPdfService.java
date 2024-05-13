@@ -21,7 +21,7 @@ public class FeedbackPdfService extends AbstractPdfService {
 
     @Override
     PdfPTable createTableWithData() {
-        final PdfPTable pdfTable = super.getEmptyPdfTable(2, 100);
+        final PdfPTable pdfTable = super.getEmptyPdfTable(3, 100);
         pdfTable.addCell("Hráč");
         pdfTable.addCell("Čas");
         pdfTable.addCell("Feedback");
@@ -40,7 +40,7 @@ public class FeedbackPdfService extends AbstractPdfService {
 
         for (final Feedback feedback : allFeedbacks) {
             pdfTable.addCell(feedback.getPlayer().getNickname());
-            pdfTable.addCell(feedback.getTimestamp().format(DateTimeFormatter.ISO_TIME));
+            pdfTable.addCell(feedback.getTimestamp().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
             pdfTable.addCell(feedback.getText());
         }
     }
