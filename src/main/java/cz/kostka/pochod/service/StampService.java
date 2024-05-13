@@ -28,14 +28,17 @@ public class StampService implements StampApi {
     private final StampRepository stampRepository;
     private final PlayerService playerService;
     private final StageService stageService;
+    private final GameInfoService gameInfoService;
 
     public StampService(
             final StampRepository stampRepository,
             final PlayerService playerService,
-            final StageService stageService) {
+            final StageService stageService,
+            final GameInfoService gameInfoService) {
         this.stampRepository = stampRepository;
         this.playerService = playerService;
         this.stageService = stageService;
+        this.gameInfoService = gameInfoService;
     }
 
 
@@ -49,6 +52,11 @@ public class StampService implements StampApi {
         }
 
         final Stage stage = optionalStage.get();
+
+        if (stage.getYear() != TimeUtils.getCurrentTime().getYear() && gameInfoService.isGameActive()) {
+            LOG.info("Player '{}' tries to submit stamp '{}' when the game is not active.", player.getNickname(), stage.getName());
+            return new StampResultDTO(StampSubmitStatus.GAME_NOT_ACTIVE);
+        }
 
         LOG.info("Player '{}' tries to submit stamp '{}'.", player.getNickname(), stage.getName());
 

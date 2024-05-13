@@ -6,5 +6,6 @@ package cz.kostka.pochod.enums;
 public enum StampSubmitStatus {
     OK,
     REJECTED,
-    ALREADY_PRESENT
+    ALREADY_PRESENT,
+    GAME_NOT_ACTIVE
 }

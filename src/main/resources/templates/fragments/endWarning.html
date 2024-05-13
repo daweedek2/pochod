@@ -11,8 +11,9 @@
     </div>
     <div th:if="${hasGameEnded == true}">
         <div class="time-alert">
-            <h2 th:text="|Sbírání razítek bylo ukončeno v ${#temporals.format(gameEndedTime, 'HH:mm')}!|"></h2>
-            <h2>Losování tomboly proběhne na posledním stanovišti od cca 19h.</h2>
+            <h2>Sbírání razítek bylo ukončeno.</h2>
+            <!--            <h2 th:text="|Sbírání razítek bylo ukončeno v ${#temporals.format(gameEndedTime, 'HH:mm')}!|"></h2>-->
+<!--            <h2>Losování tomboly proběhne na posledním stanovišti od cca 19h.</h2>-->
         </div>
     </div>
 </div>

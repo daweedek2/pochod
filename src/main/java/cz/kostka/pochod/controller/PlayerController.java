@@ -7,10 +7,8 @@ import cz.kostka.pochod.dto.StampDTO;
 import cz.kostka.pochod.service.GameInfoService;
 import cz.kostka.pochod.service.PlayerService;
 import cz.kostka.pochod.service.StampService;
-import cz.kostka.pochod.util.TimeUtils;
 import org.springframework.ui.Model;
 
-import java.time.LocalDateTime;
 import java.util.Map;
 
 /**
@@ -49,26 +47,14 @@ public class PlayerController {
     }
 
     public void setStartGameToModel(final Model model) {
-        final GameInfo gameInfo = gameInfoService.get().orElse(new GameInfo());
-        final LocalDateTime startGameTime = gameInfo.getStartGame();
-        model.addAttribute(GAME_STARTED_ATTR, hasGameAlreadyEnded(startGameTime));
-        model.addAttribute(GAME_STARTED_TIME_ATTR, startGameTime);
+        model.addAttribute(GAME_STARTED_ATTR, gameInfoService.isGameActive());
+        model.addAttribute(GAME_STARTED_TIME_ATTR, gameInfoService.get().orElse(new GameInfo()).getStartGame());
     }
 
     public void setEndGameToModel(final Model model) {
-        final GameInfo gameInfo = gameInfoService.get().orElse(new GameInfo());
-        final LocalDateTime endGameTime = gameInfo.getEndGame();
-        model.addAttribute(GAME_ENDED_ATTR, hasGameAlreadyEnded(endGameTime));
-        model.addAttribute(IS_END_WARNING_ACTIVE_ATTR, isEndWarningActive(endGameTime));
-        model.addAttribute(GAME_ENDED_TIME_ATTR, endGameTime);
-    }
-
-    private static boolean hasGameAlreadyEnded(LocalDateTime endGameTime) {
-        return endGameTime != null && TimeUtils.getCurrentTime().isAfter(endGameTime);
-    }
-
-    private static boolean isEndWarningActive(LocalDateTime endGameTime) {
-        return endGameTime != null && TimeUtils.getCurrentTime().isAfter(endGameTime.minusHours(1));
+        model.addAttribute(GAME_ENDED_ATTR, !gameInfoService.isGameActive());
+        model.addAttribute(IS_END_WARNING_ACTIVE_ATTR, gameInfoService.isEndWarningActive());
+        model.addAttribute(GAME_ENDED_TIME_ATTR, gameInfoService.get().orElse(new GameInfo()).getEndGame());
     }
 
     public void setPartnersToModel(final Model model) {

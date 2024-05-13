@@ -31,7 +31,7 @@ public class StampRestController {
                 stampRequestDTO.playerId());
         final var result = stampApi.submitStamp(stampRequestDTO);
 
-        if (result.getStampSubmitStatus() == StampSubmitStatus.REJECTED) {
+        if (result.getStampSubmitStatus() == StampSubmitStatus.REJECTED || result.getStampSubmitStatus() == StampSubmitStatus.GAME_NOT_ACTIVE) {
             return ResponseEntity.badRequest().body(result);
         }
 
