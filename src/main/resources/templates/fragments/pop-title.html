@@ -3,10 +3,10 @@
 <head>
 </head>
 <body>
-<div th:fragment="popTitle()">
+<div th:fragment="popTitle(year)">
     <div class="container">
         <div class="col-sm-12">
-            <h1 class="login-form-header">PoP 2024</h1>
+            <h1 th:text="|PoP ${year}|" class="login-form-header">PoP 2024</h1>
         </div>
     </div>
 </div>

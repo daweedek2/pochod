@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="cs" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head :: head('Pop 2024')">
+<head th:replace="fragments/head :: head(${year})">
 </head>
 <body>
     <div th:insert="fragments/pop-header :: popHeader(${player.id}, ${player.nickname}, ${stamps})"></div>
     <div th:insert="fragments/endWarning :: endWarning(${hasGameEnded}, ${gameEndedTime}, ${isEndWarningActive})"></div>
-    <div th:insert="fragments/pop-title :: popTitle()"></div>
+    <div th:insert="fragments/pop-title :: popTitle(${year})"></div>
     <div class="container">
         <div class="row cypher-list">
             <div class="col-sm-12">
