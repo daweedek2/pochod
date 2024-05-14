@@ -7,7 +7,7 @@
     <div th:insert="fragments/endWarning :: endWarning(${hasGameEnded}, ${gameEndedTime}, ${isEndWarningActive})"></div>
     <div th:insert="fragments/pop-title :: popTitle(2024)"></div>
     <div class="container">
-        <div class="row cypher-list" th:if="${hasGameStarted == true}">
+        <div class="row" th:if="${hasGameStarted == true}">
             <div class="center-elements">
                 <h2>Kam dál?</h2>
                 <a th:if="${hasGameEnded == false and stamps != allStagesCount}" class="btn btn-primary btn-square-md" th:href="@{/pop/stamp}">Získat razítko</a>
