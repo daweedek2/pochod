@@ -4,7 +4,7 @@ SELECT 1, 'admin', '$2a$12$gzQQy9oVY1v20qWzIcfWP.fp0FSWOV01c7tM5gfdwR9v8c6QoAyEW
     WHERE NOT EXISTS(
     SELECT * FROM pop_user WHERE id = 1);
 INSERT INTO pop_user(id, username, password)
-SELECT 2, 'organizator', '$2a$10$7s.PnBW19pd8y7dgYrxDCeSflx4P/QI4Mk3TOuoBHLIEt2qQna9wG'
+SELECT 2, 'organizator', '$2a$12$k/oFmX6VBM/QBs1IM6JLTOllN2nGhcVErMsKvene7lHhT17Gds.H2'
     WHERE NOT EXISTS(
     SELECT * FROM pop_user WHERE id = 2);
 
