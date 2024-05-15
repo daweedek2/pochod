@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Organizator')">
+</head>
+<body>
+    <div th:insert="fragments/header :: header('Organizator', 0)"></div>
+    <div class="container">
+        <div class="row cypher-list">
+            <div class="col-sm-12">
+                <h1 class="login-form-header">Pochod okolo Polanky - ORGANIZATOR</h1>
+            </div>
+        </div>
+        <div class="row" th:if="${stampResultDTO} != null">
+            <div class="col-sm-12">
+                <p th:if="${stampResultDTO.stampSubmitStatus == T(cz.kostka.pochod.enums.StampSubmitStatus).OK}">Razítko potvrzeno.</p>
+                <p th:if="${stampResultDTO.stampSubmitStatus == T(cz.kostka.pochod.enums.StampSubmitStatus).ALREADY_PRESENT}">Razítko potvrzeno.</p>
+                <p th:if="${stampResultDTO.stampSubmitStatus == T(cz.kostka.pochod.enums.StampSubmitStatus).REJECTED}">Razítko nebylo potvrzeno. Neexistující hráč nebo razítko.</p>
+                <p th:if="${stampResultDTO.stampSubmitStatus == T(cz.kostka.pochod.enums.StampSubmitStatus).GAME_NOT_ACTIVE}">Razítko nebylo potvrzeno. Hra není aktivní.</p>
+            </div>
+        </div>
+        <div class="row cypher-list">
+            <div class="center-elements">
+                <h2>Registrace razítka</h2>
+
+                <form action="#" th:action="@{/organizator/submit}" th:object="${submitStampOrganizatorDTO}" method="post">
+                    <div class="col-sm-12">
+                        <label for="player">Hráč</label>
+                        <input list="players" id="player" name="players" placeholder="Jméno hráče" th:field="*{playerId}"/>
+                        <datalist id="players">
+                            <option th:each="player : ${players}" th:value="${player.id}" th:text="${player.nickname}"></option>
+                        </datalist>
+                    </div>
+                    <div class="col-sm-12">
+                        <label for="stage">Stanoviště</label>
+                        <input list="stages" id="stage" name="players" placeholder="Stanoviště" th:field="*{stageId}"/>
+                        <datalist id="stages">
+                            <option th:each="stage : ${stages}" th:value="${stage.id}" th:text="${stage.name}"></option>
+                        </datalist>
+                    </div>
+                    <br><br>
+                    <button type="submit" class="btn btn-primary"
+                            th:attr="onclick='return confirm(\'' + 'Opravdu potvrdit razítko?' + '\');'">Potvrdit razítko
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -14,8 +14,8 @@ public final class LoginUtils {
         switch (role.toString()) {
             case "[ROLE_ADMIN]":
                 return "redirect:/admin";
-            case "[ROLE_ORGANIZER]":
-                return "redirect:/organizer/progress";
+            case "[ROLE_ORGANIZATOR]":
+                return "redirect:/organizator";
             case "[ROLE_USER]":
                 return "redirect:/pop";
             default:

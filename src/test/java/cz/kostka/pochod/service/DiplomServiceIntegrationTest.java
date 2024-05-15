@@ -32,6 +32,9 @@ class DiplomServiceIntegrationTest extends AbstractIntegrationTest {
     void createDiplom_Allowed() throws IOException {
         final Player player = createPlayer("pepa", 5566);
         createStage("first", 1, "one");
+
+        startGame();
+
         stampService.submitStamp(new StampRequestDTO(player.getId(), "one"));
 
         diplomService.createDiplom(player, null, TimeUtils.getCurrentYear());

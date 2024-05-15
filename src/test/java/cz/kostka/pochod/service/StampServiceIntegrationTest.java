@@ -3,9 +3,11 @@ package cz.kostka.pochod.service;
 import cz.kostka.pochod.AbstractIntegrationTest;
 import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.domain.Stage;
+import cz.kostka.pochod.dto.GameInfoDTO;
 import cz.kostka.pochod.dto.StampRequestDTO;
 import cz.kostka.pochod.enums.StampSubmitStatus;
 import cz.kostka.pochod.util.TimeUtils;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,6 +24,7 @@ class StampServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     void testSubmitStamp_Ok() {
+        startGame();
         final Player player = createPlayer("pl", 1122);
         final Stage stage = createStage("first", 1, "1234");
         final var result = stampService.submitStamp(new StampRequestDTO(player.getId(), stage.getPin()));
@@ -31,6 +34,7 @@ class StampServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     void testSubmitStamp_AlreadyExist() {
+        startGame();
         final Player player = createPlayer("pl", 1122);
         final Stage stage = createStage("first", 1, "1234");
         stampService.submitStamp(new StampRequestDTO(player.getId(), stage.getPin()));
@@ -42,6 +46,7 @@ class StampServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     void testSubmitStamp_Rejected_WrongPin() {
+        startGame();
         final Player player = createPlayer("pl", 1122);
         final Stage stage = createStage("first", 1, "1234");
 
@@ -52,6 +57,7 @@ class StampServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     void testSubmitStamp_Rejected_PlayerNotExists() {
+        startGame();
         final Player player = createPlayer("pl", 1122);
         final Stage stage = createStage("first", 1, "1234");
 
@@ -62,6 +68,7 @@ class StampServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     void testSubmitStamp_Rejected_WrongPinAndPlayerNotExists() {
+        startGame();
         final Player player = createPlayer("pl", 1122);
         final Stage stage = createStage("first", 1, "1234");
 
@@ -72,6 +79,7 @@ class StampServiceIntegrationTest extends AbstractIntegrationTest {
 
     @Test
     void testSubmitStamp_TimestampIsSet() {
+        startGame();
         final Player player = createPlayer("pl", 1122);
         final Stage stage = createStage("first", 1, "1234");
         stampService.submitStamp(new StampRequestDTO(player.getId(), stage.getPin()));
@@ -84,5 +92,16 @@ class StampServiceIntegrationTest extends AbstractIntegrationTest {
         assertThat(timestamp).isNotNull();
         assertThat(timestamp.minusHours(1)).isBefore(TimeUtils.getCurrentTime());
         assertThat(timestamp.plusHours(1)).isAfter(TimeUtils.getCurrentTime());
+    }
+
+    @Test
+    void testSubmitStamp_GameIsNotActive() {
+        endGame();
+        final Player player = createPlayer("pl", 1122);
+        final Stage stage = createStage("first", 1, "1234");
+
+        final var result = stampService.submitStamp(new StampRequestDTO(player.getId(), stage.getPin()));
+
+        assertThat(result.getStampSubmitStatus()).isEqualTo(StampSubmitStatus.GAME_NOT_ACTIVE);
     }
 }

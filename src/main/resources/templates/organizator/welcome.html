@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Organizator')">
+</head>
+<body>
+    <div th:insert="fragments/header :: header('ORGANIZATOR', 0)"></div>
+
+    <div class="container">
+        <div class="row cypher-list">
+            <div class="col-sm-12">
+                <h1 class="login-form-header">Pochod okolo Polanky - ORGANIZATOR</h1>
+            </div>
+        </div>
+        <div class="row cypher-list">
+            <div class="center-elements">
+                <h2>Kam dál?</h2>
+                <a class="btn btn-primary btn-square-md" th:href="@{/organizator/submit}">Zadat razítko pro hráče</a>
+<!--                <a class="btn btn-primary btn-square-md" th:href="@{/admin/players}">Hráči</a>-->
+<!--                <a class="btn btn-primary btn-square-md" th:href="@{/admin/game}">Detaily hry</a>-->
+<!--                <a class="btn btn-primary btn-square-md" th:href="@{/admin/statistics/stages}">Statistiky stanovišť</a>-->
+<!--                <a class="btn btn-primary btn-square-md" th:href="@{/admin/statistics/players}">Statistiky hráčů</a>-->
+<!--                <a class="btn btn-primary btn-square-md" th:href="@{/admin/pdf/tombola}">Stáhnout pdf pro tombolu</a>-->
+<!--                <a class="btn btn-primary btn-square-md" th:href="@{/admin/pdf/feedback}">Stáhnout pdf s feedbackem</a>-->
+<!--                <a class="btn btn-primary btn-square-md" th:href="@{/admin/pdf/report}">Report</a>-->
+                </div>
+            </div>
+        </div>
+</body>
+</html>

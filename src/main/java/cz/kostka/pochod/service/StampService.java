@@ -7,6 +7,7 @@ import cz.kostka.pochod.domain.Stamp;
 import cz.kostka.pochod.dto.StampDTO;
 import cz.kostka.pochod.dto.StampRequestDTO;
 import cz.kostka.pochod.dto.StampResultDTO;
+import cz.kostka.pochod.dto.SubmitStampOrganizatorDTO;
 import cz.kostka.pochod.enums.StampSubmitStatus;
 import cz.kostka.pochod.repository.StampRepository;
 import cz.kostka.pochod.util.TimeUtils;
@@ -41,6 +42,30 @@ public class StampService implements StampApi {
         this.gameInfoService = gameInfoService;
     }
 
+    public StampResultDTO submitStampAsOrganizator(final SubmitStampOrganizatorDTO dto) {
+        LOG.info("Organizator tries to submit stamp manually.");
+
+        if (dto.playerId() == null || dto.stageId() == null) {
+            LOG.warn("SubmitStampOrganizatorDTO does not contain all required values: {}", dto);
+            return new StampResultDTO(StampSubmitStatus.REJECTED);
+        }
+
+        final Player player = playerService.getPlayerById(dto.playerId());
+        final Stage stage = stageService.getStageById(dto.stageId());
+
+        if (player == null || stage == null) {
+            LOG.warn("Player or Stage does not exists for the dto: {}", dto);
+            return new StampResultDTO(StampSubmitStatus.REJECTED);
+        }
+
+        if (isGameNotActiveForStage(stage)) {
+            LOG.warn("Stage year does not match current year: {}", stage.getYear());
+            return new StampResultDTO(StampSubmitStatus.GAME_NOT_ACTIVE);
+        }
+
+        LOG.info("Organizator tries to submit stamp '{}' for player {}'.",stage.getName(), player.getNickname());
+        return saveStamp(player, stage);
+    }
 
     @Override
     public StampResultDTO submitStamp(final StampRequestDTO stampRequestDTO) {
@@ -53,13 +78,20 @@ public class StampService implements StampApi {
 
         final Stage stage = optionalStage.get();
 
-        if (stage.getYear() != TimeUtils.getCurrentTime().getYear() && gameInfoService.isGameActive()) {
+        if (isGameNotActiveForStage(stage)) {
             LOG.info("Player '{}' tries to submit stamp '{}' when the game is not active.", player.getNickname(), stage.getName());
             return new StampResultDTO(StampSubmitStatus.GAME_NOT_ACTIVE);
         }
 
         LOG.info("Player '{}' tries to submit stamp '{}'.", player.getNickname(), stage.getName());
+        return saveStamp(player, stage);
+    }
 
+    private boolean isGameNotActiveForStage(final Stage stage) {
+        return stage.getYear() != TimeUtils.getCurrentYear() || !gameInfoService.isGameActive();
+    }
+
+    private StampResultDTO saveStamp(final Player player, final Stage stage) {
         final List<Stamp> alreadySubmittedStamps = getStampsForPlayerAndStage(player, stage);
 
         if (!alreadySubmittedStamps.isEmpty()) {
@@ -67,7 +99,6 @@ public class StampService implements StampApi {
         }
 
         stampRepository.save(new Stamp(TimeUtils.getCurrentTime(), stage, player));
-
         return new StampResultDTO(StampSubmitStatus.OK);
     }
 
