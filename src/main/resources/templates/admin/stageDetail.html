@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group">
                     <label for="number" class="input-value-required">Číslo</label>
-                    <input id="number" class="form-control" type="number" step='0.01' th:field="*{number}" required/>
+                    <input id="number" class="form-control" type="number" th:field="*{number}" required/>
                     <p class="error" th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Chyba - Number
                     </p>
                 </div>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="form-group">
                     <label for="distance" class="login-form-label">Vzdálenost od začátku (km)</label>
-                    <input id="distance" class="form-control" th:field="*{distance}" type="number"></input>
+                    <input id="distance" class="form-control" th:field="*{distance}" type="number" step="0.01"></input>
                     <p class="error" th:if="${#fields.hasErrors('distance')}" th:errors="*{distance}">Chyba - Vzdálenost
                     </p>
                 </div>
