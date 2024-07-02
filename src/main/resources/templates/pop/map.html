@@ -13,9 +13,7 @@
                 <div th:insert="fragments/mapPicture :: map(${mapUrl}, 2024)"></div>
                 <div th:insert="fragments/openMapButton :: openMapButton(${mapUrl})"></div>
                 <br>
-                <a class="btn btn-secondary btn-square-md" href="/files_trasa/2023/PoP_2023.kml">Stažení souboru KML (Google)</a>
-                <a class="btn btn-secondary btn-square-md" href="/files_trasa/2023/PoP_2023.kmz">Stažení souboru KMZ (Google)</a>
-                <a class="btn btn-secondary btn-square-md" href="/files_trasa/2023/PoP_2023.gpx">Stažení souboru GPX (Mapy.cz)</a>
+                <div th:insert="fragments/mapFiles :: mapFiles(2024)"></div>
                 <br>
                 <br>
                 <a href="#" class="btn btn-primary" th:href="@{/successfulLogin}">Domů</a>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="cs" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="mapFiles(year)">
+    <a class="btn btn-secondary btn-square-md" th:href="@{/files_trasa/{year}/PoP_{year}.kml(year = ${year})}">Stažení souboru KML (Google)</a>
+    <a class="btn btn-secondary btn-square-md" th:href="@{/files_trasa/{year}/PoP_{year}.kmz(year = ${year})}">Stažení souboru KMZ (Google)</a>
+    <a class="btn btn-secondary btn-square-md" th:href="@{/files_trasa/{year}/PoP_{year}.gpx(year = ${year})}">Stažení souboru GPX (Mapy.cz)</a>
+</div>
+</body>
+</html>
