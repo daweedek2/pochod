@@ -100,6 +100,7 @@ public class StampService implements StampApi {
         }
 
         stampRepository.save(new Stamp(TimeUtils.getCurrentTime(), stage, player));
+        LOG.info("Stamp {} saved for {}.", stage.getName(), player.getNickname());
         return new StampResultDTO(StampSubmitStatus.OK);
     }
 
