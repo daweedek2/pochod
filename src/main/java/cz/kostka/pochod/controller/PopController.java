@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PopController extends PlayerController {
 
     private final StageService stageService;
-    private final GameInfoService gameInfoService;
 
     public PopController(
             final PlayerService playerService,
@@ -30,7 +29,6 @@ public class PopController extends PlayerController {
             final StageService stageService) {
         super(playerService, stampService, gameInfoService);
         this.stageService = stageService;
-        this.gameInfoService = gameInfoService;
     }
 
     @GetMapping
