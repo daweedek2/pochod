@@ -26,14 +26,18 @@ public class GameInfo {
     @Column
     private String mapUrl;
 
+    @Column
+    private String facebookUrl;
+
     @Column int year;
 
-    public GameInfo(final Long id, final LocalDateTime startGame, final LocalDateTime endGame, final String partners, final String mapUrl, final int year) {
+    public GameInfo(final Long id, final LocalDateTime startGame, final LocalDateTime endGame, final String partners, final String mapUrl, final String facebookUrl, final int year) {
         this.id = id;
         this.startGame = startGame;
         this.endGame = endGame;
         this.partners = partners;
         this.mapUrl = mapUrl;
+        this.facebookUrl = facebookUrl;
         this.year = year;
     }
 
@@ -78,6 +82,14 @@ public class GameInfo {
 
     public void setMapUrl(final String mapUrl) {
         this.mapUrl = mapUrl;
+    }
+
+    public String getFacebookUrl() {
+        return facebookUrl;
+    }
+
+    public void setFacebookUrl(final String facebookUrl) {
+        this.facebookUrl = facebookUrl;
     }
 
     public int getYear() {

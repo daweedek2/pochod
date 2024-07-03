@@ -32,6 +32,7 @@ public class GameInfoService {
         gameInfo.setEndGame(toTimestamp(gameInfoDTO.endGame()));
         gameInfo.setPartners(gameInfoDTO.partners());
         gameInfo.setMapUrl(gameInfoDTO.mapUrl());
+        gameInfo.setFacebookUrl(gameInfoDTO.facebookUrl());
         gameInfo.setYear(gameInfoDTO.year());
         return gameInfoRepository.save(gameInfo);
     }

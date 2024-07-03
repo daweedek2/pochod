@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PopController extends PlayerController {
 
     private final StageService stageService;
+    private final GameInfoService gameInfoService;
 
     public PopController(
             final PlayerService playerService,
@@ -29,6 +30,7 @@ public class PopController extends PlayerController {
             final StageService stageService) {
         super(playerService, stampService, gameInfoService);
         this.stageService = stageService;
+        this.gameInfoService = gameInfoService;
     }
 
     @GetMapping
@@ -37,6 +39,7 @@ public class PopController extends PlayerController {
         setStartGameToModel(model);
         setEndGameToModel(model);
         model.addAttribute(AttributeConstants.ALL_STAGES_COUNT, stageService.getAllStagesCount(TimeUtils.getCurrentYear()));
+        model.addAttribute(AttributeConstants.FACEBOOK_EVENT_URL, getGameInfo().getFacebookUrl());
         return "pop/welcome";
     }
 

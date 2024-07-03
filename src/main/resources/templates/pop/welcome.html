@@ -21,7 +21,7 @@
         <div class="row" th:if="${hasGameStarted == false}">
             <div class="center-elements col-centered">
                 <h2 th:text="|Začínáme ${#temporals.format(gameStartedTime, 'dd.MM.yyyy HH:mm')}|"></h2>
-                <h2>Sledujte náš <a class="fb-icon" href="https://www.facebook.com/events/411855370753844">
+                <h2>Sledujte náš <a class="fb-icon" th:href="${facebookUrl}">
                     <i class="fab fa-facebook"></i>
                 </a>
                     nebo <a href="https://pochod.valasskapolanka.cz">WEB</a></h2>

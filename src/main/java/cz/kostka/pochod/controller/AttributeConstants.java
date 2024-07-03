@@ -9,4 +9,5 @@ public final class AttributeConstants {
     public static final String ALL_STAGES = "allStages";
     public static final String STAMPS_MAP = "stampsMap";
     public static final String YEAR = "year";
+    public static final String FACEBOOK_EVENT_URL = "facebookUrl";
 }

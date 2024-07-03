@@ -49,22 +49,22 @@ public class PlayerController {
 
     public void setStartGameToModel(final Model model) {
         model.addAttribute(GAME_STARTED_ATTR, gameInfoService.isGameActive());
-        model.addAttribute(GAME_STARTED_TIME_ATTR, gameInfoService.get().orElse(new GameInfo()).getStartGame());
+        model.addAttribute(GAME_STARTED_TIME_ATTR, getGameInfo().getStartGame());
     }
 
     public void setEndGameToModel(final Model model) {
         model.addAttribute(GAME_ENDED_ATTR, !gameInfoService.isGameActive());
         model.addAttribute(IS_END_WARNING_ACTIVE_ATTR, gameInfoService.isEndWarningActive());
-        model.addAttribute(GAME_ENDED_TIME_ATTR, gameInfoService.get().orElse(new GameInfo()).getEndGame());
+        model.addAttribute(GAME_ENDED_TIME_ATTR, getGameInfo().getEndGame());
     }
 
     public void setPartnersToModel(final Model model) {
-        final GameInfo gameInfo = gameInfoService.get().orElse(new GameInfo());
+        final GameInfo gameInfo = getGameInfo();
         model.addAttribute(PARTNERS_ATTR, gameInfo.getPartners().split(";"));
     }
 
     public void setMapUrlToModel(final Model model, final Integer year) {
-        final GameInfo gameInfo = gameInfoService.get().orElse(new GameInfo());
+        final GameInfo gameInfo = getGameInfo();
         if (year == TimeUtils.getCurrentYear()) {
             model.addAttribute(MAP_URL_ATTR, gameInfo.getMapUrl());
         }
@@ -81,5 +81,9 @@ public class PlayerController {
 
     public void setYearToModel(final Model model, final Integer year) {
         model.addAttribute(AttributeConstants.YEAR, year);
+    }
+
+    protected GameInfo getGameInfo() {
+        return gameInfoService.get().orElse(new GameInfo());
     }
 }

@@ -46,14 +46,14 @@ public class AbstractIntegrationTest {
 
     protected void startGame() {
         final GameInfo gameInfo = new GameInfo(1L, LocalDateTime.now().minusHours(10), LocalDateTime.now().plusHours(10),
-                null, null, TimeUtils.getCurrentYear());
+                null, null, null, TimeUtils.getCurrentYear());
 
         gameInfoRepository.save(gameInfo);
     }
 
     protected void endGame() {
         final GameInfo gameInfo = new GameInfo(1L, LocalDateTime.now().minusHours(10), LocalDateTime.now().minusHours(5),
-                null, null, TimeUtils.getCurrentYear());
+                null, null, null, TimeUtils.getCurrentYear());
 
         gameInfoRepository.save(gameInfo);
     }

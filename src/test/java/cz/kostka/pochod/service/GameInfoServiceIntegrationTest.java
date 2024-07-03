@@ -49,6 +49,7 @@ class GameInfoServiceIntegrationTest extends AbstractIntegrationTest {
                         "2023-06-11T10:37",
                         "b",
                         "www.ef.at",
+                        "www.fb.at",
                         LocalDateTime.now().getYear()));
 
         assertThat(gameInfoRepository.findAll())
@@ -58,12 +59,14 @@ class GameInfoServiceIntegrationTest extends AbstractIntegrationTest {
                         GameInfo::getStartGame,
                         GameInfo::getEndGame,
                         GameInfo::getPartners,
-                        GameInfo::getMapUrl)
+                        GameInfo::getMapUrl,
+                        GameInfo::getFacebookUrl)
                 .containsExactly(
                         LocalDateTime.parse("2023-06-11T08:37"),
                         LocalDateTime.parse("2023-06-11T10:37"),
                        "b",
-                       "www.ef.at"
+                       "www.ef.at",
+                       "www.fb.at"
                 );
     }
 
@@ -79,6 +82,7 @@ class GameInfoServiceIntegrationTest extends AbstractIntegrationTest {
                             "2023-06-11T10:37",
                             "b",
                             "www.ef.at",
+                            "www.fb.at",
                             LocalDateTime.now().getYear()));
         }
 
@@ -90,12 +94,14 @@ class GameInfoServiceIntegrationTest extends AbstractIntegrationTest {
                         GameInfo::getStartGame,
                         GameInfo::getEndGame,
                         GameInfo::getPartners,
-                        GameInfo::getMapUrl)
+                        GameInfo::getMapUrl,
+                        GameInfo::getFacebookUrl)
                 .containsExactly(
                         LocalDateTime.parse("2023-06-11T08:37"),
                         LocalDateTime.parse("2023-06-11T10:37"),
                         "b",
-                        "www.ef.at"
+                        "www.ef.at",
+                        "www.fb.at"
                 );
     }
 
@@ -106,6 +112,7 @@ class GameInfoServiceIntegrationTest extends AbstractIntegrationTest {
                 LocalDateTime.parse("2023-06-10T10:37"),
                 "a",
                 "www.se.se",
+                "www.facebook.sem",
                 LocalDateTime.now().getYear());
     }
 }
