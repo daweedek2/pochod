@@ -13,39 +13,18 @@
                     <desc><![CDATA[This is waypoint no: 1]]></desc>
                 </wpt>
                                                                                                                             
-                <wpt lat="49.2567587" lon="17.9967317">
-                                                            <ele>0</ele>
-                    <name><![CDATA[PŘECHOD UZAVŘEN]]></name>
-                    <cmt><![CDATA[Waypoint no: 2]]></cmt>
-                    <desc><![CDATA[This is waypoint no: 2]]></desc>
-                </wpt>
-                                                                                                                            
-                <wpt lat="49.2569587" lon="17.9970185">
-                                                            <ele>0</ele>
-                    <name><![CDATA[MOST UZAVŘEN]]></name>
-                    <cmt><![CDATA[Waypoint no: 3]]></cmt>
-                    <desc><![CDATA[This is waypoint no: 3]]></desc>
-                </wpt>
-                                                                                                                            
                 <wpt lat="49.2573543" lon="17.9966611">
                                                             <ele>0</ele>
                     <name><![CDATA[NÁHRADNÍ MOST]]></name>
-                    <cmt><![CDATA[Waypoint no: 4]]></cmt>
-                    <desc><![CDATA[This is waypoint no: 4]]></desc>
-                </wpt>
-                                                                                                                            
-                <wpt lat="49.2585189" lon="17.9961114">
-                                                            <ele>0</ele>
-                    <name><![CDATA[PŘECHOD PRO CHODCE]]></name>
-                    <cmt><![CDATA[Waypoint no: 5]]></cmt>
-                    <desc><![CDATA[This is waypoint no: 5]]></desc>
+                    <cmt><![CDATA[Waypoint no: 2]]></cmt>
+                    <desc><![CDATA[This is waypoint no: 2]]></desc>
                 </wpt>
                                                                                                                             
                 <wpt lat="49.2558119" lon="17.9980648">
                                                             <ele>0</ele>
                     <name><![CDATA[CÍL PoP 2024]]></name>
-                    <cmt><![CDATA[Waypoint no: 6]]></cmt>
-                    <desc><![CDATA[This is waypoint no: 6]]></desc>
+                    <cmt><![CDATA[Waypoint no: 3]]></cmt>
+                    <desc><![CDATA[This is waypoint no: 3]]></desc>
                 </wpt>
                                                                                                                             
                 <wpt lat="49.258306" lon="17.9992056">
@@ -2676,117 +2655,125 @@
                                                                                                             <ele>0</ele>
                                     <name>645</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.256834" lon="17.996621">
+                                                                                                                                                                                                                                    <trkpt lat="49.2568095" lon="17.9966371">
                                                                                                             <ele>0</ele>
                                     <name>646</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2569792" lon="17.9965145">
+                                                                                                                                                                                                                                    <trkpt lat="49.2568418" lon="17.9967367">
                                                                                                             <ele>0</ele>
                                     <name>647</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2572592" lon="17.9963121">
+                                                                                                                                                                                                                                    <trkpt lat="49.2569302" lon="17.996713">
                                                                                                             <ele>0</ele>
                                     <name>648</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.257737" lon="17.9959597">
+                                                                                                                                                                                                                                    <trkpt lat="49.2569966" lon="17.9966876">
                                                                                                             <ele>0</ele>
                                     <name>649</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2578962" lon="17.9958836">
+                                                                                                                                                                                                                                    <trkpt lat="49.2570587" lon="17.9966455">
                                                                                                             <ele>0</ele>
                                     <name>650</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2581357" lon="17.9958835">
+                                                                                                                                                                                                                                    <trkpt lat="49.2571033" lon="17.9966088">
                                                                                                             <ele>0</ele>
                                     <name>651</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2583453" lon="17.9959505">
+                                                                                                                                                                                                                                    <trkpt lat="49.257147" lon="17.9965595">
                                                                                                             <ele>0</ele>
                                     <name>652</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2585357" lon="17.9960363">
+                                                                                                                                                                                                                                    <trkpt lat="49.2571974" lon="17.9965111">
                                                                                                             <ele>0</ele>
                                     <name>653</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2585189" lon="17.9961114">
+                                                                                                                                                                                                                                    <trkpt lat="49.2572494" lon="17.9964869">
                                                                                                             <ele>0</ele>
                                     <name>654</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2584974" lon="17.9961731">
+                                                                                                                                                                                                                                    <trkpt lat="49.2573313" lon="17.9964386">
                                                                                                             <ele>0</ele>
                                     <name>655</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2583256" lon="17.9960819">
+                                                                                                                                                                                                                                    <trkpt lat="49.2573215" lon="17.996503">
                                                                                                             <ele>0</ele>
                                     <name>656</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2581485" lon="17.9960202">
+                                                                                                                                                                                                                                    <trkpt lat="49.2573" lon="17.9965701">
                                                                                                             <ele>0</ele>
                                     <name>657</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.257963" lon="17.9960134">
+                                                                                                                                                                                                                                    <trkpt lat="49.2573208" lon="17.9966452">
                                                                                                             <ele>0</ele>
                                     <name>658</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2577916" lon="17.9960736">
+                                                                                                                                                                                                                                    <trkpt lat="49.2573432" lon="17.9967283">
                                                                                                             <ele>0</ele>
                                     <name>659</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2572895" lon="17.9964193">
+                                                                                                                                                                                                                                    <trkpt lat="49.2573573" lon="17.9968288">
                                                                                                             <ele>0</ele>
                                     <name>660</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2573064" lon="17.9965146">
+                                                                                                                                                                                                                                    <trkpt lat="49.2573785" lon="17.9969104">
                                                                                                             <ele>0</ele>
                                     <name>661</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.257344" lon="17.9966369">
+                                                                                                                                                                                                                                    <trkpt lat="49.257307" lon="17.9969826">
                                                                                                             <ele>0</ele>
                                     <name>662</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2574517" lon="17.9968598">
+                                                                                                                                                                                                                                    <trkpt lat="49.2572574" lon="17.9970349">
                                                                                                             <ele>0</ele>
                                     <name>663</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2572738" lon="17.997027">
+                                                                                                                                                                                                                                    <trkpt lat="49.2571864" lon="17.9970929">
                                                                                                             <ele>0</ele>
                                     <name>664</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2569377" lon="17.9973056">
+                                                                                                                                                                                                                                    <trkpt lat="49.2571156" lon="17.9971495">
                                                                                                             <ele>0</ele>
                                     <name>665</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2567056" lon="17.9973867">
+                                                                                                                                                                                                                                    <trkpt lat="49.2570252" lon="17.9972255">
                                                                                                             <ele>0</ele>
                                     <name>666</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2562687" lon="17.9972778">
+                                                                                                                                                                                                                                    <trkpt lat="49.2569377" lon="17.9973056">
                                                                                                             <ele>0</ele>
                                     <name>667</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.255972" lon="17.9972318">
+                                                                                                                                                                                                                                    <trkpt lat="49.2567056" lon="17.9973867">
                                                                                                             <ele>0</ele>
                                     <name>668</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.255765" lon="17.9972651">
+                                                                                                                                                                                                                                    <trkpt lat="49.2562687" lon="17.9972778">
                                                                                                             <ele>0</ele>
                                     <name>669</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2557208" lon="17.9974325">
+                                                                                                                                                                                                                                    <trkpt lat="49.255972" lon="17.9972318">
                                                                                                             <ele>0</ele>
                                     <name>670</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2556612" lon="17.9978331">
+                                                                                                                                                                                                                                    <trkpt lat="49.255765" lon="17.9972651">
                                                                                                             <ele>0</ele>
                                     <name>671</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.2556918" lon="17.997961">
+                                                                                                                                                                                                                                    <trkpt lat="49.2557208" lon="17.9974325">
                                                                                                             <ele>0</ele>
                                     <name>672</name>
                                 </trkpt>
-                                                                                                                                                                                                                                    <trkpt lat="49.255789" lon="17.9980835">
+                                                                                                                                                                                                                                    <trkpt lat="49.2556612" lon="17.9978331">
                                                                                                             <ele>0</ele>
                                     <name>673</name>
+                                </trkpt>
+                                                                                                                                                                                                                                    <trkpt lat="49.2556918" lon="17.997961">
+                                                                                                            <ele>0</ele>
+                                    <name>674</name>
+                                </trkpt>
+                                                                                                                                                                                                                                    <trkpt lat="49.255789" lon="17.9980835">
+                                                                                                            <ele>0</ele>
+                                    <name>675</name>
                                 </trkpt>
                                                                                                             
                     </trkseg>

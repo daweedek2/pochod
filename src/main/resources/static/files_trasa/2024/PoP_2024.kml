@@ -36,18 +36,6 @@
         <text><![CDATA[<h3>$[name]</h3>]]></text>
       </BalloonStyle>
     </Style>
-    <Style id="icon-1898-C2185B-labelson-nodesc">
-      <IconStyle>
-        <color>ff5b18c2</color>
-        <scale>1</scale>
-        <Icon>
-          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
-        </Icon>
-      </IconStyle>
-      <BalloonStyle>
-        <text><![CDATA[<h3>$[name]</h3>]]></text>
-      </BalloonStyle>
-    </Style>
     <Style id="icon-1899-DB4436-normal">
       <IconStyle>
         <color>ff3644db</color>
@@ -771,25 +759,27 @@
             17.996756,49.2565054,0
             17.9967257,49.2565937,0
             17.9966846,49.2566887,0
-            17.996621,49.256834,0
-            17.9965145,49.2569792,0
-            17.9963121,49.2572592,0
-            17.9959597,49.257737,0
-            17.9958836,49.2578962,0
-            17.9958835,49.2581357,0
-            17.9959505,49.2583453,0
-            17.9960363,49.2585357,0
-            17.9961114,49.2585189,0
-            17.9961731,49.2584974,0
-            17.9960819,49.2583256,0
-            17.9960202,49.2581485,0
-            17.9960134,49.257963,0
-            17.9960736,49.2577916,0
-            17.9964193,49.2572895,0
-            17.9965146,49.2573064,0
-            17.9966369,49.257344,0
-            17.9968598,49.2574517,0
-            17.997027,49.2572738,0
+            17.9966371,49.2568095,0
+            17.9967367,49.2568418,0
+            17.996713,49.2569302,0
+            17.9966876,49.2569966,0
+            17.9966455,49.2570587,0
+            17.9966088,49.2571033,0
+            17.9965595,49.257147,0
+            17.9965111,49.2571974,0
+            17.9964869,49.2572494,0
+            17.9964386,49.2573313,0
+            17.996503,49.2573215,0
+            17.9965701,49.2573,0
+            17.9966452,49.2573208,0
+            17.9967283,49.2573432,0
+            17.9968288,49.2573573,0
+            17.9969104,49.2573785,0
+            17.9969826,49.257307,0
+            17.9970349,49.2572574,0
+            17.9970929,49.2571864,0
+            17.9971495,49.2571156,0
+            17.9972255,49.2570252,0
             17.9973056,49.2569377,0
             17.9973867,49.2567056,0
             17.9972778,49.2562687,0
@@ -803,42 +793,12 @@
         </LineString>
       </Placemark>
       <Placemark>
-        <name>PŘECHOD UZAVŘEN
-</name>
-        <styleUrl>#icon-1898-C2185B-labelson-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            17.9967317,49.2567587,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>MOST UZAVŘEN
-</name>
-        <styleUrl>#icon-1898-C2185B-labelson-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            17.9970185,49.2569587,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
         <name>NÁHRADNÍ MOST
 </name>
         <styleUrl>#icon-1769-0F9D58-labelson-nodesc</styleUrl>
         <Point>
           <coordinates>
             17.9966611,49.2573543,0
-          </coordinates>
-        </Point>
-      </Placemark>
-      <Placemark>
-        <name>PŘECHOD PRO CHODCE
-</name>
-        <styleUrl>#icon-1769-0F9D58-labelson-nodesc</styleUrl>
-        <Point>
-          <coordinates>
-            17.9961114,49.2585189,0
           </coordinates>
         </Point>
       </Placemark>
