@@ -12,7 +12,7 @@ import java.util.Optional;
  */
 @Repository
 public interface StageRepository extends JpaRepository<Stage, Long> {
-    Optional<Stage> getStageByPin(String pin);
+    Optional<Stage> getStageByPinAndYear(String pin, int year);
     List<Stage> findAllByOrderByNumberDesc();
     List<Stage> findAllByYearOrderByNumber(int year);
 }

@@ -40,6 +40,10 @@ public class AbstractIntegrationTest {
         return stageService.create(new StageCreationDTO(name, number, null, pin, null, null, 2024, 1.5));
     }
 
+    public Stage createStage(final String name, final int number, final String pin, final int year) {
+        return stageService.create(new StageCreationDTO(name, number, null, pin, null, null, year, 1.5));
+    }
+
     protected void startGame() {
         final GameInfo gameInfo = new GameInfo(1L, LocalDateTime.now().minusHours(10), LocalDateTime.now().plusHours(10),
                 null, null, TimeUtils.getCurrentYear());

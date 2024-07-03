@@ -69,6 +69,7 @@ public class StampService implements StampApi {
 
     @Override
     public StampResultDTO submitStamp(final StampRequestDTO stampRequestDTO) {
+        LOG.info("Stamp request tries to submit stamp: {}", stampRequestDTO);
         final Optional<Stage> optionalStage = stageService.getStageByPin(stampRequestDTO.pin());
         final Player player = playerService.getPlayerById(stampRequestDTO.playerId());
 

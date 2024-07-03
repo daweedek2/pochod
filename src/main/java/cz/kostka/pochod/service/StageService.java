@@ -7,6 +7,7 @@ import cz.kostka.pochod.dto.StageCreationDTO;
 import cz.kostka.pochod.dto.StageDetailDTO;
 import cz.kostka.pochod.dto.StageRequestDTO;
 import cz.kostka.pochod.repository.StageRepository;
+import cz.kostka.pochod.util.TimeUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,7 +46,7 @@ public class StageService implements StageApi {
         return stageRepository.getById(id);
     }
     public Optional<Stage> getStageByPin(final String pin) {
-        return stageRepository.getStageByPin(pin);
+        return stageRepository.getStageByPinAndYear(pin, TimeUtils.getCurrentYear());
     }
 
     public void delete(final Long id) {

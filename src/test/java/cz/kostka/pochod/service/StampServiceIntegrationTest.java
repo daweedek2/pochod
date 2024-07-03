@@ -23,6 +23,17 @@ class StampServiceIntegrationTest extends AbstractIntegrationTest {
     private StampService stampService;
 
     @Test
+    void testSubmitStamp_Ok_SamePinUsedAlsoLastYear() {
+        startGame();
+        final Player player = createPlayer("pl", 1122);
+        final Stage stage = createStage("first", 1, "1234", 2024);
+        final Stage stageOld = createStage("first_lastyear", 1003, "1234", 2023);
+        final var result = stampService.submitStamp(new StampRequestDTO(player.getId(), stage.getPin()));
+
+        assertThat(result.getStampSubmitStatus()).isEqualTo(StampSubmitStatus.OK);
+    }
+
+    @Test
     void testSubmitStamp_Ok() {
         startGame();
         final Player player = createPlayer("pl", 1122);
