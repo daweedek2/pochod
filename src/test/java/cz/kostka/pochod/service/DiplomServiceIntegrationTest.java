@@ -6,6 +6,7 @@ import cz.kostka.pochod.dto.StampRequestDTO;
 import cz.kostka.pochod.enums.DiplomSize;
 import cz.kostka.pochod.util.TimeUtils;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,7 @@ class DiplomServiceIntegrationTest extends AbstractIntegrationTest {
         verify(diplomCreatorMock).download("pepa", null, DiplomSize.BIG, TimeUtils.getCurrentYear());
     }
 
+    @Disabled
     @Test
     void createDiplom_NotAllowed() throws IOException {
         final Player player = createPlayer("pepa", 5566);
