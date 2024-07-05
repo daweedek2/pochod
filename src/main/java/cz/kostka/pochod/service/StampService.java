@@ -107,12 +107,13 @@ public class StampService implements StampApi {
     public boolean hasPlayerSubmittedAllStamps(final Player player, final int year) {
         final var playersStamps = this.getAllStampsByPlayerOrdered(player, year);
         final var allStages = stageService.getAllStages(year);
-        return allStages.stream()
+        var  ss = allStages.stream()
                 .filter(stage ->
                         playersStamps.stream()
                                 .anyMatch(stamp -> stamp.getStage() == stage))
-                .toList()
-                .size() == allStages.size();
+                .toList();
+
+        return ss.size() == allStages.size() || ss.size() == allStages.size() - 1;
     }
 
     public List<Stamp> getStampsForPlayerAndStage(final Player player, final Stage stage) {
