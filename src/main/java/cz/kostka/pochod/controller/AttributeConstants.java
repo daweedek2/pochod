@@ -10,4 +10,5 @@ public final class AttributeConstants {
     public static final String STAMPS_MAP = "stampsMap";
     public static final String YEAR = "year";
     public static final String FACEBOOK_EVENT_URL = "facebookUrl";
+    public static final String TOMBOLA_UNLOCKED = "tombolaUnlocked";
 }

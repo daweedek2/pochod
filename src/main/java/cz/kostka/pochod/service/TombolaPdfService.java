@@ -37,7 +37,7 @@ public class TombolaPdfService extends AbstractPdfService {
         final List<Player> allPlayers = playerService.getAllPlayers();
 
         final List<Player> playersWithAllStamps = allPlayers.stream()
-                .filter(player1 -> stampService.hasPlayerSubmittedAllStamps(player1, TimeUtils.getCurrentYear()))
+                .filter(player1 -> stampService.hasPlayerSubmittedAllStampsForTombola(player1, TimeUtils.getCurrentYear()))
                 .collect(Collectors.toList());
 
         if (playersWithAllStamps.isEmpty()) {

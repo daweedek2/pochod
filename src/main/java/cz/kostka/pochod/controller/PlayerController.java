@@ -78,6 +78,10 @@ public class PlayerController {
         return stampService.getStampDTOForPlayerAndStage(player, stage);
     }
 
+    public boolean isTombolaUnlocked(final Player player, final int year) {
+        return stampService.hasPlayerSubmittedAllStampsForTombola(player, year);
+    }
+
 
     public void setYearToModel(final Model model, final Integer year) {
         model.addAttribute(AttributeConstants.YEAR, year);

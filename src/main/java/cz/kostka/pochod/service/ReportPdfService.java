@@ -90,6 +90,6 @@ public class ReportPdfService extends AbstractPdfService {
     }
 
     private String printAllStampsCollected(final Player player) {
-        return stampService.hasPlayerSubmittedAllStamps(player, TimeUtils.getCurrentYear()) ? "WINNER " : "";
+        return stampService.hasPlayerSubmittedAllStampsForTombola(player, TimeUtils.getCurrentYear()) ? "WINNER " : "";
     }
 }

@@ -3,15 +3,11 @@ package cz.kostka.pochod.service;
 import cz.kostka.pochod.AbstractIntegrationTest;
 import cz.kostka.pochod.domain.Player;
 import cz.kostka.pochod.domain.Stage;
-import cz.kostka.pochod.dto.GameInfoDTO;
 import cz.kostka.pochod.dto.StampRequestDTO;
 import cz.kostka.pochod.enums.StampSubmitStatus;
 import cz.kostka.pochod.util.TimeUtils;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

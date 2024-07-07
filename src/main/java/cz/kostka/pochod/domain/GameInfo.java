@@ -29,7 +29,11 @@ public class GameInfo {
     @Column
     private String facebookUrl;
 
-    @Column int year;
+    @Column
+    private int year;
+
+    @Column
+    private int minimumStamps;
 
     public GameInfo(final Long id, final LocalDateTime startGame, final LocalDateTime endGame, final String partners, final String mapUrl, final String facebookUrl, final int year) {
         this.id = id;
@@ -39,6 +43,17 @@ public class GameInfo {
         this.mapUrl = mapUrl;
         this.facebookUrl = facebookUrl;
         this.year = year;
+    }
+
+    public GameInfo(final Long id, final LocalDateTime startGame, final LocalDateTime endGame, final String partners, final String mapUrl, final String facebookUrl, final int year, final int minimumStamps) {
+        this.id = id;
+        this.startGame = startGame;
+        this.endGame = endGame;
+        this.partners = partners;
+        this.mapUrl = mapUrl;
+        this.facebookUrl = facebookUrl;
+        this.year = year;
+        this.minimumStamps = minimumStamps;
     }
 
     public GameInfo() {
@@ -98,5 +113,13 @@ public class GameInfo {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public int getMinimumStamps() {
+        return minimumStamps;
+    }
+
+    public void setMinimumStamps(final int minimumStamps) {
+        this.minimumStamps = minimumStamps;
     }
 }
