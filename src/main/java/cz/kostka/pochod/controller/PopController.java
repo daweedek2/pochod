@@ -49,6 +49,7 @@ public class PopController extends PlayerController {
         setYearToModel(model, year);
         model.addAttribute(AttributeConstants.ALL_STAGES, stageService.getAllStages(year));
         model.addAttribute(AttributeConstants.STAMPS_MAP, getStampsMapForPlayer(user.getPlayer(), year));
+        model.addAttribute(AttributeConstants.TOMBOLA_UNLOCKED, isTombolaUnlocked(user.getPlayer(), year));
         model.addAttribute(AttributeConstants.ALL_STAGES_COUNT, stageService.getAllStagesCount(year));
         return "pop/listV2";
     }

@@ -104,16 +104,20 @@ public class StampService implements StampApi {
         return new StampResultDTO(StampSubmitStatus.OK);
     }
 
-    public boolean hasPlayerSubmittedAllStamps(final Player player, final int year) {
+    public boolean hasPlayerSubmittedAllStampsForTombola(final Player player, final int year) {
         final var playersStamps = this.getAllStampsByPlayerOrdered(player, year);
         final var allStages = stageService.getAllStages(year);
-        var  ss = allStages.stream()
+        final List<Stage> submittedStamps = allStages.stream()
                 .filter(stage ->
                         playersStamps.stream()
                                 .anyMatch(stamp -> stamp.getStage() == stage))
                 .toList();
 
-        return ss.size() == allStages.size() || ss.size() == allStages.size() - 1;
+        if (gameInfoService.getMinimumStamps() == 0) {
+            return submittedStamps.size() == allStages.size();
+        }
+
+        return submittedStamps.size() >= gameInfoService.getMinimumStamps();
     }
 
     public List<Stamp> getStampsForPlayerAndStage(final Player player, final Stage stage) {

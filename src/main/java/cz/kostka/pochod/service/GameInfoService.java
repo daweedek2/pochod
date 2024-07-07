@@ -34,6 +34,7 @@ public class GameInfoService {
         gameInfo.setMapUrl(gameInfoDTO.mapUrl());
         gameInfo.setFacebookUrl(gameInfoDTO.facebookUrl());
         gameInfo.setYear(gameInfoDTO.year());
+        gameInfo.setMinimumStamps(gameInfoDTO.minimumStamps());
         return gameInfoRepository.save(gameInfo);
     }
 
@@ -53,5 +54,9 @@ public class GameInfoService {
     public boolean isEndWarningActive() {
         final LocalDateTime endGameTime = get().orElse(new GameInfo()).getEndGame();
         return endGameTime != null && TimeUtils.getCurrentTime().isAfter(endGameTime.minusHours(1));
+    }
+
+    public Integer getMinimumStamps() {
+        return get().orElse(new GameInfo()).getMinimumStamps();
     }
 }

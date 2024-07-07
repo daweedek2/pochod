@@ -21,7 +21,7 @@ public class DiplomService {
     }
 
     public void createDiplom(final Player player, final HttpServletResponse response, final int year) throws IOException {
-        if (stampService.hasPlayerSubmittedAllStamps(player, year)) {
+        if (stampService.hasPlayerSubmittedAllStampsForTombola(player, year)) {
             diplomCreator.download(player.getNickname(), response, DiplomSize.BIG, year);
         }
     }

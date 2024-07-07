@@ -11,8 +11,9 @@
             <div class="col-sm-12">
                 <h2>Stanoviště</h2>
                 <div>
-                    <p th:unless="${stamps == allStagesCount}">Po získání všech razítek budeš zařazen/a do slosování o tombolu.</p>
-                    <p th:if="${stamps == allStagesCount}">Jsi zařazen/a do slosování o tombolu.</p>
+                    <p th:if="${hasGameEnded}">Sbírání razítek do tomboly je uzavřeno.</p>
+                    <p th:unless="${tombolaUnlocked}">Po získání všech razítek budeš zařazen/a do slosování o tombolu.</p>
+                    <p th:if="${tombolaUnlocked}">Jsi zařazen/a do slosování o tombolu.</p>
                 </div>
                 <div class="progress">
                     <div class="progress-bar progress-bar-striped bg-red-progressbar" role="progressbar"

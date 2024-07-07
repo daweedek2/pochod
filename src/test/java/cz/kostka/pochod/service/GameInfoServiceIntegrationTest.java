@@ -50,7 +50,8 @@ class GameInfoServiceIntegrationTest extends AbstractIntegrationTest {
                         "b",
                         "www.ef.at",
                         "www.fb.at",
-                        LocalDateTime.now().getYear()));
+                        LocalDateTime.now().getYear(),
+                        0));
 
         assertThat(gameInfoRepository.findAll())
                 .hasSize(1);
@@ -83,9 +84,9 @@ class GameInfoServiceIntegrationTest extends AbstractIntegrationTest {
                             "b",
                             "www.ef.at",
                             "www.fb.at",
-                            LocalDateTime.now().getYear()));
+                            LocalDateTime.now().getYear(),
+                            0));
         }
-
 
         assertThat(gameInfoRepository.findAll())
                 .hasSize(1);
